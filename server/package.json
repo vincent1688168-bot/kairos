@@ -1,0 +1,9 @@
+{
+  "name": "kairos-agent-wallet-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KAIROS Binance Agentic Wallet QR sign-in proxy (mint-only)",
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node server.js" }
+}
