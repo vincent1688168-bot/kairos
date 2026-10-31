@@ -588,7 +588,7 @@ const LANGS = ["en", "ja", "ko", "zht", "zh"];
 let lang = "en";
 try {
 const s = localStorage.getItem("kairos_lang"), nl = (navigator.language || "").toLowerCase();
-lang = s === "zh" ? "zht" : LANGS.includes(s) ? s : /^ja/.test(nl) ? "ja" : /^ko/.test(nl) ? "ko" : "zht"; // 默认繁體中文
+lang = s === "zh" ? "zht" : LANGS.includes(s) ? s : "en"; // 默认英文；访客切换过的语言会记住
 } catch {}
 const LOC = { zh: "zh-CN", zht: "zh-TW", ja: "ja-JP", ko: "ko-KR", en: "en-US" };
 const HTML_LANG = { zh: "zh-CN", zht: "zh-TW", ja: "ja", ko: "ko", en: "en" };
