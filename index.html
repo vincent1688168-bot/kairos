@@ -294,6 +294,62 @@ footer .in{padding-block:36px 48px;color:var(--mute);font-size:13px;display:grid
 .risk{background:color-mix(in srgb,var(--bad) 16%,transparent);border-radius:10px;padding:10px 12px;font-size:13px}
 .copyrow{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 12px;background:var(--bg2)}
 .copyrow code{font:12px var(--mono);overflow-wrap:anywhere;flex:1;min-width:0}
+
+/* ===== gold mint pass ===== */
+.card.gold{--gi:#1c1405;--gm:rgba(28,20,5,.62);--gl:rgba(28,20,5,.2);color:var(--gi);border:1px solid #f7d67c;border-radius:24px;padding:28px 28px 22px;display:grid;gap:14px;
+background:linear-gradient(155deg,#f6d77a 0%,#e9bd4b 28%,#dca83a 58%,#c98d1f 100%);
+box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 -1px 0 rgba(0,0,0,.25) inset,0 50px 90px -40px rgba(245,184,61,.45),0 30px 60px -30px #000;isolation:isolate}
+.card.gold::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
+background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,transparent 60%),repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 2px,transparent 2px 6px);mix-blend-mode:overlay}
+.card.gold::after{content:"";position:absolute;inset:7px;border:1px solid rgba(28,20,5,.14);border-radius:18px;pointer-events:none}
+.gc-k{position:absolute;right:-18px;bottom:-60px;font:900 300px/1 var(--latin);color:rgba(28,20,5,.06);z-index:-1;pointer-events:none;letter-spacing:-.05em}
+.gc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.gc-eye{font:600 11px var(--mono);letter-spacing:.22em;color:var(--gm)}
+.gc-top h3{margin:4px 0 0;font:800 34px/1.05 var(--latin);letter-spacing:-.01em;word-break:break-all}
+.card.gold .chip{background:var(--gi);color:#f6d77a}
+.gc-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--gm)}
+.gc-tag{font:700 11px var(--mono);letter-spacing:.08em;color:var(--gi);background:rgba(255,255,255,.28);border:1px solid var(--gl);border-radius:7px;padding:4px 9px}
+.gc-lbl{font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gm)}
+.nums{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+.nums button{height:42px;min-width:0;border:1px solid rgba(28,20,5,.32);background:rgba(255,255,255,.14);color:var(--gi);border-radius:10px;cursor:pointer;font:700 14px var(--mono);transition:background .15s,transform .1s;padding:0}
+.nums button:hover:not(:disabled):not([aria-pressed="true"]){background:rgba(255,255,255,.32)}
+.nums button:disabled{opacity:.35;cursor:not-allowed}
+.nums button[aria-pressed="true"]{background:var(--gi);color:#f6d77a;border-color:var(--gi);box-shadow:0 4px 10px -4px rgba(0,0,0,.5)}
+.ledger{border:1px solid var(--gl);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08));backdrop-filter:blur(2px);padding:4px 16px}
+.ledger>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--gl);font-size:14px}
+.ledger>div:last-child{border-bottom:0}
+.ledger span{color:var(--gm);white-space:nowrap}
+.ledger b{font-weight:600;text-align:right;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;justify-content:flex-end;min-width:0}
+.ledger em{font:700 15px var(--mono);font-style:normal}
+.ledger small{font:500 12px var(--mono);color:var(--gm)}
+#gcWallet{font:600 13px var(--mono)}
+.gbtn{width:100%;padding:17px;border-radius:16px;border:2px solid var(--gi);background:transparent;color:var(--gi);font:800 17px var(--body);cursor:pointer;letter-spacing:.02em;transition:background .18s,color .18s,transform .1s}
+.gbtn:hover:not(:disabled){background:var(--gi);color:#f6d77a}
+.gbtn:active:not(:disabled){transform:translateY(1px)}
+.gbtn:disabled{opacity:.55;cursor:not-allowed}
+.card.gold .msg.err{color:#7a1a0c} .card.gold .msg.ok{color:#0f5c36}
+.card.gold .ref{background:rgba(255,255,255,.25);color:var(--gi)}
+.gc-hr{height:1px;background:linear-gradient(90deg,transparent,rgba(28,20,5,.35),transparent);margin:4px 0}
+.gc-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gc-two>div{display:grid;gap:4px}
+.gc-two b{font:800 21px var(--mono);letter-spacing:.02em}
+.gc-get{font:800 23px var(--mono);letter-spacing:.01em;margin-top:-6px;word-break:break-all}
+.gc-note{margin:-8px 0 0;font-size:13px;color:var(--gm)}
+.gc-supply{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:6px}
+.gc-supply>span:first-child{font:600 13px var(--mono);letter-spacing:.2em;color:var(--gm)}
+.gc-supply b{font:800 34px var(--mono);letter-spacing:-.01em}
+.gc-supply small{font:600 14px var(--mono);color:var(--gm)}
+.gc-supply i{font-style:normal}
+.gc-bar{height:12px;border-radius:99px;background:rgba(28,20,5,.16);box-shadow:inset 0 1px 2px rgba(0,0,0,.25);overflow:hidden}
+.gc-bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#1c1405,#3b2a0a);transition:width .6s}
+.gc-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:500 12px var(--mono);color:var(--gm)}
+.gc-row em{font-style:normal;color:var(--gi)}
+.gc-row .sq{display:inline-block;width:10px;height:10px;background:var(--gi);border-radius:2px;margin-right:6px;vertical-align:-1px}
+.gc-total{margin:0;font:500 12px/1.6 var(--mono);color:var(--gm)}
+.gc-kv{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px dashed var(--gl);font-size:14px}
+.gc-kv span{color:var(--gm)} .gc-kv b{font-weight:600;text-align:right}
+.card.gold .foot{color:var(--gm)}
+@media (max-width:520px){.card.gold{padding:22px 18px 18px}.nums{grid-template-columns:repeat(5,minmax(0,1fr))}.gc-top h3{font-size:28px}.gc-supply b{font-size:28px}.gc-get{font-size:19px}}
 </style>
 </head>
 <body>
@@ -328,35 +384,41 @@ footer .in{padding-block:36px 48px;color:var(--mute);font-size:13px;display:grid
 <div><b>10,000</b><span data-i="fTotal"></span></div>
 <div><b>1U</b><span data-i="fPrice"></span></div>
 <div><b>10</b><span data-i="fPer"></span></div>
-<div><b id="fTiers">353</b><span data-i="fTiers"></span></div>
+<div><b id="fTiers">5,131</b><span data-i="fTiers"></span></div>
 </div>
 </div>
 
-<div class="card" id="mintcard">
-<div class="card-h"><div><b>KAIROS / $KAIROS</b><small data-i="cardSub"></small></div><span class="chip" id="netName"></span></div>
-<div class="card-b">
-<div class="prog">
-<span class="lbl" data-i="progress"></span>
-<div class="row"><span class="big" id="soldBig">—</span><span class="badge" id="tierBadge">—</span></div>
-<div class="tiers" id="tierbar"></div>
-<div class="tierlbl"><span>T1</span><span>T2–11</span><span>T12–181</span><span>T182–353</span></div>
-<div class="row" style="font-size:13px;color:var(--mute)"><span id="phaseTxt">—</span><span id="pct" class="mono"></span></div>
+<div class="card gold" id="mintcard">
+<div class="gc-k" aria-hidden="true">K</div>
+<div class="gc-top"><div><span class="gc-eye">KAIROS · MINT PASS</span><h3 id="gcTitle">KAIROS</h3></div><span class="chip" id="netName"></span></div>
+<div class="gc-meta"><span class="gc-tag" id="gcTag">◆ AGENT ONLY</span><span id="gcSub"></span></div>
+<span class="gc-lbl" data-i="shares"></span>
+<div class="nums" id="chips"><button data-v="1">1</button><button data-v="2">2</button><button data-v="3">3</button><button data-v="4">4</button><button data-v="5">5</button><button data-v="6">6</button><button data-v="7">7</button><button data-v="8">8</button><button data-v="9">9</button><button data-v="10">10</button></div>
+<div hidden><button id="dec">−</button><output id="n">1</output><button id="inc">+</button></div>
+<div class="ledger">
+<div><span id="lgW"></span><b id="gcWallet">—</b></div>
+<div><span id="lgN"></span><b>BNB Smart Chain (56)</b></div>
+<div><span>Agent ID</span><b id="gcAgent">—</b></div>
+<div><span data-i="cost"></span><b><em id="costBnb">—</em><small id="costU">—</small></b></div>
+<div><span id="lgS"></span><b id="gcQuota">—</b></div>
 </div>
-<div class="qty">
-<div class="box">
-<span class="lbl" data-i="shares"></span>
-<div class="step"><button id="dec" aria-label="−">−</button><output id="n">1</output><button id="inc" aria-label="+">+</button></div>
-<div class="chips" id="chips"><button data-v="1">1</button><button data-v="3">3</button><button data-v="5">5</button><button data-v="10">10</button></div>
-</div>
-<div class="box cost"><span class="lbl" data-i="cost"></span><span class="v" id="costBnb">—</span><span style="font-size:13px;color:var(--mute)" id="costU">—</span></div>
-</div>
-<div class="get"><b data-i="receive"></b><strong id="getTok">—</strong></div>
+<button class="gbtn" id="mainBtn">—</button>
 <div class="ref" id="refbox" hidden></div>
-<button class="btn wide" id="mainBtn">—</button>
 <div class="msg" id="msg" role="status"></div>
+<div class="gc-hr"></div>
+<div class="gc-two"><div><span class="gc-lbl" id="lgT"></span><b id="tierBadge">—</b></div><div><span class="gc-lbl" id="lgX"></span><b id="gcNext">—</b></div></div>
+<span class="gc-lbl" data-i="receive"></span>
+<div class="gc-get">≈ <span id="getTok">—</span></div>
+<p class="gc-note" id="gcGetNote"></p>
+<div class="gc-supply"><span>SUPPLY</span><span><b id="soldBig">0</b> <small>/ <i id="gcMax">—</i></small></span></div>
+<div class="gc-bar"><i id="gcBar"></i></div>
+<div class="tiers" id="tierbar" hidden></div>
+<div class="gc-row"><span><i class="sq"></i>Minted <em id="gcMinted">0</em> / <em id="gcMax2">—</em></span><span id="gcStage"></span></div>
+<p class="gc-total" id="gcTotal"></p>
+<div class="gc-kv"><span id="lgPh"></span><b id="phaseTxt">—</b></div>
+<div class="gc-kv"><span id="lgPct"></span><b id="pct">—</b></div>
 <div class="foot" id="quotaTxt"></div>
 <div class="foot" data-i="flowNote"></div>
-</div>
 </div>
 </div></header>
 
@@ -484,7 +546,7 @@ xUrl: "",                                              // X（推特）链接；
 token: "",                                             // 代币合约地址（白皮书合约列表用）
 treasury: "",                                          // 项目方收款钱包
 launchAt: "",                                           // 开放时间，例如 "2026-11-08T12:00:00Z"；留空显示"即将开放"
-tokensPerShare: 135000000,                              // 每份可得 $KAIROS（固定）；4,440,000 份 × 1.35 亿 ≈ 600 万亿
+tokensPerShare: 60000000,                               // 每份可得 $KAIROS（固定）；100,000,000 份 × 6,000 万 = 6,000 万亿（60%）
 perId: 10,                                              // 每个 Agent ID 最多份数
 durationDays: 30,
 demoScale: 100,                                         // 演示模式把每档份数缩小 100 倍
@@ -496,7 +558,7 @@ const LADDER = [
 [10, 1000, 1100, 100],    // T2–T11：10,001–20,000，每 1,000 份 +0.1U → 2U
 [80, 1000, 2100, 20],     // T12–T91：20,001–100,000，每 1,000 份 +0.02U
 [90, 10000, 3700, 20],    // T92–T181：100,001–1,000,000，每 10,000 份 +0.02U → 5.48U
-[172, 20000, 5500, 15],   // T182–T353：之后每 20,000 份 +0.015U，最高 8.065U
+[4950, 20000, 5500, 15],  // T182–T5131：之后每 20,000 份 +0.015U，最高 79.735U；总 100,000,000 份
 ];
 // =========================================================
 
@@ -537,7 +599,7 @@ const sz = Math.max(1, Math.round(size / SCALE)), g = { a: TIERS.length + 1, fro
 for (let k = 0; k < cnt; k++) { TIERS.push({ no: TIERS.length + 1, from: s + 1, to: s + sz, mU: start + k * step }); s += sz; }
 g.b = TIERS.length; g.to = s; g.hi = TIERS[TIERS.length - 1].mU; GROUPS.push(g);
 } }
-// 合并成 4 组卡片：T1 / T2–11 / T12–181 / T182–353
+// 合并成 4 组卡片：T1 / T2–11 / T12–181 / T182–5131
 const CARDS = [[0, 0], [1, 1], [2, 3], [4, 4]].map(([x, y]) => ({ a: GROUPS[x].a, b: GROUPS[y].b, from: GROUPS[x].from, to: GROUPS[y].to, lo: GROUPS[x].lo, hi: GROUPS[y].hi }));
 const MAX = TIERS[TIERS.length - 1].to;
 const T1N = TIERS[0].to;
@@ -575,14 +637,14 @@ m1: ["你的钱包", "Your wallet", "あなたのウォレット", "내 지갑"]
 m2: ["KAIROS 合约", "KAIROS contract", "KAIROS コントラクト", "KAIROS 컨트랙트"], m2s: ["核验身份、按档位计价、记录份额", "checks identity, prices by tier, records shares", "身元確認、ティア別に価格計算、口数を記録", "신원 확인, 티어별 가격 계산, 수량 기록"],
 m3: ["项目方钱包", "Project wallet", "プロジェクトのウォレット", "프로젝트 지갑"], m3s: ["同一笔交易全额到账，合约不留钱，没有退款", "receives in full in the same tx; nothing held, no refunds", "同じ取引で全額着金。資金は残らず、返金なし", "같은 거래에서 전액 입금, 컨트랙트에 남는 돈 없음, 환불 없음"],
 tokT: ["代币机制", "Token mechanics", "トークンの仕組み", "토큰 구조"],
-tokS: ["每份固定得到 1.35 亿 $KAIROS，变的是每份的价格：越早越便宜。", "Every share gets a fixed 135,000,000 $KAIROS. What changes is the price per share: earlier is cheaper.", "1 口あたりの $KAIROS は 1.35 億で固定。変わるのは 1 口の価格で、早いほど安くなります。", "개당 받는 $KAIROS는 1.35억 개로 고정입니다. 바뀌는 것은 개당 가격이며, 빠를수록 저렴합니다."],
+tokS: ["每份固定得到 6,000 万 $KAIROS，变的是每份的价格：越早越便宜。", "Every share gets a fixed 60,000,000 $KAIROS. What changes is the price per share: earlier is cheaper.", "1 口あたりの $KAIROS は 6,000 万で固定。変わるのは 1 口の価格で、早いほど安くなります。", "개당 받는 $KAIROS는 6,000만 개로 고정입니다. 바뀌는 것은 개당 가격이며, 빠를수록 저렴합니다."],
 allocT: ["分配", "Allocation", "配分", "배분"],
 allocNote: ["铸造者和邀请奖励由合约记录，任何人都能核对。流动性与项目部分不受合约约束，由项目方在发放前公布具体安排。",
 "Minter and referral amounts are recorded by the contract and auditable by anyone. The liquidity and project share is not contract-enforced; the project will publish its plan before distribution.",
 "ミント参加者と紹介報酬はコントラクトが記録し、誰でも確認できます。流動性とプロジェクト分はコントラクトの制約外で、配布前に具体案を公表します。",
 "민팅 참여자와 초대 보상은 컨트랙트가 기록하며 누구나 확인할 수 있습니다. 유동성·프로젝트 몫은 컨트랙트로 강제되지 않으며, 배분 전에 프로젝트가 구체적인 계획을 공개합니다."],
 weightT: ["各档每份价格", "Price per share by tier", "ティアごとの 1 口価格", "티어별 개당 가격"],
-weightNote: ["T1 每份 1U，最后一档约 8.07U。跨档的交易逐份计算。", "T1 is 1U per share, the last tier about 8.07U. Purchases crossing tiers are priced share by share.", "T1 は 1 口 1U、最終ティアは約 8.07U。ティアをまたぐ購入は 1 口ずつ計算します。", "T1은 개당 1U, 마지막 티어는 약 8.07U입니다. 티어를 넘는 구매는 한 개씩 따로 계산합니다."],
+weightNote: ["T1 每份 1U，最后一档约 79.74U。跨档的交易逐份计算。", "T1 is 1U per share, the last tier about 79.74U. Purchases crossing tiers are priced share by share.", "T1 は 1 口 1U、最終ティアは約 79.74U。ティアをまたぐ購入は 1 口ずつ計算します。", "T1은 개당 1U, 마지막 티어는 약 79.74U입니다. 티어를 넘는 구매는 한 개씩 따로 계산합니다."],
 tlT: ["时间线", "Timeline", "タイムライン", "타임라인"],
 tiersT: ["分级", "Tiers", "ティア", "티어"], nearT: ["当前附近的档位", "Tiers around now", "現在付近のティア", "현재 근처 티어"],
 thTier: ["档位", "Tier", "ティア", "티어"], thRange: ["份数区间", "Shares", "口数範囲", "수량 구간"], thPer: ["每份 $KAIROS", "$KAIROS / share", "1 口あたり", "개당 $KAIROS"], thPrice: ["每份价格", "Price / share", "1 口の価格", "개당 가격"],
@@ -624,7 +686,7 @@ chain: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(
 };
 const PILLARS = () => [
 [ICON.id, tt("只有 Agent 能铸", "Agents only", "Agent だけ", "에이전트 전용"), tt("合约直接读取币安 Agent ID 注册合约。没有 .ai 身份的钱包，连交易都发不出去。", "The contract reads Binance's Agent ID registry directly. Wallets without a .ai identity can't even submit the transaction.", "コントラクトが Binance の Agent ID レジストリを直接読み取ります。.ai の身元がないウォレットは取引すら送れません。", "컨트랙트가 바이낸스 Agent ID 레지스트리를 직접 읽습니다. .ai 신원이 없는 지갑은 거래조차 보낼 수 없습니다.")],
-[ICON.clock, tt("越早越便宜", "Earlier is cheaper", "早いほど安い", "빠를수록 저렴"), tt("前 10,000 份每份 1U，之后逐档递增，最高约 8.07U。每份拿到的代币永远是 1.35 亿枚。", "The first 10,000 shares are 1U each, then the price rises tier by tier to about 8.07U. Every share always gets 135,000,000 tokens.", "最初の 10,000 口は 1 口 1U、その後ティアごとに上がり最高約 8.07U。1 口あたりのトークンは常に 1.35 億。", "처음 10,000개는 개당 1U, 이후 티어마다 올라 최고 약 8.07U입니다. 개당 토큰은 언제나 1.35억 개입니다.")],
+[ICON.clock, tt("越早越便宜", "Earlier is cheaper", "早いほど安い", "빠를수록 저렴"), tt("前 10,000 份每份 1U，之后逐档递增，最高约 79.74U。每份拿到的代币永远是 6,000 万枚。", "The first 10,000 shares are 1U each, then the price rises tier by tier to about 79.74U. Every share always gets 60,000,000 tokens.", "最初の 10,000 口は 1 口 1U、その後ティアごとに上がり最高約 79.74U。1 口あたりのトークンは常に 6,000 万。", "처음 10,000개는 개당 1U, 이후 티어마다 올라 최고 약 79.74U입니다. 개당 토큰은 언제나 6,000만 개입니다.")],
 [ICON.chain, tt("一切写在链上", "All on-chain", "すべてオンチェーン", "모든 것이 온체인"), tt("谁铸了几份、应得多少、邀请了谁，全部由合约记录，任何人都能核对。合约没有管理员。", "Who minted how many shares, what they are owed and whom they invited is all recorded by the contract and auditable. The contract has no admin.", "誰が何口ミントし、いくら受け取り、誰を紹介したかはすべてコントラクトが記録し、誰でも確認できます。管理者権限はありません。", "누가 몇 개를 민팅했고 얼마를 받으며 누구를 초대했는지 모두 컨트랙트에 기록되어 누구나 확인할 수 있습니다. 관리자 권한은 없습니다.")],
 ];
 const FLOW = () => [
@@ -634,9 +696,9 @@ const FLOW = () => [
 [tt("4 · 邀请", "4 · Invites", "4 · 紹介", "4 · 초대"), tt("被邀请人首次铸造时绑定，之后每次铸造，邀请人多记 5%。", "Bound on the invitee's first mint; the referrer earns an extra 5% on every mint after.", "初回ミントで紹介者が確定し、以降のミントごとに紹介者へ 5% 上乗せ。", "초대받은 사람의 첫 민팅 때 연결되고, 이후 민팅마다 초대한 사람에게 5%가 추가됩니다."), "referrer · +5%"],
 ];
 const ALLOC = () => [
-["var(--amber)", 60, tt("铸造者", "Minters", "ミント参加者", "민팅 참여자"), tt("最多约 600 万亿 · 每份 1.35 亿枚，合约记账", "up to ~600T · 135M per share, recorded", "最大約 600 兆 · 1 口 1.35 億、記録", "최대 약 600조 · 개당 1.35억 개, 컨트랙트 기록")],
-["var(--teal)", 3, tt("邀请奖励（上限）", "Referrals (max)", "紹介報酬（上限）", "초대 보상 (상한)"), tt("最多 30 万亿 · 合约记账", "up to 30T · recorded", "最大 30 兆 · 記録", "최대 30조 · 기록")],
-["var(--slate)", 37, tt("流动性与项目", "Liquidity & project", "流動性とプロジェクト", "유동성·프로젝트"), tt("370 万亿 · 由项目方管理，发放前公布", "370T · managed by the project, published before distribution", "370 兆 · プロジェクト管理、配布前に公表", "370조 · 프로젝트 관리, 배분 전 공개")],
+["var(--amber)", 60, tt("铸造者", "Minters", "ミント参加者", "민팅 참여자"), tt("最多约 6,000 万亿 · 每份 6,000 万枚，合约记账", "up to ~6,000T · 60M per share, recorded", "最大約 6,000 兆 · 1 口 6,000 万、記録", "최대 약 6,000조 · 개당 6,000만 개, 컨트랙트 기록")],
+["var(--teal)", 3, tt("邀请奖励（上限）", "Referrals (max)", "紹介報酬（上限）", "초대 보상 (상한)"), tt("最多 300 万亿 · 合约记账", "up to 300T · recorded", "最大 300 兆 · 記録", "최대 300조 · 기록")],
+["var(--slate)", 37, tt("流动性与项目", "Liquidity & project", "流動性とプロジェクト", "유동성·프로젝트"), tt("3,700 万亿 · 由项目方管理，发放前公布", "3,700T · managed by the project, published before distribution", "3,700 兆 · プロジェクト管理、配布前に公表", "3,700조 · 프로젝트 관리, 배분 전 공개")],
 ];
 const TIMELINE = () => [
 ["T0", tt("公布合约", "Contract published", "コントラクト公開", "컨트랙트 공개"), tt("公开合约地址和规则，开放铸造", "Address and rules published, mint opens", "アドレスとルールを公開し、ミント開始", "주소와 규칙 공개, 민팅 오픈")],
@@ -648,7 +710,7 @@ const FAQ = () => [
 [tt("没有 .ai Agent ID 能参与吗？", "Can I join without a .ai Agent ID?", ".ai Agent ID がなくても参加できますか？", ".ai Agent ID 없이 참여할 수 있나요?"),
 tt("不能。在币安 App 的 Agentic Wallet 里可以申请 Agent ID。", "No. You can claim an Agent ID in Binance Agentic Wallet.", "できません。Agent ID は Binance アプリの Agentic Wallet で取得できます。", "아니요. 바이낸스 앱의 Agentic Wallet에서 Agent ID를 신청할 수 있습니다.")],
 [tt("价格怎么算？", "How is the price set?", "価格はどう決まりますか？", "가격은 어떻게 정해지나요?"),
-tt("前 10,000 份每份 1U；10,001–20,000 份每 1,000 份涨 0.1U；20,001–100,000 份每 1,000 份涨 0.02U；100,001–1,000,000 份每 10,000 份涨 0.02U；之后每 20,000 份涨 0.015U，最高约 8.07U。跨档的交易逐份计算。", "First 10,000 shares: 1U each. 10,001–20,000: +0.1U every 1,000. 20,001–100,000: +0.02U every 1,000. 100,001–1,000,000: +0.02U every 10,000. After that +0.015U every 20,000, up to about 8.07U. Purchases crossing tiers are priced share by share.", "最初の 10,000 口は 1U。10,001–20,000 口は 1,000 口ごとに +0.1U、20,001–100,000 口は 1,000 口ごとに +0.02U、100,001–1,000,000 口は 10,000 口ごとに +0.02U、その後は 20,000 口ごとに +0.015U、最高約 8.07U。ティアをまたぐ取引は 1 口ずつ計算。", "처음 10,000개는 개당 1U. 10,001–20,000개는 1,000개마다 +0.1U, 20,001–100,000개는 1,000개마다 +0.02U, 100,001–1,000,000개는 10,000개마다 +0.02U, 이후 20,000개마다 +0.015U로 최고 약 8.07U. 티어를 넘는 거래는 한 개씩 계산합니다.")],
+tt("前 10,000 份每份 1U；10,001–20,000 份每 1,000 份涨 0.1U；20,001–100,000 份每 1,000 份涨 0.02U；100,001–1,000,000 份每 10,000 份涨 0.02U；之后每 20,000 份涨 0.015U，最高约 79.74U。跨档的交易逐份计算。", "First 10,000 shares: 1U each. 10,001–20,000: +0.1U every 1,000. 20,001–100,000: +0.02U every 1,000. 100,001–1,000,000: +0.02U every 10,000. After that +0.015U every 20,000, up to about 79.74U. Purchases crossing tiers are priced share by share.", "最初の 10,000 口は 1U。10,001–20,000 口は 1,000 口ごとに +0.1U、20,001–100,000 口は 1,000 口ごとに +0.02U、100,001–1,000,000 口は 10,000 口ごとに +0.02U、その後は 20,000 口ごとに +0.015U、最高約 79.74U。ティアをまたぐ取引は 1 口ずつ計算。", "처음 10,000개는 개당 1U. 10,001–20,000개는 1,000개마다 +0.1U, 20,001–100,000개는 1,000개마다 +0.02U, 100,001–1,000,000개는 10,000개마다 +0.02U, 이후 20,000개마다 +0.015U로 최고 약 79.74U. 티어를 넘는 거래는 한 개씩 계산합니다.")],
 [tt("为什么用 AI 铸造要开开发者模式？", "Why does my AI need Developer Mode?", "AI でミントするのになぜ開発者モードが必要？", "AI로 민팅할 때 왜 개발자 모드가 필요한가요?"),
 tt("币安规定 Agentic Wallet 调用外部合约必须开启：Agentic Wallet → 设置 → 开发者模式。每笔交易都会先预览，你确认后才执行。", "Binance requires it for contract calls from Agentic Wallet (Agentic Wallet → Settings → Developer Mode). Each call is previewed first.", "Agentic Wallet から外部コントラクトを呼ぶには Binance の規定で必要です（Agentic Wallet → 設定 → 開発者モード）。取引は必ずプレビューされます。", "바이낸스 규정상 Agentic Wallet에서 외부 컨트랙트를 호출하려면 켜야 합니다 (Agentic Wallet → 설정 → 개발자 모드). 모든 거래는 먼저 미리보기 후 승인해야 실행됩니다.")],
 [tt("我的钱去了哪里？", "Where does my payment go?", "支払ったお金はどこへ？", "결제한 돈은 어디로 가나요?"),
@@ -676,20 +738,20 @@ return [
 `<p>AI エージェントはチェーン上で最も活発な参加者の一つになりつつあり、ユーザーに代わって 24 時間取引・署名・送金を行っています。Binance の Agentic Wallet と .ai Agent ID は、エージェントに初めて検証可能なオンチェーンの身元を与えました。</p><p>身元には使い道が必要です。KAIROS は Agent ID を唯一の入場券とし、エージェントだけのローンチを行います。</p>`,
 `<p>AI 에이전트는 사용자를 대신해 24시간 거래·서명·송금하며 온체인에서 가장 활발한 참여자 중 하나가 되고 있습니다. 바이낸스의 Agentic Wallet과 .ai Agent ID는 에이전트에게 처음으로 검증 가능한 온체인 신원을 부여했습니다.</p><p>신원에는 쓰임이 필요합니다. KAIROS는 Agent ID를 유일한 입장권으로 삼아, 에이전트만을 위한 발행을 진행합니다.</p>`)],
 ["mint", tt("铸造规则", "Mint rules", "ミントのルール", "민팅 규칙"), tt(
-`<ul><li><b>资格</b>：铸造钱包必须持有 .ai Agent ID（注册合约 balanceOf &gt; 0）。</li><li><b>价格</b>：每份按所在档位的 U 价计算，用 Chainlink BNB/USD 实时换算成 BNB；多付的 BNB 在同一笔交易退回；价格超过 1 小时未更新时暂停铸造。</li><li><b>额度</b>：每个 Agent ID 最多 10 份，可以分多次。</li><li><b>档位</b>：前 10,000 份 1U；10,001–20,000 每 1,000 份 +0.1U；20,001–100,000 每 1,000 份 +0.02U；100,001–1,000,000 每 10,000 份 +0.02U；之后每 20,000 份 +0.015U，最高约 8.07U，共 ${TIERS.length} 档、${fmt(MAX)} 份。</li><li><b>截止</b>：开放后 ${CONFIG.durationDays} 天，或全部铸满。</li></ul>${tbl}<p>一笔交易跨档时，每一份按它所在的档位单独计算。</p>`,
-`<ul><li><b>Eligibility</b>: the minting wallet must hold a .ai Agent ID (registry balanceOf &gt; 0).</li><li><b>Price</b>: each share is priced in U by its tier and converted to BNB live from Chainlink BNB/USD. Overpayment is refunded in the same transaction. Minting pauses if the price is over an hour old.</li><li><b>Quota</b>: up to 10 shares per Agent ID, in any number of transactions.</li><li><b>Tiers</b>: first 10,000 at 1U; 10,001–20,000 +0.1U per 1,000; 20,001–100,000 +0.02U per 1,000; 100,001–1,000,000 +0.02U per 10,000; then +0.015U per 20,000 up to about 8.07U. ${TIERS.length} tiers, ${fmt(MAX)} shares.</li><li><b>Close</b>: ${CONFIG.durationDays} days after opening, or when sold out.</li></ul>${tbl}<p>When a transaction crosses tiers, each share is priced by the tier it falls in.</p>`,
-`<ul><li><b>資格</b>：ミントするウォレットが .ai Agent ID を保有していること（レジストリ balanceOf &gt; 0）。</li><li><b>価格</b>：各口をティアの U 価格で計算し、Chainlink BNB/USD でリアルタイムに BNB 換算。過払い分は同じ取引で返金。価格が 1 時間以上更新されない場合は停止。</li><li><b>上限</b>：Agent ID ごとに最大 10 口、複数回に分けても可。</li><li><b>ティア</b>：最初の 10,000 口は 1U、10,001–20,000 は 1,000 口ごとに +0.1U、20,001–100,000 は 1,000 口ごとに +0.02U、100,001–1,000,000 は 10,000 口ごとに +0.02U、その後 20,000 口ごとに +0.015U、最高約 8.07U。全 ${TIERS.length} ティア、${fmt(MAX)} 口。</li><li><b>終了</b>：開始から ${CONFIG.durationDays} 日、または完売時。</li></ul>${tbl}<p>1 つの取引がティアをまたぐ場合、各口はそれぞれのティアで計算されます。</p>`,
-`<ul><li><b>자격</b>: 민팅하는 지갑이 .ai Agent ID를 보유해야 합니다 (레지스트리 balanceOf &gt; 0).</li><li><b>가격</b>: 각 개를 해당 티어의 U 가격으로 계산하고 Chainlink BNB/USD로 실시간 BNB 환산합니다. 초과 결제분은 같은 거래에서 환불되며, 가격이 1시간 넘게 갱신되지 않으면 민팅이 중지됩니다.</li><li><b>한도</b>: Agent ID당 최대 10개, 여러 번 나눠도 됩니다.</li><li><b>티어</b>: 처음 10,000개 1U, 10,001–20,000은 1,000개마다 +0.1U, 20,001–100,000은 1,000개마다 +0.02U, 100,001–1,000,000은 10,000개마다 +0.02U, 이후 20,000개마다 +0.015U로 최고 약 8.07U. 총 ${TIERS.length}개 티어, ${fmt(MAX)}개.</li><li><b>종료</b>: 오픈 후 ${CONFIG.durationDays}일 또는 완판 시.</li></ul>${tbl}<p>한 거래가 여러 티어에 걸치면 각 개는 해당 티어 가격으로 따로 계산됩니다.</p>`)],
+`<ul><li><b>资格</b>：铸造钱包必须持有 .ai Agent ID（注册合约 balanceOf &gt; 0）。</li><li><b>价格</b>：每份按所在档位的 U 价计算，用 Chainlink BNB/USD 实时换算成 BNB；多付的 BNB 在同一笔交易退回；价格超过 1 小时未更新时暂停铸造。</li><li><b>额度</b>：每个 Agent ID 最多 10 份，可以分多次。</li><li><b>档位</b>：前 10,000 份 1U；10,001–20,000 每 1,000 份 +0.1U；20,001–100,000 每 1,000 份 +0.02U；100,001–1,000,000 每 10,000 份 +0.02U；之后每 20,000 份 +0.015U，最高约 79.74U，共 ${TIERS.length} 档、${fmt(MAX)} 份。</li><li><b>截止</b>：开放后 ${CONFIG.durationDays} 天，或全部铸满。</li></ul>${tbl}<p>一笔交易跨档时，每一份按它所在的档位单独计算。</p>`,
+`<ul><li><b>Eligibility</b>: the minting wallet must hold a .ai Agent ID (registry balanceOf &gt; 0).</li><li><b>Price</b>: each share is priced in U by its tier and converted to BNB live from Chainlink BNB/USD. Overpayment is refunded in the same transaction. Minting pauses if the price is over an hour old.</li><li><b>Quota</b>: up to 10 shares per Agent ID, in any number of transactions.</li><li><b>Tiers</b>: first 10,000 at 1U; 10,001–20,000 +0.1U per 1,000; 20,001–100,000 +0.02U per 1,000; 100,001–1,000,000 +0.02U per 10,000; then +0.015U per 20,000 up to about 79.74U. ${TIERS.length} tiers, ${fmt(MAX)} shares.</li><li><b>Close</b>: ${CONFIG.durationDays} days after opening, or when sold out.</li></ul>${tbl}<p>When a transaction crosses tiers, each share is priced by the tier it falls in.</p>`,
+`<ul><li><b>資格</b>：ミントするウォレットが .ai Agent ID を保有していること（レジストリ balanceOf &gt; 0）。</li><li><b>価格</b>：各口をティアの U 価格で計算し、Chainlink BNB/USD でリアルタイムに BNB 換算。過払い分は同じ取引で返金。価格が 1 時間以上更新されない場合は停止。</li><li><b>上限</b>：Agent ID ごとに最大 10 口、複数回に分けても可。</li><li><b>ティア</b>：最初の 10,000 口は 1U、10,001–20,000 は 1,000 口ごとに +0.1U、20,001–100,000 は 1,000 口ごとに +0.02U、100,001–1,000,000 は 10,000 口ごとに +0.02U、その後 20,000 口ごとに +0.015U、最高約 79.74U。全 ${TIERS.length} ティア、${fmt(MAX)} 口。</li><li><b>終了</b>：開始から ${CONFIG.durationDays} 日、または完売時。</li></ul>${tbl}<p>1 つの取引がティアをまたぐ場合、各口はそれぞれのティアで計算されます。</p>`,
+`<ul><li><b>자격</b>: 민팅하는 지갑이 .ai Agent ID를 보유해야 합니다 (레지스트리 balanceOf &gt; 0).</li><li><b>가격</b>: 각 개를 해당 티어의 U 가격으로 계산하고 Chainlink BNB/USD로 실시간 BNB 환산합니다. 초과 결제분은 같은 거래에서 환불되며, 가격이 1시간 넘게 갱신되지 않으면 민팅이 중지됩니다.</li><li><b>한도</b>: Agent ID당 최대 10개, 여러 번 나눠도 됩니다.</li><li><b>티어</b>: 처음 10,000개 1U, 10,001–20,000은 1,000개마다 +0.1U, 20,001–100,000은 1,000개마다 +0.02U, 100,001–1,000,000은 10,000개마다 +0.02U, 이후 20,000개마다 +0.015U로 최고 약 79.74U. 총 ${TIERS.length}개 티어, ${fmt(MAX)}개.</li><li><b>종료</b>: 오픈 후 ${CONFIG.durationDays}일 또는 완판 시.</li></ul>${tbl}<p>한 거래가 여러 티어에 걸치면 각 개는 해당 티어 가격으로 따로 계산됩니다.</p>`)],
 ["referral", tt("邀请", "Referrals", "紹介", "초대"), tt(
-`<p>被邀请人第一次铸造时，如果带上了邀请人地址，并且邀请人已经铸造过、不是自己，就会和邀请人绑定。此后被邀请人的每一次铸造，邀请人额外记账其所得代币的 5%。邀请奖励总量最多 30 万亿。</p>`,
-`<p>On an invitee's first mint, if a referrer address is supplied, the referrer has already minted and is not the invitee, the two are bound. Every later mint by the invitee records an extra 5% of their tokens for the referrer. Referral rewards are capped at 30T in total.</p>`,
-`<p>被紹介者の初回ミントで紹介者アドレスが指定され、紹介者がすでにミント済みかつ本人でない場合、両者が紐づけられます。以降の被紹介者のミントごとに、受け取り量の 5% が紹介者に追加記録されます。紹介報酬の上限は合計 30 兆です。</p>`,
-`<p>초대받은 사람이 첫 민팅 때 초대한 사람의 주소를 넣고, 그 사람이 이미 민팅한 적이 있으며 본인이 아니면 둘이 연결됩니다. 이후 초대받은 사람이 민팅할 때마다 받는 토큰의 5%가 초대한 사람에게 추가로 기록됩니다. 초대 보상은 총 30조 개가 상한입니다.</p>`)],
+`<p>被邀请人第一次铸造时，如果带上了邀请人地址，并且邀请人已经铸造过、不是自己，就会和邀请人绑定。此后被邀请人的每一次铸造，邀请人额外记账其所得代币的 5%。邀请奖励总量最多 300 万亿。</p>`,
+`<p>On an invitee's first mint, if a referrer address is supplied, the referrer has already minted and is not the invitee, the two are bound. Every later mint by the invitee records an extra 5% of their tokens for the referrer. Referral rewards are capped at 300T in total.</p>`,
+`<p>被紹介者の初回ミントで紹介者アドレスが指定され、紹介者がすでにミント済みかつ本人でない場合、両者が紐づけられます。以降の被紹介者のミントごとに、受け取り量の 5% が紹介者に追加記録されます。紹介報酬の上限は合計 300 兆です。</p>`,
+`<p>초대받은 사람이 첫 민팅 때 초대한 사람의 주소를 넣고, 그 사람이 이미 민팅한 적이 있으며 본인이 아니면 둘이 연결됩니다. 이후 초대받은 사람이 민팅할 때마다 받는 토큰의 5%가 초대한 사람에게 추가로 기록됩니다. 초대 보상은 총 300조 개가 상한입니다.</p>`)],
 ["token", tt("代币分配", "Token allocation", "トークン配分", "토큰 배분"), tt(
-`<p>总量 1,000 万亿 $KAIROS。</p><ul><li>铸造者：最多约 600 万亿（60%），每份 ${TPS} 枚，由合约记账；全部 ${fmt(MAX)} 份铸满时为 ${fmt(MAX * TPS)} 枚，没铸出的部分不发放。</li><li>邀请奖励：最多 30 万亿（3%），由合约记账，未用完部分不发放。</li><li>流动性与项目：370 万亿（37%），由项目方管理，具体用途在发放前公布。</li></ul>`,
-`<p>Total supply: 1,000,000,000,000,000 (1,000T) $KAIROS.</p><ul><li>Minters: up to about 600T (60%), ${TPS} per share, recorded by the contract; ${fmt(MAX * TPS)} if all ${fmt(MAX)} shares sell. Unminted tokens are not distributed.</li><li>Referrals: up to 30T (3%), recorded by the contract; any unused amount is not distributed.</li><li>Liquidity and project: 370T (37%), managed by the project; its use will be published before distribution.</li></ul>`,
-`<p>総供給量 1,000 兆 $KAIROS。</p><ul><li>ミント参加者：最大約 600 兆（60%）、1 口 ${TPS}、コントラクトが記録。全 ${fmt(MAX)} 口完売時は ${fmt(MAX * TPS)}。ミントされなかった分は配布しません。</li><li>紹介報酬：最大 30 兆（3%）、コントラクトが記録。未使用分は配布しません。</li><li>流動性とプロジェクト：370 兆（37%）、プロジェクトが管理し、用途は配布前に公表。</li></ul>`,
-`<p>총 발행량 1,000조 $KAIROS.</p><ul><li>민팅 참여자: 최대 약 600조 (60%), 개당 ${TPS}개, 컨트랙트 기록. ${fmt(MAX)}개 완판 시 ${fmt(MAX * TPS)}개이며, 민팅되지 않은 몫은 배분하지 않습니다.</li><li>초대 보상: 최대 30조 (3%), 컨트랙트 기록. 쓰이지 않은 몫은 배분하지 않습니다.</li><li>유동성·프로젝트: 370조 (37%), 프로젝트가 관리하며 용도는 배분 전에 공개합니다.</li></ul>`)],
+`<p>总量 10,000 万亿 $KAIROS。</p><ul><li>铸造者：最多约 6,000 万亿（60%），每份 ${TPS} 枚，由合约记账；全部 ${fmt(MAX)} 份铸满时为 ${fmt(MAX * TPS)} 枚，没铸出的部分不发放。</li><li>邀请奖励：最多 300 万亿（3%），由合约记账，未用完部分不发放。</li><li>流动性与项目：3,700 万亿（37%），由项目方管理，具体用途在发放前公布。</li></ul>`,
+`<p>Total supply: 10,000,000,000,000,000 (10,000T) $KAIROS.</p><ul><li>Minters: up to about 6,000T (60%), ${TPS} per share, recorded by the contract; ${fmt(MAX * TPS)} if all ${fmt(MAX)} shares sell. Unminted tokens are not distributed.</li><li>Referrals: up to 300T (3%), recorded by the contract; any unused amount is not distributed.</li><li>Liquidity and project: 3,700T (37%), managed by the project; its use will be published before distribution.</li></ul>`,
+`<p>総供給量 1 京 $KAIROS。</p><ul><li>ミント参加者：最大約 6,000 兆（60%）、1 口 ${TPS}、コントラクトが記録。全 ${fmt(MAX)} 口完売時は ${fmt(MAX * TPS)}。ミントされなかった分は配布しません。</li><li>紹介報酬：最大 300 兆（3%）、コントラクトが記録。未使用分は配布しません。</li><li>流動性とプロジェクト：3,700 兆（37%）、プロジェクトが管理し、用途は配布前に公表。</li></ul>`,
+`<p>총 발행량 1경 $KAIROS.</p><ul><li>민팅 참여자: 최대 약 6,000조 (60%), 개당 ${TPS}개, 컨트랙트 기록. ${fmt(MAX)}개 완판 시 ${fmt(MAX * TPS)}개이며, 민팅되지 않은 몫은 배분하지 않습니다.</li><li>초대 보상: 최대 300조 (3%), 컨트랙트 기록. 쓰이지 않은 몫은 배분하지 않습니다.</li><li>유동성·프로젝트: 3,700조 (37%), 프로젝트가 관리하며 용도는 배분 전에 공개합니다.</li></ul>`)],
 ["funds", tt("资金流向", "Where the money goes", "資金の流れ", "자금 흐름"), tt(
 `<p>每一笔铸造款在同一笔交易里全额转入项目方钱包，合约中不保留任何资金，也没有退款机制。合约只负责核验身份、按档位计价和记账。建池、添加流动性和代币发放由项目方在铸造结束后执行，这一部分依赖项目方履约，不受合约约束。</p>`,
 `<p>Every payment is forwarded in full to the project wallet in the same transaction. The contract holds no funds and has no refund mechanism; it only checks identity, prices by tier and keeps the record. Creating the pool, adding liquidity and distributing tokens are done by the project after the mint, and depend on the project rather than the contract.</p>`,
@@ -836,7 +898,7 @@ function renderStatic() {
 document.documentElement.lang = HTML_LANG[lang];
 document.querySelectorAll("[data-i]").forEach((el) => { const v = t(el.dataset.i); if (el.hasAttribute("data-html")) el.innerHTML = v; else el.textContent = v; });
 $("langTog").textContent = lang === "zh" ? "English" : "中文";
-$("fTiers").textContent = TIERS.length;
+$("fTiers").textContent = fmt(TIERS.length);
 $("track").innerHTML = Array(2).fill(["KAIROS", ".ai AGENT ID ONLY", "T1 · 10,000 × 1U", "10 PER ID", `${TIERS.length} TIERS`, "BNB SMART CHAIN", "AGENT-NATIVE MINT"].map((s) => `<span>${s}</span>`).join("")).join("");
 $("pillars").innerHTML = PILLARS().map(([ic, h, p]) => `<div class="pillar"><span class="ic">${ic}</span><h3>${h}</h3><p>${p}</p></div>`).join("");
 $("xLink").hidden = !CONFIG.xUrl; if (CONFIG.xUrl) $("xLink").href = CONFIG.xUrl;
@@ -863,6 +925,34 @@ $("toc").innerHTML = wp.map(([id, h], i) => `<a href="#whitepaper" data-to="wp-$
 $("paper").innerHTML = `<span class="kicker">WHITEPAPER · v1.1 · 2026-10</span><h1>KAIROS</h1><span class="meta">${tt("只为 Agent 而生的代币", "A token minted by agents", "Agent のためのトークン", "에이전트를 위한 토큰")} · BNB Smart Chain</span>` +
 wp.map(([id, h, body], i) => `<h2 id="wp-${id}"><span>${String(i + 1).padStart(2, "0")}</span>${h}</h2>${body}`).join("");
 render(); route();
+}
+
+function goldExtra() {
+const mine = acct?.w?.minted || 0, next = Math.min(ov.max, ov.sold + 1), tier = tierAt(next), cm = costMU(ov.sold, n);
+const ci = Math.max(0, CARDS.findIndex((c) => tier.no >= c.a && tier.no <= c.b)), card = CARDS[ci];
+$("gcTitle").textContent = acct ? (acct.handle ? acct.handle + ".ai" : short(acct.address)) : "KAIROS";
+$("gcSub").textContent = acct ? (acct.w && !acct.w.hasId ? tt("未检测到 .ai Agent ID", "No .ai Agent ID found", ".ai Agent ID が見つかりません", ".ai Agent ID 없음") : tt(`Agent ID 已验证 · 已用 ${mine} / ${CAP} 份 · 剩余 ${CAP - mine}`, `Agent ID verified · ${mine} / ${CAP} used · ${CAP - mine} left`, `Agent ID 確認済み · ${mine} / ${CAP} 口使用 · 残り ${CAP - mine}`, `Agent ID 확인됨 · ${mine} / ${CAP}개 사용 · ${CAP - mine}개 남음`)) : tt(`仅限 .ai Agent ID · 每个 ID 最多 ${CAP} 份`, `.ai Agent ID only · up to ${CAP} per ID`, `.ai Agent ID 限定 · ID ごと最大 ${CAP} 口`, `.ai Agent ID 전용 · ID당 최대 ${CAP}개`);
+$("gcTag").textContent = acct?.w?.hasId ? "◆ VERIFIED AGENT" : "◆ AGENT ONLY";
+$("lgW").textContent = tt("钱包", "Wallet", "ウォレット", "지갑"); $("lgN").textContent = tt("网络", "Network", "ネットワーク", "네트워크"); $("lgS").textContent = tt("铸造额度", "Allowance", "ミント枠", "민팅 한도");
+$("lgT").textContent = tt("当前档位", "Current tier", "現在のティア", "현재 티어"); $("lgX").textContent = tt("下一编号", "Next serial", "次の番号", "다음 번호");
+$("lgPh").textContent = tt("铸造状态", "Status", "ステータス", "상태"); $("lgPct").textContent = tt("本档剩余", "Left in tier", "ティア残り", "티어 잔여");
+$("gcWallet").textContent = acct ? short(acct.address) : tt("未连接", "Not connected", "未接続", "연결 안 됨");
+$("gcAgent").textContent = acct?.handle ? acct.handle + ".ai ✓" : "—";
+$("gcQuota").textContent = tt(`已铸 ${mine} / 额度 ${CAP}`, `${mine} minted / ${CAP}`, `${mine} / ${CAP} 口`, `${mine} / ${CAP}개`);
+$("tierBadge").textContent = tt(`第 ${tier.no} 档 · ${fmtU(tier.mU)}`, `T${tier.no} · ${fmtU(tier.mU)}`, `T${tier.no} · ${fmtU(tier.mU)}`, `T${tier.no} · ${fmtU(tier.mU)}`);
+$("gcNext").textContent = "#" + fmt(next);
+$("getTok").textContent = fmt(n * TPS) + " $KAIROS";
+$("gcGetNote").textContent = tt(`每份固定 ${fmt(TPS)} 枚，越早越便宜。实际数量以链上记录为准。`, `A fixed ${fmt(TPS)} per share; earlier is cheaper. Final amounts are as recorded on-chain.`, `1 口 ${fmt(TPS)} で固定、早いほど安い。最終数量はオンチェーン記録に従います。`, `개당 ${fmt(TPS)}개 고정, 빠를수록 저렴. 최종 수량은 온체인 기록 기준입니다.`);
+$("soldBig").textContent = fmt(ov.sold);
+$("gcMax").textContent = fmt(card.to); $("gcMinted").textContent = fmt(ov.sold); $("gcMax2").textContent = fmt(card.to);
+$("gcBar").style.width = Math.min(100, ov.sold / card.to * 100) + "%";
+$("gcStage").textContent = tt(`第 ${ci + 1} 阶段 / 共 ${CARDS.length} 阶段`, `Stage ${ci + 1} / ${CARDS.length}`, `ステージ ${ci + 1} / ${CARDS.length}`, `${ci + 1}단계 / 총 ${CARDS.length}단계`);
+const nt = tier.to < ov.max ? tierAt(tier.to + 1) : null;
+$("gcTotal").textContent = tt(`总份数 ${fmt(ov.sold)} / ${fmt(ov.max)}`, `Total ${fmt(ov.sold)} / ${fmt(ov.max)}`, `総口数 ${fmt(ov.sold)} / ${fmt(ov.max)}`, `총 ${fmt(ov.sold)} / ${fmt(ov.max)}개`) + (nt ? tt(` · 第 ${fmt(nt.from)} 份起涨至 ${fmtU(nt.mU)}`, ` · from #${fmt(nt.from)} the price rises to ${fmtU(nt.mU)}`, ` · #${fmt(nt.from)} から ${fmtU(nt.mU)}`, ` · #${fmt(nt.from)}부터 ${fmtU(nt.mU)}`) : "");
+$("pct").textContent = fmt(tier.to - ov.sold) + " " + SH();
+const mb = $("mainBtn");
+if (!mb.disabled && acct) mb.textContent = tt(`铸造 ${n} 份 · ${fmtU(cm)}（BNB 支付）`, `Mint ${n} share${n > 1 ? "s" : ""} · ${fmtU(cm)} (pay in BNB)`, `${n} 口ミント · ${fmtU(cm)}（BNB 払い）`, `${n}개 민팅 · ${fmtU(cm)} (BNB 결제)`);
+document.querySelectorAll("#chips button").forEach((b) => { b.disabled = +b.dataset.v > Math.max(1, Math.min(CAP - mine, ov.max - ov.sold)); });
 }
 
 function render() {
@@ -906,6 +996,7 @@ $("tcards").innerHTML = CARDS.map((c, i) => {
 const on = (ov.open || ov.pre) && tier.no >= c.a && tier.no <= c.b, past = ov.sold >= c.to;
 return `<div class="tcard${on ? " on" : ""}${past && !on ? " past" : ""}"><span class="tn">TIER ${String(c.a).padStart(2, "0")}${c.b > c.a ? "–" + c.b : ""}${i === 0 ? " / " + sub(0) : ""}</span><span class="tp">${priceRange(c)}</span><span class="ts">${fmt(c.from - 1)}–${fmt(c.to)} ${SH()}${i ? " · " + sub(i) : ""}</span></div>`;
 }).join("");
+goldExtra();
 const startIdx = Math.max(0, tier.no - 2);
 $("tierRows").innerHTML = TIERS.slice(startIdx, startIdx + 6).map((x) => `<tr class="${(ov.open || ov.pre) && x.no === tier.no ? "cur" : ""}"><td>T${x.no}</td><td class="m">${fmt(x.from)}–${fmt(x.to)}</td><td class="m">${fmtU(x.mU)}</td><td class="m">${TPS}</td></tr>`).join("");
 renderBoard();
