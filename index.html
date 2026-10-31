@@ -7,6 +7,20 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="KAIROS：只有持有币安 .ai Agent ID 的钱包才能铸造的代币。首档 10,000 份每份 1U，之后逐档递增，每个 ID 最多 10 份。独立项目，与币安无关。">
 <meta name="theme-color" content="#0d0f14">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230d0f14%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2725%27 fill=%27none%27 stroke=%27%23f5b83d%27 stroke-width=%274%27/%3E%3Ctext x=%2732%27 y=%2743%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-weight=%27900%27 font-size=%2730%27 fill=%27%23f5b83d%27%3EK%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAIROS">
+<meta property="og:title" content="KAIROS · 只有 AI Agent 才能铸造的代币">
+<meta property="og:description" content="持有币安 .ai Agent ID 的钱包专属。首档 1U/份，逐档递增，每个 ID 最多 10 份。">
+<meta property="og:url" content="http://kairosagentai.store/">
+<meta property="og:image" content="http://kairosagentai.store/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KAIROS · 只有 AI Agent 才能铸造的代币">
+<meta name="twitter:image" content="http://kairosagentai.store/og.jpg">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -470,7 +484,7 @@ xUrl: "",                                              // X（推特）链接；
 token: "",                                             // 代币合约地址（白皮书合约列表用）
 treasury: "",                                          // 项目方收款钱包
 launchAt: "",                                           // 开放时间，例如 "2026-11-08T12:00:00Z"；留空显示"即将开放"
-tokensPerShare: 135,                                    // 每份可得 $KAIROS（固定）；4,440,000 份 × 135 ≈ 6 亿
+tokensPerShare: 135000000,                              // 每份可得 $KAIROS（固定）；4,440,000 份 × 1.35 亿 ≈ 600 万亿
 perId: 10,                                              // 每个 Agent ID 最多份数
 durationDays: 30,
 demoScale: 100,                                         // 演示模式把每档份数缩小 100 倍
@@ -561,7 +575,7 @@ m1: ["你的钱包", "Your wallet", "あなたのウォレット", "내 지갑"]
 m2: ["KAIROS 合约", "KAIROS contract", "KAIROS コントラクト", "KAIROS 컨트랙트"], m2s: ["核验身份、按档位计价、记录份额", "checks identity, prices by tier, records shares", "身元確認、ティア別に価格計算、口数を記録", "신원 확인, 티어별 가격 계산, 수량 기록"],
 m3: ["项目方钱包", "Project wallet", "プロジェクトのウォレット", "프로젝트 지갑"], m3s: ["同一笔交易全额到账，合约不留钱，没有退款", "receives in full in the same tx; nothing held, no refunds", "同じ取引で全額着金。資金は残らず、返金なし", "같은 거래에서 전액 입금, 컨트랙트에 남는 돈 없음, 환불 없음"],
 tokT: ["代币机制", "Token mechanics", "トークンの仕組み", "토큰 구조"],
-tokS: ["每份固定得到 135 $KAIROS，变的是每份的价格：越早越便宜。", "Every share gets a fixed 135 $KAIROS. What changes is the price per share: earlier is cheaper.", "1 口あたりの $KAIROS は 135 で固定。変わるのは 1 口の価格で、早いほど安くなります。", "개당 받는 $KAIROS는 135개로 고정입니다. 바뀌는 것은 개당 가격이며, 빠를수록 저렴합니다."],
+tokS: ["每份固定得到 1.35 亿 $KAIROS，变的是每份的价格：越早越便宜。", "Every share gets a fixed 135,000,000 $KAIROS. What changes is the price per share: earlier is cheaper.", "1 口あたりの $KAIROS は 1.35 億で固定。変わるのは 1 口の価格で、早いほど安くなります。", "개당 받는 $KAIROS는 1.35억 개로 고정입니다. 바뀌는 것은 개당 가격이며, 빠를수록 저렴합니다."],
 allocT: ["分配", "Allocation", "配分", "배분"],
 allocNote: ["铸造者和邀请奖励由合约记录，任何人都能核对。流动性与项目部分不受合约约束，由项目方在发放前公布具体安排。",
 "Minter and referral amounts are recorded by the contract and auditable by anyone. The liquidity and project share is not contract-enforced; the project will publish its plan before distribution.",
@@ -610,7 +624,7 @@ chain: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(
 };
 const PILLARS = () => [
 [ICON.id, tt("只有 Agent 能铸", "Agents only", "Agent だけ", "에이전트 전용"), tt("合约直接读取币安 Agent ID 注册合约。没有 .ai 身份的钱包，连交易都发不出去。", "The contract reads Binance's Agent ID registry directly. Wallets without a .ai identity can't even submit the transaction.", "コントラクトが Binance の Agent ID レジストリを直接読み取ります。.ai の身元がないウォレットは取引すら送れません。", "컨트랙트가 바이낸스 Agent ID 레지스트리를 직접 읽습니다. .ai 신원이 없는 지갑은 거래조차 보낼 수 없습니다.")],
-[ICON.clock, tt("越早越便宜", "Earlier is cheaper", "早いほど安い", "빠를수록 저렴"), tt("前 10,000 份每份 1U，之后逐档递增，最高约 8.07U。每份拿到的代币永远是 135 枚。", "The first 10,000 shares are 1U each, then the price rises tier by tier to about 8.07U. Every share always gets 135 tokens.", "最初の 10,000 口は 1 口 1U、その後ティアごとに上がり最高約 8.07U。1 口あたりのトークンは常に 135。", "처음 10,000개는 개당 1U, 이후 티어마다 올라 최고 약 8.07U입니다. 개당 토큰은 언제나 135개입니다.")],
+[ICON.clock, tt("越早越便宜", "Earlier is cheaper", "早いほど安い", "빠를수록 저렴"), tt("前 10,000 份每份 1U，之后逐档递增，最高约 8.07U。每份拿到的代币永远是 1.35 亿枚。", "The first 10,000 shares are 1U each, then the price rises tier by tier to about 8.07U. Every share always gets 135,000,000 tokens.", "最初の 10,000 口は 1 口 1U、その後ティアごとに上がり最高約 8.07U。1 口あたりのトークンは常に 1.35 億。", "처음 10,000개는 개당 1U, 이후 티어마다 올라 최고 약 8.07U입니다. 개당 토큰은 언제나 1.35억 개입니다.")],
 [ICON.chain, tt("一切写在链上", "All on-chain", "すべてオンチェーン", "모든 것이 온체인"), tt("谁铸了几份、应得多少、邀请了谁，全部由合约记录，任何人都能核对。合约没有管理员。", "Who minted how many shares, what they are owed and whom they invited is all recorded by the contract and auditable. The contract has no admin.", "誰が何口ミントし、いくら受け取り、誰を紹介したかはすべてコントラクトが記録し、誰でも確認できます。管理者権限はありません。", "누가 몇 개를 민팅했고 얼마를 받으며 누구를 초대했는지 모두 컨트랙트에 기록되어 누구나 확인할 수 있습니다. 관리자 권한은 없습니다.")],
 ];
 const FLOW = () => [
@@ -620,9 +634,9 @@ const FLOW = () => [
 [tt("4 · 邀请", "4 · Invites", "4 · 紹介", "4 · 초대"), tt("被邀请人首次铸造时绑定，之后每次铸造，邀请人多记 5%。", "Bound on the invitee's first mint; the referrer earns an extra 5% on every mint after.", "初回ミントで紹介者が確定し、以降のミントごとに紹介者へ 5% 上乗せ。", "초대받은 사람의 첫 민팅 때 연결되고, 이후 민팅마다 초대한 사람에게 5%가 추가됩니다."), "referrer · +5%"],
 ];
 const ALLOC = () => [
-["var(--amber)", 60, tt("铸造者", "Minters", "ミント参加者", "민팅 참여자"), tt("最多约 6 亿 · 每份 135 枚，合约记账", "up to ~600M · 135 per share, recorded", "最大約 6 億 · 1 口 135、記録", "최대 약 6억 · 개당 135개, 컨트랙트 기록")],
-["var(--teal)", 3, tt("邀请奖励（上限）", "Referrals (max)", "紹介報酬（上限）", "초대 보상 (상한)"), tt("最多 3,000 万 · 合约记账", "up to 30M · recorded", "最大 3,000 万 · 記録", "최대 3,000만 · 기록")],
-["var(--slate)", 37, tt("流动性与项目", "Liquidity & project", "流動性とプロジェクト", "유동성·프로젝트"), tt("3.7 亿 · 由项目方管理，发放前公布", "370M · managed by the project, published before distribution", "3.7 億 · プロジェクト管理、配布前に公表", "3.7억 · 프로젝트 관리, 배분 전 공개")],
+["var(--amber)", 60, tt("铸造者", "Minters", "ミント参加者", "민팅 참여자"), tt("最多约 600 万亿 · 每份 1.35 亿枚，合约记账", "up to ~600T · 135M per share, recorded", "最大約 600 兆 · 1 口 1.35 億、記録", "최대 약 600조 · 개당 1.35억 개, 컨트랙트 기록")],
+["var(--teal)", 3, tt("邀请奖励（上限）", "Referrals (max)", "紹介報酬（上限）", "초대 보상 (상한)"), tt("最多 30 万亿 · 合约记账", "up to 30T · recorded", "最大 30 兆 · 記録", "최대 30조 · 기록")],
+["var(--slate)", 37, tt("流动性与项目", "Liquidity & project", "流動性とプロジェクト", "유동성·프로젝트"), tt("370 万亿 · 由项目方管理，发放前公布", "370T · managed by the project, published before distribution", "370 兆 · プロジェクト管理、配布前に公表", "370조 · 프로젝트 관리, 배분 전 공개")],
 ];
 const TIMELINE = () => [
 ["T0", tt("公布合约", "Contract published", "コントラクト公開", "컨트랙트 공개"), tt("公开合约地址和规则，开放铸造", "Address and rules published, mint opens", "アドレスとルールを公開し、ミント開始", "주소와 규칙 공개, 민팅 오픈")],
@@ -667,15 +681,15 @@ return [
 `<ul><li><b>資格</b>：ミントするウォレットが .ai Agent ID を保有していること（レジストリ balanceOf &gt; 0）。</li><li><b>価格</b>：各口をティアの U 価格で計算し、Chainlink BNB/USD でリアルタイムに BNB 換算。過払い分は同じ取引で返金。価格が 1 時間以上更新されない場合は停止。</li><li><b>上限</b>：Agent ID ごとに最大 10 口、複数回に分けても可。</li><li><b>ティア</b>：最初の 10,000 口は 1U、10,001–20,000 は 1,000 口ごとに +0.1U、20,001–100,000 は 1,000 口ごとに +0.02U、100,001–1,000,000 は 10,000 口ごとに +0.02U、その後 20,000 口ごとに +0.015U、最高約 8.07U。全 ${TIERS.length} ティア、${fmt(MAX)} 口。</li><li><b>終了</b>：開始から ${CONFIG.durationDays} 日、または完売時。</li></ul>${tbl}<p>1 つの取引がティアをまたぐ場合、各口はそれぞれのティアで計算されます。</p>`,
 `<ul><li><b>자격</b>: 민팅하는 지갑이 .ai Agent ID를 보유해야 합니다 (레지스트리 balanceOf &gt; 0).</li><li><b>가격</b>: 각 개를 해당 티어의 U 가격으로 계산하고 Chainlink BNB/USD로 실시간 BNB 환산합니다. 초과 결제분은 같은 거래에서 환불되며, 가격이 1시간 넘게 갱신되지 않으면 민팅이 중지됩니다.</li><li><b>한도</b>: Agent ID당 최대 10개, 여러 번 나눠도 됩니다.</li><li><b>티어</b>: 처음 10,000개 1U, 10,001–20,000은 1,000개마다 +0.1U, 20,001–100,000은 1,000개마다 +0.02U, 100,001–1,000,000은 10,000개마다 +0.02U, 이후 20,000개마다 +0.015U로 최고 약 8.07U. 총 ${TIERS.length}개 티어, ${fmt(MAX)}개.</li><li><b>종료</b>: 오픈 후 ${CONFIG.durationDays}일 또는 완판 시.</li></ul>${tbl}<p>한 거래가 여러 티어에 걸치면 각 개는 해당 티어 가격으로 따로 계산됩니다.</p>`)],
 ["referral", tt("邀请", "Referrals", "紹介", "초대"), tt(
-`<p>被邀请人第一次铸造时，如果带上了邀请人地址，并且邀请人已经铸造过、不是自己，就会和邀请人绑定。此后被邀请人的每一次铸造，邀请人额外记账其所得代币的 5%。邀请奖励总量最多 3,000 万。</p>`,
-`<p>On an invitee's first mint, if a referrer address is supplied, the referrer has already minted and is not the invitee, the two are bound. Every later mint by the invitee records an extra 5% of their tokens for the referrer. Referral rewards are capped at 30M in total.</p>`,
-`<p>被紹介者の初回ミントで紹介者アドレスが指定され、紹介者がすでにミント済みかつ本人でない場合、両者が紐づけられます。以降の被紹介者のミントごとに、受け取り量の 5% が紹介者に追加記録されます。紹介報酬の上限は合計 3,000 万です。</p>`,
-`<p>초대받은 사람이 첫 민팅 때 초대한 사람의 주소를 넣고, 그 사람이 이미 민팅한 적이 있으며 본인이 아니면 둘이 연결됩니다. 이후 초대받은 사람이 민팅할 때마다 받는 토큰의 5%가 초대한 사람에게 추가로 기록됩니다. 초대 보상은 총 3,000만 개가 상한입니다.</p>`)],
+`<p>被邀请人第一次铸造时，如果带上了邀请人地址，并且邀请人已经铸造过、不是自己，就会和邀请人绑定。此后被邀请人的每一次铸造，邀请人额外记账其所得代币的 5%。邀请奖励总量最多 30 万亿。</p>`,
+`<p>On an invitee's first mint, if a referrer address is supplied, the referrer has already minted and is not the invitee, the two are bound. Every later mint by the invitee records an extra 5% of their tokens for the referrer. Referral rewards are capped at 30T in total.</p>`,
+`<p>被紹介者の初回ミントで紹介者アドレスが指定され、紹介者がすでにミント済みかつ本人でない場合、両者が紐づけられます。以降の被紹介者のミントごとに、受け取り量の 5% が紹介者に追加記録されます。紹介報酬の上限は合計 30 兆です。</p>`,
+`<p>초대받은 사람이 첫 민팅 때 초대한 사람의 주소를 넣고, 그 사람이 이미 민팅한 적이 있으며 본인이 아니면 둘이 연결됩니다. 이후 초대받은 사람이 민팅할 때마다 받는 토큰의 5%가 초대한 사람에게 추가로 기록됩니다. 초대 보상은 총 30조 개가 상한입니다.</p>`)],
 ["token", tt("代币分配", "Token allocation", "トークン配分", "토큰 배분"), tt(
-`<p>总量 10 亿 $KAIROS。</p><ul><li>铸造者：最多约 6 亿（60%），每份 ${TPS} 枚，由合约记账；全部 ${fmt(MAX)} 份铸满时为 ${fmt(MAX * TPS)} 枚，没铸出的部分不发放。</li><li>邀请奖励：最多 3,000 万（3%），由合约记账，未用完部分不发放。</li><li>流动性与项目：3.7 亿（37%），由项目方管理，具体用途在发放前公布。</li></ul>`,
-`<p>Total supply: 1,000,000,000 $KAIROS.</p><ul><li>Minters: up to about 600M (60%), ${TPS} per share, recorded by the contract; ${fmt(MAX * TPS)} if all ${fmt(MAX)} shares sell. Unminted tokens are not distributed.</li><li>Referrals: up to 30M (3%), recorded by the contract; any unused amount is not distributed.</li><li>Liquidity and project: 370M (37%), managed by the project; its use will be published before distribution.</li></ul>`,
-`<p>総供給量 10 億 $KAIROS。</p><ul><li>ミント参加者：最大約 6 億（60%）、1 口 ${TPS}、コントラクトが記録。全 ${fmt(MAX)} 口完売時は ${fmt(MAX * TPS)}。ミントされなかった分は配布しません。</li><li>紹介報酬：最大 3,000 万（3%）、コントラクトが記録。未使用分は配布しません。</li><li>流動性とプロジェクト：3.7 億（37%）、プロジェクトが管理し、用途は配布前に公表。</li></ul>`,
-`<p>총 발행량 10억 $KAIROS.</p><ul><li>민팅 참여자: 최대 약 6억 (60%), 개당 ${TPS}개, 컨트랙트 기록. ${fmt(MAX)}개 완판 시 ${fmt(MAX * TPS)}개이며, 민팅되지 않은 몫은 배분하지 않습니다.</li><li>초대 보상: 최대 3,000만 (3%), 컨트랙트 기록. 쓰이지 않은 몫은 배분하지 않습니다.</li><li>유동성·프로젝트: 3.7억 (37%), 프로젝트가 관리하며 용도는 배분 전에 공개합니다.</li></ul>`)],
+`<p>总量 1,000 万亿 $KAIROS。</p><ul><li>铸造者：最多约 600 万亿（60%），每份 ${TPS} 枚，由合约记账；全部 ${fmt(MAX)} 份铸满时为 ${fmt(MAX * TPS)} 枚，没铸出的部分不发放。</li><li>邀请奖励：最多 30 万亿（3%），由合约记账，未用完部分不发放。</li><li>流动性与项目：370 万亿（37%），由项目方管理，具体用途在发放前公布。</li></ul>`,
+`<p>Total supply: 1,000,000,000,000,000 (1,000T) $KAIROS.</p><ul><li>Minters: up to about 600T (60%), ${TPS} per share, recorded by the contract; ${fmt(MAX * TPS)} if all ${fmt(MAX)} shares sell. Unminted tokens are not distributed.</li><li>Referrals: up to 30T (3%), recorded by the contract; any unused amount is not distributed.</li><li>Liquidity and project: 370T (37%), managed by the project; its use will be published before distribution.</li></ul>`,
+`<p>総供給量 1,000 兆 $KAIROS。</p><ul><li>ミント参加者：最大約 600 兆（60%）、1 口 ${TPS}、コントラクトが記録。全 ${fmt(MAX)} 口完売時は ${fmt(MAX * TPS)}。ミントされなかった分は配布しません。</li><li>紹介報酬：最大 30 兆（3%）、コントラクトが記録。未使用分は配布しません。</li><li>流動性とプロジェクト：370 兆（37%）、プロジェクトが管理し、用途は配布前に公表。</li></ul>`,
+`<p>총 발행량 1,000조 $KAIROS.</p><ul><li>민팅 참여자: 최대 약 600조 (60%), 개당 ${TPS}개, 컨트랙트 기록. ${fmt(MAX)}개 완판 시 ${fmt(MAX * TPS)}개이며, 민팅되지 않은 몫은 배분하지 않습니다.</li><li>초대 보상: 최대 30조 (3%), 컨트랙트 기록. 쓰이지 않은 몫은 배분하지 않습니다.</li><li>유동성·프로젝트: 370조 (37%), 프로젝트가 관리하며 용도는 배분 전에 공개합니다.</li></ul>`)],
 ["funds", tt("资金流向", "Where the money goes", "資金の流れ", "자금 흐름"), tt(
 `<p>每一笔铸造款在同一笔交易里全额转入项目方钱包，合约中不保留任何资金，也没有退款机制。合约只负责核验身份、按档位计价和记账。建池、添加流动性和代币发放由项目方在铸造结束后执行，这一部分依赖项目方履约，不受合约约束。</p>`,
 `<p>Every payment is forwarded in full to the project wallet in the same transaction. The contract holds no funds and has no refund mechanism; it only checks identity, prices by tier and keeps the record. Creating the pool, adding liquidity and distributing tokens are done by the project after the mint, and depend on the project rather than the contract.</p>`,
