@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>KAIROS</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="KAIROS：只有持有币安 .ai Agent ID 的钱包才能铸造的代币。首档 10,000 份每份 1U，之后逐档递增，每个 ID 最多 10 份。独立项目，与币安无关。">
+<meta name="description" content="KAIROS：只有持有幣安 .ai Agent ID 的錢包才能鑄造的代幣。首檔 10,000 份每份 1U，之後逐檔遞增，每個 ID 最多 10 份。獨立項目，與幣安無關。">
 <meta name="theme-color" content="#0d0f14">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230d0f14%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2725%27 fill=%27none%27 stroke=%27%23f5b83d%27 stroke-width=%274%27/%3E%3Ctext x=%2732%27 y=%2743%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-weight=%27900%27 font-size=%2730%27 fill=%27%23f5b83d%27%3EK%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KAIROS">
-<meta property="og:title" content="KAIROS · 只有 AI Agent 才能铸造的代币">
-<meta property="og:description" content="持有币安 .ai Agent ID 的钱包专属。首档 1U/份，逐档递增，每个 ID 最多 10 份。">
+<meta property="og:title" content="KAIROS · 只有 AI Agent 才能鑄造的代幣">
+<meta property="og:description" content="持有幣安 .ai Agent ID 的錢包專屬。首檔 1U/份，逐檔遞增，每個 ID 最多 10 份。">
 <meta property="og:url" content="https://kairosagentai.store/">
 <meta property="og:image" content="https://kairosagentai.store/og.jpg">
 <meta property="og:image:secure_url" content="https://kairosagentai.store/og.jpg">
@@ -20,8 +20,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="KAIROS · 只有 AI Agent 才能铸造的代币">
-<meta name="twitter:description" content="持有币安 .ai Agent ID 的钱包专属。首档 1U/份，逐档递增，每个 ID 最多 10 份。">
+<meta name="twitter:title" content="KAIROS · 只有 AI Agent 才能鑄造的代幣">
+<meta name="twitter:description" content="持有幣安 .ai Agent ID 的錢包專屬。首檔 1U/份，逐檔遞增，每個 ID 最多 10 份。">
 <meta name="twitter:image" content="https://kairosagentai.store/og.jpg">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -85,6 +85,11 @@ nav .in{display:flex;align-items:center;gap:14px;padding-block:12px}
 .langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .langsel{display:none;flex:none;background:var(--bg2);color:var(--ink);border:1px solid var(--line2);border-radius:10px;padding:8px 8px;font:700 13px var(--body)}
 .ltog{flex:none;border:2px solid var(--ink);background:transparent;color:#f3d77a;border-radius:999px;padding:6px 18px;cursor:pointer;font:600 15px var(--body);white-space:nowrap}
+select.ltog{appearance:none;-webkit-appearance:none;padding-right:34px;background:transparent url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 8%27%3E%3Cpath d=%27M1 1l5 5 5-5%27 fill=%27none%27 stroke=%27%23f3d77a%27 stroke-width=%272%27/%3E%3C/svg%3E") no-repeat right 13px center/11px}
+select.ltog option{background:#13161e;color:#f1ede4}
+#navConnect,.invite,.pills a{white-space:nowrap}
+@media (max-width:1480px){nav .stat{display:none}}
+@media (max-width:1320px){.pills a{padding-inline:10px}}
 .ltog:hover{background:color-mix(in srgb,var(--ink) 10%,transparent)}
 .acct{font:600 13px var(--mono);border:1px solid var(--amber);color:var(--ink);background:transparent;border-radius:12px;padding:9px 12px;cursor:pointer;white-space:nowrap}
 @media (max-width:1260px){.stat,.invite{display:none}}
@@ -367,7 +372,7 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 <div class="pills" id="pills"><a href="#top" data-i="nMint" aria-current="true"></a><a href="#tiers" data-i="nTiers"></a><a href="#board" data-i="nBoard"></a><a href="#whitepaper" data-i="nWp"></a><a href="#agents" data-i="nAgent"></a><a href="#" id="xLink" target="_blank" rel="noopener" hidden>X</a></div>
 <div class="stat"><b id="hdrSold">—</b><span id="hdrTier">—</span></div>
 <button class="invite" id="inviteBtn" data-i="inviteBtn"></button>
-<button class="ltog" id="langTog" aria-label="Language"></button>
+<select class="ltog" id="langTog" aria-label="Language"><option value="zht">繁體中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="en">English</option></select>
 <button class="btn" id="navConnect"></button>
 </div></nav>
 
@@ -580,7 +585,7 @@ const LANGS = ["en", "ja", "ko", "zht", "zh"];
 let lang = "en";
 try {
 const s = localStorage.getItem("kairos_lang"), nl = (navigator.language || "").toLowerCase();
-lang = s === "en" || s === "zh" ? s : /^zh/.test(nl) ? "zh" : "en";
+lang = s === "zh" ? "zht" : LANGS.includes(s) ? s : /^zh/.test(nl) ? "zht" : /^ja/.test(nl) ? "ja" : /^ko/.test(nl) ? "ko" : "en";
 } catch {}
 const LOC = { zh: "zh-CN", zht: "zh-TW", ja: "ja-JP", ko: "ko-KR", en: "en-US" };
 const HTML_LANG = { zh: "zh-CN", zht: "zh-TW", ja: "ja", ko: "ko", en: "en" };
@@ -900,7 +905,7 @@ const priceRange = (c) => c.lo === c.hi ? fmtU(c.lo) : `${fmtU(c.lo)} – ${fmtU
 function renderStatic() {
 document.documentElement.lang = HTML_LANG[lang];
 document.querySelectorAll("[data-i]").forEach((el) => { const v = t(el.dataset.i); if (el.hasAttribute("data-html")) el.innerHTML = v; else el.textContent = v; });
-$("langTog").textContent = lang === "zh" ? "English" : "中文";
+$("langTog").value = lang;
 $("fTiers").textContent = fmt(TIERS.length);
 $("track").innerHTML = Array(2).fill(["KAIROS", ".ai AGENT ID ONLY", "T1 · 10,000 × 1U", "10 PER ID", `${TIERS.length} TIERS`, "BNB SMART CHAIN", "AGENT-NATIVE MINT"].map((s) => `<span>${s}</span>`).join("")).join("");
 $("pillars").innerHTML = PILLARS().map(([ic, h, p]) => `<div class="pillar"><span class="ic">${ic}</span><h3>${h}</h3><p>${p}</p></div>`).join("");
@@ -1197,10 +1202,10 @@ $("chips").onclick = (e) => { const b = e.target.closest("button"); if (b) { n =
 document.querySelector(".tabs").onclick = (e) => { const b = e.target.closest("button"); if (b) { boardTab = b.dataset.t; renderBoard(); } };
 $("copyPrompt").onclick = async (e) => { const b = e.currentTarget; try { await navigator.clipboard.writeText($("prompt").textContent); b.textContent = t("copied"); } catch { const s = getSelection(), rg = document.createRange(); rg.selectNodeContents($("prompt")); s.removeAllRanges(); s.addRange(rg); } };
 const setLang = async (l) => { if (!LANGS.includes(l)) return; if (l === "zht") await loadS2T(); lang = l; try { localStorage.setItem("kairos_lang", lang); } catch {} renderStatic(); };
-$("langTog").onclick = () => setLang(lang === "zh" ? "en" : "zh");
+$("langTog").onchange = (e) => setLang(e.target.value);
 
+if (lang === "zht") { document.documentElement.style.visibility = "hidden"; Promise.race([loadS2T(), sleep(2500)]).then(() => { renderStatic(); document.documentElement.style.visibility = ""; }); }
 renderStatic(); refresh(); setInterval(refresh, 20000);
-if (lang === "zht") loadS2T().then(renderStatic);
 })();
 </script>
 </body>
