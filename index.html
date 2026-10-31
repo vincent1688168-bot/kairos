@@ -666,10 +666,10 @@ tiersT: ["分级", "Tiers", "ティア", "티어"], nearT: ["全部档位", "All
 thTier: ["档位", "Tier", "ティア", "티어"], thRange: ["份数区间", "Shares", "口数範囲", "수량 구간"], thPer: ["每份 $KAIROS", "$KAIROS / share", "1 口あたり", "개당 $KAIROS"], thPrice: ["每份价格", "Price / share", "1 口の価格", "개당 가격"],
 tInv: ["邀请榜", "Invites", "紹介ランキング", "초대 순위"], tFeed: ["最近铸造", "Latest", "最新ミント", "최근 민팅"],
 agT: ["交给你的 AI 铸造", "Let your agent mint", "AI にミントを任せる", "AI에게 민팅 맡기기"],
-agS: ["把下面这段发给已登录币安 Agentic Wallet 的 AI。它会先查额度和报价，预览给你确认后再执行。需要先在币安 App 打开开发者模式。",
-"Send this to an AI signed in to Binance Agentic Wallet. It checks your quota and quote, previews, and executes only after you confirm. Developer Mode must be on in the Binance app.",
-"Binance Agentic Wallet にログイン済みの AI に下の文を送ってください。残り枠と見積もりを確認し、プレビューを承認してから実行します。Binance アプリで開発者モードをオンにしてください。",
-"바이낸스 Agentic Wallet에 로그인한 AI에게 아래 내용을 보내세요. 남은 한도와 견적을 확인하고, 미리보기를 보여 준 뒤 승인해야 실행합니다. 바이낸스 앱에서 개발자 모드를 먼저 켜야 합니다."],
+agS: ["先在上面的铸造卡片里选好份数，再复制下面这段发给已登录币安 Agentic Wallet 的 AI。交易数据已按当前价格算好，AI 会先预览给你看，你确认后才执行。需要先在币安 App 打开开发者模式。价格每 20 秒更新一次，复制后请尽快使用。",
+"Pick the number of shares on the mint card above, then copy this and send it to an AI signed in to Binance Agentic Wallet. The transaction is pre-built at the current price; the AI previews it and executes only after you confirm. Developer Mode must be on in the Binance app. The price refreshes every 20 seconds, so use it soon after copying.",
+"上のミントカードで口数を選んでから、これをコピーして Binance Agentic Wallet にログイン済みの AI に送ってください。取引データは現在の価格で作成済みで、AI はプレビューを見せ、あなたが承認してから実行します。Binance アプリで開発者モードをオンにしてください。価格は 20 秒ごとに更新されるので、コピー後は早めに使ってください。",
+"위의 민팅 카드에서 수량을 고른 뒤, 아래 내용을 복사해 바이낸스 Agentic Wallet에 로그인한 AI에게 보내세요. 거래 데이터는 현재 가격으로 미리 계산되어 있으며, AI가 미리보기를 보여 주고 승인해야 실행합니다. 바이낸스 앱에서 개발자 모드를 먼저 켜야 합니다. 가격은 20초마다 갱신되니 복사 후 바로 사용하세요."],
 copy: ["复制", "Copy", "コピー", "복사"], copied: ["已复制", "Copied", "コピーしました", "복사됨"], faqT: ["常见问题", "FAQ", "よくある質問", "자주 묻는 질문"],
 foot1: ["KAIROS 是独立项目，与币安无关。", "KAIROS is an independent project, not affiliated with Binance.", "KAIROS は独立したプロジェクトで、Binance とは関係ありません。", "KAIROS는 독립 프로젝트이며 바이낸스와 관련이 없습니다."],
 foot2: ["款项直接进入项目方钱包；首档结束后由项目方手动在 PancakeSwap 加池。开池后价格由市场决定，可能低于铸造成本，请自行评估风险。", "Payments go straight to the project wallet; after T1 the project adds the PancakeSwap pool manually. After that the market sets the price, which may fall below your cost. Do your own research.", "支払いはプロジェクトのウォレットへ直接送られ、T1 終了後にプロジェクトが手動で PancakeSwap プールを追加します。その後の価格は市場が決め、費用を下回る可能性があります。ご自身で判断してください。", "결제 금액은 프로젝트 지갑으로 바로 가며, T1 종료 후 프로젝트가 직접 PancakeSwap 풀을 추가합니다. 이후 가격은 시장이 정하며 비용보다 낮아질 수 있습니다. 위험은 직접 판단하세요."],
@@ -827,6 +827,7 @@ execute: async (a, n, ref) => { await sleep(1400); return { hash: "0x" + hex(32)
 browserMint: async (a, n, ref, onSent) => { await sleep(700); const e = simulate(a, n); if (e) throw new Error(REVERT(e)); const h = "0x" + hex(32); onSent && onSent(h); await sleep(900); return { hash: h, res: apply(a, n, ref) }; },
 connectBrowser: async () => { const a = "0x" + hex(20), h = "guest" + Math.floor(100 + Math.random() * 900); st.handles[a] = h + ".ai"; addrOf[h] = a; return { address: a, handle: h }; },
 logout: async () => { server.confirmed = false; },
+promptTx: async () => null,
 };
 }
 
@@ -871,6 +872,8 @@ return { inv: await Promise.all(Object.entries(inv).sort((x, y) => y[1] - x[1]).
 resolveRef: (r) => (r && ethers.isAddress(r) ? ethers.getAddress(r) : null),
 refLabel: (a) => handles[a] || short(a),
 login: async () => { SID = null; const d = await api("login"); SID = d.sid; return d; }, query: () => api("query"),
+// 给 AI 的交易：value = 报价 × 1.05（多付自动退回），同时作为 maxCost
+promptTx: async (k, ref) => { const q = await sale.bnbQuote(k); const value = q * 105n / 100n; return { value: value.toString(), data: sale.interface.encodeFunctionData("mintWithBnb", [k, ref || ethers.ZeroAddress, value]) }; },
 session: async () => { const s = await api("session"); return { address: s.address, handle: (await handleOf(s.address)).replace(/\.ai$/, "") }; },
 preview: (a, n, ref) => api("preview", { shares: n, referrer: ref || ethers.ZeroAddress }),
 executeAgent: (requestId) => api("execute", { requestId }),
@@ -903,7 +906,7 @@ overview: async () => ({ sold: 0, max: MAX, open: false, pre: true, deadline: CO
 wallet: async () => ({ hasId: true, minted: 0, alloc: 0, invites: 0 }),
 board: async () => ({ inv: [], feed: [] }),
 resolveRef: (r) => r || null, refLabel: (a) => short(a),
-login: no, query: no, session: no, preview: no, execute: no, browserMint: no, connectBrowser: no, logout: async () => {},
+login: no, query: no, session: no, preview: no, execute: no, browserMint: no, connectBrowser: no, logout: async () => {}, promptTx: async () => null,
 };
 }
 const chain = DEMO ? makeDemo() : PRE ? makePre() : makeLive();
@@ -983,6 +986,7 @@ if (!ov) return;
 const mine = acct?.w?.minted || 0;
 const left = Math.max(0, Math.min(CAP - mine, ov.max - ov.sold));
 n = Math.max(1, Math.min(n, Math.max(1, left)));
+renderPrompt(); // 份数或价格变了，给 AI 的指令跟着更新
 $("n").textContent = n; $("dec").disabled = n <= 1; $("inc").disabled = n >= Math.max(1, left);
 document.querySelectorAll("#chips button").forEach((b) => b.setAttribute("aria-pressed", +b.dataset.v === n));
 const next = Math.min(ov.max, ov.sold + 1), tier = tierAt(next);
@@ -1025,35 +1029,66 @@ $("netName").textContent = DEMO ? tt("演示", "DEMO", "デモ", "데모") : PRE
 $("pickAgent").hidden = !(DEMO || CONFIG.agentWallet);
 $("pickNormal").hidden = PRE;
 $("pickNote").hidden = !PRE;
-const addr = (DEMO || PRE) ? tt("<合约地址，上线后公布>", "<contract address, published at launch>", "<コントラクトアドレス、公開後に記載>", "<컨트랙트 주소, 오픈 시 공개>") : CONFIG.presale;
-const r0 = referrer || "0x0000000000000000000000000000000000000000";
-$("prompt").textContent = tt(
-`在 BNB Smart Chain（chainId 56）上铸造 KAIROS：
-1. 读取 ${addr} 的 walletStatus(我的地址)，确认 hasAgentId 为 true、remaining 大于 0
-2. 读取 bnbQuote(remaining) 得到 cost（已按当前档位逐份计价），maxCost = cost × 1.02
-3. 用 contract-call 调用 mintWithBnb(remaining, ${r0}, maxCost)，value = maxCost
-4. 先 preview，把预览结果给我确认后再 execute`,
-`Mint KAIROS on BNB Smart Chain (chainId 56):
-1. Read walletStatus(my address) on ${addr}; confirm hasAgentId is true and remaining > 0
-2. Read bnbQuote(remaining) as cost (already priced per tier); maxCost = cost × 1.02
-3. contract-call mintWithBnb(remaining, ${r0}, maxCost) with value = maxCost
-4. Preview first, show me, and execute only after I confirm`,
-`BNB Smart Chain（chainId 56）で KAIROS をミントしてください：
-1. ${addr} の walletStatus(自分のアドレス) を読み、hasAgentId が true、remaining が 0 より大きいことを確認
-2. bnbQuote(remaining) を読んで cost とし（ティア別に計算済み）、maxCost = cost × 1.02
-3. contract-call で mintWithBnb(remaining, ${r0}, maxCost) を value = maxCost で呼ぶ
-4. まず preview し、結果を私に見せて、承認後に execute`,
-`BNB Smart Chain(chainId 56)에서 KAIROS를 민팅해 주세요:
-1. ${addr}의 walletStatus(내 주소)를 읽고 hasAgentId가 true, remaining이 0보다 큰지 확인
-2. bnbQuote(remaining)를 읽어 cost로 사용 (티어별 계산 포함), maxCost = cost × 1.02
-3. contract-call로 mintWithBnb(remaining, ${r0}, maxCost)를 value = maxCost로 호출
-4. 먼저 preview 결과를 보여 주고, 내가 승인한 뒤에만 execute`);
+renderPrompt();
 $("spec").textContent =
 `mint      mintWithBnb(uint256 shares, address referrer, uint256 maxCost)  payable · selector 0x${SEL.mint}
 quote     bnbQuote(uint256 shares) → uint256 wei (tier-priced)            view    · selector 0x${SEL.quote}
 status    walletStatus(address) → (hasAgentId, minted, remaining, allocated, paidBnb, referrer, invites)
 overview  overview() → (sold, maxShares, tier, priceU, totalRaisedU, deadline=0, open)
 rules     1–10 shares per Agent ID · T1 (first ${fmt(T1N)} shares, 1U): ${fmt(T1TOK)} $KAIROS per share · after T1 the pool is added and registered by the project · then: tokens = price ÷ pool price ÷ 0.99 · referrer = 0x0 if none · overpayment refunded`;
+}
+
+// 给 AI 的指令：网站按当前价格算好交易数据，AI 只需用 baw contract-call 原样提交（baw 不能读合约，也不该让 AI 自己编码）
+let promptSeq = 0;
+async function renderPrompt() {
+const seq = ++promptSeq, k = n, ref = referrer && acct?.address !== referrer ? referrer : null;
+let tx = null;
+try { tx = await chain.promptTx(k, ref); } catch {}
+if (seq !== promptSeq) return;
+if (!tx) {
+$("prompt").textContent = tt("铸造开放后，这里会生成可以直接发给 AI 的铸造指令。", "Once minting opens, a ready-to-send instruction for your AI appears here.", "ミント開始後、AI にそのまま送れる指示がここに表示されます。", "민팅이 열리면 AI에게 바로 보낼 수 있는 명령이 여기에 표시됩니다.");
+return;
+}
+const C = CONFIG.presale, bnb = Number(ethers.formatEther(tx.value)).toFixed(6);
+const preview = `baw contract-call preview --binanceChainId 56 --from MY_ADDR --to ${C} --value ${tx.value} --inputData ${tx.data} --json`;
+const exec = "baw contract-call execute --requestId <requestId> --json";
+$("prompt").textContent = tt(
+`用我的币安 Agentic Wallet 在 BNB Smart Chain 上铸造 KAIROS（${k} 份）。交易数据已由网站按当前价格算好，请原样使用，不要修改任何参数：
+
+1. 用 baw wallet address 查出我在 BSC 上的钱包地址，下面的 MY_ADDR 换成这个地址
+2. 预览：
+${preview}
+3. 把预览结果（花费的 BNB、手续费、风险提示）发给我，等我回复“确认”后再执行：
+${exec}
+
+说明：付款约 ${bnb} BNB，已比当前价格多带 5%，多付的部分合约会在同一笔交易里自动退回。需要先在币安 App 打开 Agentic Wallet 的开发者模式。如果预览失败（例如没有 .ai Agent ID、已达 10 份上限），不要重试，直接把错误告诉我。`,
+`Mint KAIROS (${k} share${k > 1 ? "s" : ""}) on BNB Smart Chain with my Binance Agentic Wallet. The transaction data below was prepared by the website at the current price; use it exactly as given and do not change any parameter:
+
+1. Run baw wallet address to get my BSC wallet address, and use it as MY_ADDR below
+2. Preview:
+${preview}
+3. Show me the preview (BNB cost, gas, risk notes) and wait until I reply "confirm" before executing:
+${exec}
+
+Notes: the payment is about ${bnb} BNB, 5% above the current price; any overpayment is refunded by the contract in the same transaction. Developer Mode must be on in Agentic Wallet in the Binance app. If the preview fails (for example no .ai Agent ID, or the 10-share limit is reached), do not retry; just tell me the error.`,
+`Binance Agentic Wallet で BNB Smart Chain 上の KAIROS を ${k} 口ミントしてください。取引データはサイトが現在の価格で作成済みです。パラメータは一切変更せず、そのまま使ってください：
+
+1. baw wallet address で私の BSC ウォレットアドレスを調べ、下の MY_ADDR に置き換える
+2. プレビュー：
+${preview}
+3. プレビュー結果（BNB の支払額、手数料、リスク表示）を私に見せ、「確認」と返信してから実行：
+${exec}
+
+補足：支払いは約 ${bnb} BNB で、現在価格より 5% 多めです。多く払った分はコントラクトが同じ取引で返金します。Binance アプリで Agentic Wallet の開発者モードをオンにしてください。プレビューが失敗した場合（.ai Agent ID がない、10 口の上限に達したなど）は再試行せず、エラーをそのまま伝えてください。`,
+`바이낸스 Agentic Wallet로 BNB Smart Chain에서 KAIROS ${k}개를 민팅해 주세요. 거래 데이터는 사이트가 현재 가격으로 미리 계산했습니다. 어떤 값도 바꾸지 말고 그대로 사용하세요:
+
+1. baw wallet address로 내 BSC 지갑 주소를 확인하고, 아래 MY_ADDR를 그 주소로 바꾸기
+2. 미리보기:
+${preview}
+3. 미리보기 결과(BNB 결제액, 수수료, 위험 안내)를 보여 주고, 내가 "확인"이라고 답한 뒤에만 실행:
+${exec}
+
+참고: 결제액은 약 ${bnb} BNB로 현재 가격보다 5% 많게 잡았으며, 초과 금액은 같은 거래에서 컨트랙트가 환불합니다. 바이낸스 앱에서 Agentic Wallet 개발자 모드를 먼저 켜야 합니다. 미리보기가 실패하면(.ai Agent ID 없음, 10개 한도 도달 등) 다시 시도하지 말고 오류를 그대로 알려 주세요.`);
 }
 
 function renderBoard() {
