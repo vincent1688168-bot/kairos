@@ -24,7 +24,7 @@
 <meta name="twitter:description" content="Exclusive to wallets holding a Binance .ai Agent ID. 1U per share in T1, stepping up tier by tier, up to 10 shares per ID.">
 <meta name="twitter:image" content="https://kairosagentai.xyz/og.jpg">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -359,6 +359,11 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 .ledger small{font:500 12px var(--mono);color:var(--gm)}
 #gcWallet{font:600 13px var(--mono)}
 .gbtn{width:100%;padding:17px;border-radius:16px;border:2px solid var(--gi);background:transparent;color:var(--gi);font:800 17px var(--body);cursor:pointer;letter-spacing:.02em;transition:background .18s,color .18s,transform .1s}
+.gc-ca{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;font:600 11px var(--mono);color:#6d5310;opacity:.9}
+.gc-ca span{opacity:.7}
+.gc-ca a{color:#4a3906;text-decoration:none;border-bottom:1px dashed rgba(74,57,6,.45);padding-bottom:1px;font-weight:700}
+.gc-ca a:hover{border-bottom-style:solid}
+.gc-ca .cpy{border-color:rgba(74,57,6,.35);color:#4a3906}
 .gbtn:hover:not(:disabled){background:var(--gi);color:#f6d77a}
 .gbtn:active:not(:disabled){transform:translateY(1px)}
 .gbtn:disabled{opacity:.55;cursor:not-allowed}
@@ -385,6 +390,57 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 .gc-kv span{color:var(--gm)} .gc-kv b{font-weight:600;text-align:right}
 .card.gold .foot{color:var(--gm)}
 @media (max-width:520px){.card.gold{padding:22px 18px 18px}.nums{grid-template-columns:repeat(5,minmax(0,1fr))}.gc-top h3{font-size:28px}.gc-supply b{font-size:28px}.gc-get{font-size:19px}}
+/* ---- A 版：杂志编辑风 ---- */
+:root{
+  --bg:#0B0D0C; --bg2:#101312; --card:#141817; --line:#232826; --line2:#2F3634;
+  --ink:#F2EEE6; --mute:#9B9A94; --amber:#C9A27A; --amber2:#A8814F; --amber-ink:#191008;
+  --teal:#9CC7B4; --slate:#7F8C85;
+  --latin:"Instrument Serif","Noto Serif SC",Georgia,serif;
+}
+body{background:#0B0D0C}
+h1,h2,h3,.gc-top h3{font-family:var(--latin);font-weight:400;letter-spacing:-.005em}
+h1{line-height:.94;letter-spacing:-.02em}
+.kicker,.gc-eye,.gc-lbl,.eyebrow{letter-spacing:.26em;text-transform:uppercase;font-size:10.5px}
+.kicker{color:var(--amber)}
+.hero .in{display:block!important}
+.hero .in>div:first-child{max-width:960px;margin:0 auto;text-align:center}
+.hero h1{text-align:center;font-size:clamp(52px,7.4vw,112px)}
+.hero .lede{max-width:60ch;margin-left:auto;margin-right:auto;text-align:center}
+.hero .ctas{justify-content:center}
+.hero .facts{justify-content:center;border-top:1px solid var(--line);padding-top:22px;margin-top:36px}
+.facts b{font-family:var(--latin);font-weight:400;letter-spacing:-.01em}
+#mintcard{max-width:780px;margin:46px auto 0}
+main{counter-reset:sec}
+main section h2::before{counter-increment:sec;content:counter(sec,decimal-leading-zero);font:400 12px var(--mono);letter-spacing:.22em;color:var(--amber);margin-right:16px;vertical-align:10px}
+section{padding-top:92px}
+.card{border-radius:6px}
+.card.gold{
+  --gi:#13221C; --gm:rgba(19,34,28,.66); --gl:rgba(19,34,28,.14);
+  background:#F5F0E5; border:1px solid #DDD3C1; color:#13221C; border-radius:4px;
+  box-shadow:0 48px 90px -60px #000, inset 0 1px 0 rgba(255,255,255,.7);
+}
+.card.gold .gc-k{color:rgba(19,34,28,.045)}
+.card.gold .gc-lbl,.card.gold .gc-eye{color:var(--gm)}
+.card.gold .ledger{background:#EFE9DB;border:1px solid #DFD5C3;border-radius:3px;padding:6px 12px}
+.card.gold .gc-hr{background:var(--gl)}
+.card.gold .gc-ca{color:rgba(19,34,28,.7)}
+.card.gold .gc-ca a{color:#7A3E1E;border-bottom:1px dashed rgba(122,62,30,.45)}
+.card.gold .gc-ca .cpy{color:rgba(19,34,28,.7);border-color:rgba(19,34,28,.25)}
+.card.gold .gc-bar{background:#E2DACA}
+.card.gold .gc-bar i{background:#13221C}
+.gbtn{
+  background:#13221C; color:#F5F0E5; border:0; border-radius:2px;
+  letter-spacing:.16em; text-transform:uppercase; font-size:12.5px; font-weight:700; padding:18px;
+}
+.gbtn:hover{background:#1D3229}
+.pills a{border-radius:2px}
+.pills a[aria-current="true"]{background:var(--amber);color:var(--amber-ink)}
+/* 白皮书·合约地址表排版 */
+#wp-addrs ~ ul{display:grid;gap:0;margin-top:12px;padding:0;list-style:none}
+#wp-addrs ~ ul li{display:flex;flex-direction:column;gap:6px;padding:14px 0;border-bottom:1px solid var(--line);font-size:0;border-left:0}
+#wp-addrs ~ ul li b{font-size:14.5px;font-weight:600;color:var(--ink);letter-spacing:.01em}
+#wp-addrs ~ ul li a{font-size:12.5px;color:var(--amber);word-break:break-all}
+#wp-addrs ~ ul li:last-child{border-bottom:0}
 </style>
 </head>
 <body>
@@ -437,6 +493,7 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 <div><span id="lgS"></span><b id="gcQuota">—</b></div>
 </div>
 <button class="gbtn" id="mainBtn">—</button>
+<div class="gc-ca" id="gcCa"><span>合约</span><a id="caGmgn" target="_blank" rel="noopener" title="GMGN 行情/交易">在 GMGN 查看 ↗</a><button class="cpy" id="caCopy" type="button">复制</button></div>
 <div class="ref" id="refbox" hidden></div>
 <div class="msg" id="msg" role="status"></div>
 <div class="gc-hr"></div>
@@ -568,7 +625,7 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 <script>
 // ================== 配置：上线前只改这里 ==================
 const CONFIG = {
-presale: "0xBc551A16481d306b6D0270Cd0b5b87538c330Da9", // KAIROS 合约（铸造 + 代币）
+presale: "0x26b63d62e54d15caa8d4e62917aabf0a6b986610", // KAIROS 合约（铸造 + 代币）
 chainId: 56,
 rpcUrl: "https://bsc-dataseed.bnbchain.org",
 // 排行榜要读历史事件：bsc-dataseed 不开放 eth_getLogs，这里单独用一个支持查询日志的节点
@@ -708,7 +765,7 @@ howS: ["合约在链上核验身份、按档位报价、记录份额。三种方
 "컨트랙트가 온체인에서 신원 확인, 티어별 가격 계산, 수량 기록을 합니다. 방법은 세 가지: AI에게 맡기기, Agentic Wallet로 QR 스캔, 브라우저 지갑."],
 m1: ["你的钱包", "Your wallet", "あなたのウォレット", "내 지갑"], m1s: ["支付 BNB（多付自动退回）", "pays BNB (overpayment refunded)", "BNB を支払う（過払い分は返金）", "BNB 결제 (초과 금액은 자동 환불)"],
 m2: ["KAIROS 合约", "KAIROS contract", "KAIROS コントラクト", "KAIROS 컨트랙트"], m2s: ["核验身份、按档位计价、记录份额", "checks identity, prices by tier, records shares", "身元確認、ティア別に価格計算、口数を記録", "신원 확인, 티어별 가격 계산, 수량 기록"],
-m3: ["项目方钱包", "Project wallet", "プロジェクトのウォレット", "프로젝트 지갑"], m3s: ["收到全部款项；首档结束后手动加池", "receives all payments; adds the pool after T1", "全額を受け取り、T1 後に手動でプール追加", "전액 수령, T1 후 직접 풀 추가"],
+m3: ["项目方钱包", "Project wallet", "プロジェクトのウォレット", "프로젝트 지갑"], m3s: ["首档期间款项留在合约；第 10,000 份铸完自动加池，余款转入", "T1 proceeds stay in the contract; at 10,000 shares the contract adds the pool automatically and forwards the rest", "T1 中の資金はコントラクトに保留、10,000 口で自動的にプールを追加し、残りは送金", "T1 기간 자금은 컨트랙트에 보관, 10,000개에서 자동으로 풀을 추가하고 잔액 이체"],
 tokT: ["代币机制", "Token mechanics", "トークンの仕組み", "토큰 구조"],
 tokS: ["首档每份 5,000 万枚。开池时：首档每份 2,750 万枚（首档卖满时共 2,750 亿枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，链上可查；每份 1,250 万枚（共 1,250 亿枚）连同首档款项加入 PancakeSwap 池子——所以开盘价是首档成本的 4 倍。开池后每份按实时池价计算，比市价多 1%。", "In T1 each share gets 50,000,000. At pool opening, 27,500,000 tokens per share (275B in total when T1 sells out) go to the burn address 0x000000000000000000000000000000000000dEaD — verifiable on-chain; 12,500,000 per share (125B in total) is added to the PancakeSwap pool together with the T1 proceeds — which puts the opening price at 4× the T1 cost. After that each share is priced off the live pool, 1% better than market.", "T1 は 1 口 5,000 万。開設時：1 口 2,750 万枚（T1 完売時は合計 2,750 億枚）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 1,250 万枚（合計 1,250 億枚）は T1 の売上とともに PancakeSwap プールへ追加します。これにより初値は T1 コストの 4 倍になります。以降は実際のプール価格で計算し、市場より 1% 有利。", "T1은 개당 5,000만 개. 개설 시: 개당 2,750만 개(T1 완판 시 총 2,750억 개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 1,250만 개(총 1,250억 개)는 T1 판매금과 함께 PancakeSwap 풀에 넣습니다. 그래서 시작가가 T1 원가의 4배가 됩니다. 이후에는 실시간 풀 가격으로 계산하며 시장가보다 1% 유리합니다."],
 allocT: ["开盘时代币分布", "Supply at pool open", "プール開設時の供給", "풀 개설 시 공급"],
@@ -730,7 +787,7 @@ agS: ["先在上面的铸造卡片里选好份数，再复制下面这段发给�
 "위의 민팅 카드에서 수량을 고른 뒤, 아래 내용을 복사해 바이낸스 Agentic Wallet에 로그인한 AI에게 보내세요. 거래 데이터는 현재 가격으로 미리 계산되어 있으며, AI가 미리보기를 보여 주고 승인해야 실행합니다. 바이낸스 앱에서 개발자 모드를 먼저 켜야 합니다. 가격은 20초마다 갱신되니 복사 후 바로 사용하세요."],
 copy: ["复制", "Copy", "コピー", "복사"], copied: ["已复制", "Copied", "コピーしました", "복사됨"], faqT: ["常见问题", "FAQ", "よくある質問", "자주 묻는 질문"],
 foot1: ["KAIROS 是独立项目，与币安无关。", "KAIROS is an independent project, not affiliated with Binance.", "KAIROS は独立したプロジェクトで、Binance とは関係ありません。", "KAIROS는 독립 프로젝트이며 바이낸스와 관련이 없습니다."],
-foot2: ["款项直接进入项目方钱包；首档结束后由项目方手动在 PancakeSwap 加池。开池后价格由市场决定，可能低于铸造成本，请自行评估风险。", "Payments go straight to the project wallet; after T1 the project adds the PancakeSwap pool manually. After that the market sets the price, which may fall below your cost. Do your own research.", "支払いはプロジェクトのウォレットへ直接送られ、T1 終了後にプロジェクトが手動で PancakeSwap プールを追加します。その後の価格は市場が決め、費用を下回る可能性があります。ご自身で判断してください。", "결제 금액은 프로젝트 지갑으로 바로 가며, T1 종료 후 프로젝트가 직접 PancakeSwap 풀을 추가합니다. 이후 가격은 시장이 정하며 비용보다 낮아질 수 있습니다. 위험은 직접 판단하세요."],
+foot2: ["首档期间款项留在合约中；第 10,000 份铸完时合约自动在 PancakeSwap 加池，余款转入项目方钱包。开池后价格由市场决定，可能低于你的铸造成本，请自行评估风险。", "T1 proceeds stay in the contract; on the 10,000th share the contract adds the PancakeSwap pool automatically and forwards the remainder to the project wallet. After that the market sets the price, which may fall below your cost. Do your own research.", "T1 中の支払いはコントラクトに保留され、10,000 口目のミントでコントラクトが自動的に PancakeSwap プールを追加し、残りはプロジェクトのウォレットへ送金します。その後の価格は市場が決め、費用を下回る可能性があります。ご自身で判断してください。", "T1 기간 결제 금액은 컨트랙트에 보관되며, 10,000번째 민팅에서 컨트랙트가 자동으로 PancakeSwap 풀을 추가하고 나머지는 프로젝트 지갑으로 보냅니다. 이후 가격은 시장이 정하며 비용보다 낮아질 수 있습니다. 위험은 직접 판단하세요."],
 oAgent: ["扫码登录 · 持有 .ai Agent ID（推荐）", "QR sign-in · .ai Agent ID holders (recommended)", "QR ログイン · .ai Agent ID 保有者（おすすめ）", "QR 로그인 · .ai Agent ID 보유자 (추천)"], oBrowser: ["浏览器钱包", "Browser wallet", "ブラウザウォレット", "브라우저 지갑"],
 oPrompt: ["交给我的 AI", "Let my AI do it", "AI に任せる", "내 AI에게 맡기기"], oPromptS: ["复制指令，发给已登录 Agentic Wallet 的 AI", "Copy the prompt for an AI signed in to Agentic Wallet", "指示をコピーして Agentic Wallet にログイン済みの AI へ", "명령을 복사해 Agentic Wallet에 로그인한 AI에게 전달"],
 invT: ["邀请奖励", "Invite rewards", "紹介報酬", "초대 보상"],
@@ -771,7 +828,7 @@ const ALLOC = () => [
 ];
 const TIMELINE = () => [
 ["T0", tt("开放铸造", "Mint opens", "ミント開始", "민팅 오픈"), tt("公布合约；首档每份 1U，款项直接进入项目方钱包", "Contract published; T1 at 1U, payments go to the project wallet", "コントラクト公開、T1 は 1U、支払いはプロジェクトのウォレットへ", "컨트랙트 공개, T1 1U, 결제 금액은 프로젝트 지갑으로")],
-[tt("首档结束", "T1 ENDS", "T1 終了", "T1 종료"), tt("开池", "Pool opens", "プール開設", "풀 개설"), tt("首档卖满或项目方结束首档后，项目方用首档款项 + 1,250 亿枚加池（开盘 4 倍），其余 2,750 亿枚销毁，代币开放交易", "When T1 sells out or the project ends it, the project adds the pool with T1 proceeds + 125B tokens (4× open) and burns the other 275B; trading opens", "T1 完売またはプロジェクトが終了した後、T1 の売上＋1,250 億でプールを追加（初値 4 倍）、残り 2,750 億は焼却し、取引開始", "T1 완판 또는 프로젝트가 종료하면 T1 판매금 + 1,250억 개로 풀을 추가(시작가 4배)하고 나머지 2,750억 개는 소각한 뒤 거래 시작")],
+[tt("首档结束", "T1 ENDS", "T1 終了", "T1 종료"), tt("开池", "Pool opens", "プール開設", "풀 개설"), tt("首档铸满 10,000 份的那一刻，合约自动用首档款项 + 1,250 亿枚加池（开盘 4 倍），其余 2,750 亿枚销毁，代币自动开放交易", "The moment T1 reaches 10,000 shares the contract automatically adds the pool with the T1 proceeds + 125B tokens (4× open), burns the other 275B and opens trading", "T1 が 10,000 口に達した瞬間、コントラクトが T1 の売上＋1,250 億枚で自動的にプールを追加し（初値 4 倍）、残り 2,750 億枚を焼却して取引を開始します", "T1이 10,000개에 도달하는 순간 컨트랙트가 T1 판매금 + 1,250억 개로 자동으로 풀을 추가하고(시작가 4배), 나머지 2,750억 개를 소각하며 거래를 시작합니다")],
 [tt("开池后", "AFTER OPEN", "開設後", "개설 후"), tt("继续铸造", "Mint continues", "ミント継続", "민팅 계속"), tt("每份按池价多给 1%，没有时间限制", "Each share 1% better than pool price, no time limit", "プール価格より 1% 有利、期限なし", "풀 가격보다 1% 유리, 기한 없음")],
 ["T300", tt("结束", "End", "終了", "종료"), tt(`全部 ${TIERS.length} 档、${fmt(MAX)} 份售完，或代币达到 2 万亿上限`, `All ${TIERS.length} tiers (${fmt(MAX)} shares) sold, or the 2T supply cap is reached`, `全 ${TIERS.length} ティア・${fmt(MAX)} 口が完売、または 2 兆の上限に到達`, `${TIERS.length}개 티어 ${fmt(MAX)}개 완판 또는 2조 상한 도달`)],
 ];
@@ -783,7 +840,7 @@ tt(`前 10,000 份每份 1U；之后 ${TIERS.length - 1} 档、每档 1,000 份�
 [tt("为什么用 AI 铸造要开开发者模式？", "Why does my AI need Developer Mode?", "AI でミントするのになぜ開発者モードが必要？", "AI로 민팅할 때 왜 개발자 모드가 필요한가요?"),
 tt("币安规定 Agentic Wallet 调用外部合约必须开启：Agentic Wallet → 设置 → 开发者模式。每笔交易都会先预览，你确认后才执行。", "Binance requires it for contract calls from Agentic Wallet (Agentic Wallet → Settings → Developer Mode). Each call is previewed first.", "Agentic Wallet から外部コントラクトを呼ぶには Binance の規定で必要です（Agentic Wallet → 設定 → 開発者モード）。取引は必ずプレビューされます。", "바이낸스 규정상 Agentic Wallet에서 외부 컨트랙트를 호출하려면 켜야 합니다 (Agentic Wallet → 설정 → 개발자 모드). 모든 거래는 먼저 미리보기 후 승인해야 실행됩니다.")],
 [tt("我的钱去了哪里？", "Where does my payment go?", "支払ったお金はどこへ？", "결제한 돈은 어디로 가나요?"),
-tt("全部款项在铸造的同一笔交易里直接转入项目方钱包，合约里不留钱。首档结束后，项目方用首档款项和开池代币手动在 PancakeSwap 加池。", "Every payment is sent to the project wallet in the same mint transaction; the contract holds nothing. After T1, the project adds the PancakeSwap pool manually with the T1 proceeds and the pool tokens.", "支払いはすべてミントと同じ取引でプロジェクトのウォレットへ送られ、コントラクトには残りません。T1 終了後、プロジェクトが T1 の売上とプール用トークンで手動で PancakeSwap プールを追加します。", "모든 결제 금액은 민팅과 같은 거래에서 프로젝트 지갑으로 바로 전송되며 컨트랙트에는 남지 않습니다. T1 종료 후 프로젝트가 T1 판매금과 풀용 토큰으로 직접 PancakeSwap 풀을 추가합니다.")],
+tt("首档（前 10,000 份）的 BNB 留在合约里用于开池。第 10,000 份铸造的同一笔交易中，合约自动把这笔 BNB 和 1,250 亿枚 KAIROS 加入 PancakeSwap 池，同时销毁 2,750 亿枚，并自动开放交易；加池后剩余 BNB 转入项目方钱包。LP 代币在同一笔交易里转入黑洞地址 0x…dEaD，流动性永久锁死，任何人（包括项目方）都无法撤出。T2 起的款项在铸造交易中直接转入项目方钱包，合约不留钱。", "BNB from T1 (the first 10,000 shares) stays in the contract to fund the pool. In the same transaction as the 10,000th mint, the contract adds that BNB plus 125B KAIROS to PancakeSwap, burns 275B, and opens trading automatically; any remaining BNB is then sent to the project wallet. The LP tokens are sent to the dead address 0x…dEaD in the same transaction, so the liquidity is locked forever and nobody — not even the project — can withdraw it. From T2 on, payments go straight to the project wallet in the mint transaction and the contract keeps nothing.", "T1（最初の 10,000 口）の BNB はプール用としてコントラクトに保留されます。10,000 口目のミントと同じ取引で、コントラクトはその BNB と 1,250 億枚の KAIROS を PancakeSwap に追加し、2,750 億枚を焼却して自動的に取引を開始します。追加後の残りの BNB はプロジェクトのウォレットへ送金されます。LP トークンは同じ取引で焼却アドレス 0x…dEaD へ送られるため、流動性は永久にロックされ、プロジェクトを含め誰も引き出せません。T2 以降の支払いはミント取引で直接プロジェクトのウォレットへ送られ、コントラクトには残りません。", "T1(최초 10,000개)의 BNB는 풀 자금으로 컨트랙트에 보관됩니다. 10,000번째 민팅과 같은 거래에서 컨트랙트가 해당 BNB와 1,250억 개 KAIROS를 PancakeSwap에 추가하고, 2,750억 개를 소각하며 자동으로 거래를 시작합니다. 추가 후 남은 BNB는 프로젝트 지갑으로 전송됩니다. LP 토큰은 같은 거래에서 소각 주소 0x…dEaD로 보내지므로 유동성은 영구히 잠기며 프로젝트를 포함해 누구도 인출할 수 없습니다. T2부터의 결제는 민팅 거래에서 프로젝트 지갑으로 바로 전송되며 컨트랙트에는 남지 않습니다.")],
 [tt("代币什么时候发？", "When are tokens distributed?", "トークンはいつ配布されますか？", "토큰은 언제 배분되나요?"),
 tt("铸造时直接到账。开池前代币不能转账，开池后开放。", "Delivered in the mint transaction. Tokens can't be transferred until the pool opens.", "ミントの取引で即時付与。プール開設まで送金はできません。", "민팅 거래에서 바로 지급됩니다. 풀 개설 전에는 전송할 수 없습니다.")],
 [tt("一个人能铸多少？", "How much can one ID mint?", "1 人いくらまで？", "한 사람이 얼마나 민팅할 수 있나요?"),
@@ -797,20 +854,20 @@ const head = tt("<tr><th>档位</th><th>份数区间</th><th>每份价格</th></
 const tbl = `<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;
 return [
 ["abstract", tt("摘要", "Abstract", "概要", "요약"), tt(
-`<p>KAIROS（$KAIROS）是一个只能由 AI Agent 铸造的代币。参与资格由币安 .ai Agent ID 在链上决定：只有持有 Agent ID 的钱包，合约才会接受它的铸造。</p><p>铸造以"份"为单位，用 BNB 支付；每个 Agent ID 最多 10 份；共 ${TIERS.length} 个档位。前 10,000 份每份 1U，首档结束后由项目方在 PancakeSwap 加池；之后逐档递增，每份按池价计算代币。</p>`,
-`<p>KAIROS ($KAIROS) is a token that only AI agents can mint. Eligibility is decided on-chain by the Binance .ai Agent ID: the contract accepts a mint only from a wallet that holds one.</p><p>Minting is done in shares paid in BNB, up to 10 shares per Agent ID, across ${TIERS.length} tiers. The first 10,000 shares cost 1U each; after T1 the project adds a PancakeSwap pool, then the price rises tier by tier and tokens are priced off the pool.</p>`,
-`<p>KAIROS（$KAIROS）は AI エージェントだけがミントできるトークンです。参加資格は Binance の .ai Agent ID によってオンチェーンで判定され、Agent ID を保有するウォレットからのミントだけをコントラクトが受け付けます。</p><p>ミントは口単位で BNB 払い、Agent ID ごとに最大 10 口、全 ${TIERS.length} ティア。最初の 10,000 口は 1 口 1U、T1 終了後にプロジェクトが PancakeSwap プールを追加。その後はティアごとに上がり、トークンはプール価格で計算します。</p>`,
-`<p>KAIROS($KAIROS)는 AI 에이전트만 민팅할 수 있는 토큰입니다. 참여 자격은 바이낸스 .ai Agent ID로 온체인에서 판정되며, Agent ID를 보유한 지갑의 민팅만 컨트랙트가 받아들입니다.</p><p>민팅은 ‘개’ 단위로 BNB로 결제하며, Agent ID당 최대 10개, 총 ${TIERS.length}개 티어입니다. 처음 10,000개는 개당 1U이며 T1 종료 후 프로젝트가 PancakeSwap 풀을 추가합니다. 이후 티어마다 가격이 오르고 토큰은 풀 가격으로 계산합니다.</p>`)],
+`<p>KAIROS（$KAIROS）是一个只能由 AI Agent 铸造的代币。参与资格由币安 .ai Agent ID 在链上决定：只有持有 Agent ID 的钱包，合约才会接受它的铸造。</p><p>铸造以"份"为单位，用 BNB 支付；每个 Agent ID 最多 10 份；共 ${TIERS.length} 个档位。前 10,000 份每份 1U，铸满 10,000 份时由合约自动在 PancakeSwap 加池；之后逐档递增，每份按池价计算代币。</p>`,
+`<p>KAIROS ($KAIROS) is a token that only AI agents can mint. Eligibility is decided on-chain by the Binance .ai Agent ID: the contract accepts a mint only from a wallet that holds one.</p><p>Minting is done in shares paid in BNB, up to 10 shares per Agent ID, across ${TIERS.length} tiers. The first 10,000 shares cost 1U each; when the 10,000th share is minted the contract adds the PancakeSwap pool automatically, then the price rises tier by tier and tokens are priced off the pool.</p>`,
+`<p>KAIROS（$KAIROS）は AI エージェントだけがミントできるトークンです。参加資格は Binance の .ai Agent ID によってオンチェーンで判定され、Agent ID を保有するウォレットからのミントだけをコントラクトが受け付けます。</p><p>ミントは口単位で BNB 払い、Agent ID ごとに最大 10 口、全 ${TIERS.length} ティア。最初の 10,000 口は 1 口 1U、10,000 口目でコントラクトが自動的に PancakeSwap プールを追加。その後はティアごとに上がり、トークンはプール価格で計算します。</p>`,
+`<p>KAIROS($KAIROS)는 AI 에이전트만 민팅할 수 있는 토큰입니다. 참여 자격은 바이낸스 .ai Agent ID로 온체인에서 판정되며, Agent ID를 보유한 지갑의 민팅만 컨트랙트가 받아들입니다.</p><p>민팅은 ‘개’ 단위로 BNB로 결제하며, Agent ID당 최대 10개, 총 ${TIERS.length}개 티어입니다. 처음 10,000개는 개당 1U이며, 10,000번째 민팅 시 컨트랙트가 자동으로 PancakeSwap 풀을 추가합니다. 이후 티어마다 가격이 오르고 토큰은 풀 가격으로 계산합니다.</p>`)],
 ["background", tt("背景", "Background", "背景", "배경"), tt(
 `<p>AI Agent 正在成为链上最活跃的参与者之一：它们替用户交易、签名、转账，全天候运行。币安推出的 Agentic Wallet 和 .ai Agent ID，让 agent 第一次拥有可验证的链上身份。</p><p>身份需要用处。KAIROS 把 Agent ID 当作唯一的入场券，做一次只属于 agent 的发行。</p>`,
 `<p>AI agents are becoming some of the most active participants on-chain, trading, signing and transferring for their users around the clock. Binance's Agentic Wallet and .ai Agent ID gave agents a verifiable on-chain identity for the first time.</p><p>An identity needs a use. KAIROS treats the Agent ID as the only ticket in and runs a launch that belongs to agents alone.</p>`,
 `<p>AI エージェントはチェーン上で最も活発な参加者の一つになりつつあり、ユーザーに代わって 24 時間取引・署名・送金を行っています。Binance の Agentic Wallet と .ai Agent ID は、エージェントに初めて検証可能なオンチェーンの身元を与えました。</p><p>身元には使い道が必要です。KAIROS は Agent ID を唯一の入場券とし、エージェントだけのローンチを行います。</p>`,
 `<p>AI 에이전트는 사용자를 대신해 24시간 거래·서명·송금하며 온체인에서 가장 활발한 참여자 중 하나가 되고 있습니다. 바이낸스의 Agentic Wallet과 .ai Agent ID는 에이전트에게 처음으로 검증 가능한 온체인 신원을 부여했습니다.</p><p>신원에는 쓰임이 필요합니다. KAIROS는 Agent ID를 유일한 입장권으로 삼아, 에이전트만을 위한 발행을 진행합니다.</p>`)],
 ["mint", tt("铸造规则", "Mint rules", "ミントのルール", "민팅 규칙"), tt(
-`<ul><li><b>资格</b>：铸造钱包必须持有 .ai Agent ID（合约读取注册合约 handleOf 并核对 ownerOf）。</li><li><b>价格</b>：每份按所在档位的 U 价计算，用 Chainlink BNB/USD 实时换算成 BNB；多付的 BNB 在同一笔交易退回；价格超过 1 小时未更新时暂停铸造。</li><li><b>额度</b>：每个 Agent ID 最多 10 份，可以分多次。</li><li><b>档位</b>：前 10,000 份 1U；之后 ${TIERS.length - 1} 档每档 1,000 份、每档 +0.1U，最高 ${fmtU(MAXP)}。共 ${TIERS.length} 档、${fmt(MAX)} 份。</li><li><b>开池</b>：首档卖满自动结束，或由项目方提前结束。开池时：首档每份 2,750 万枚（首档卖满时共 2,750 亿枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，链上可查；每份 1,250 万枚（共 1,250 亿枚）连同首档款项加入 PancakeSwap 池子；之后在合约里登记池子，T2 开始。</li><li><b>时间</b>：没有截止时间，铸满为止。</li></ul>${tbl}<p>一笔交易跨档时，每一份按它所在的档位单独计算。</p>`,
-`<ul><li><b>Eligibility</b>: the minting wallet must hold a .ai Agent ID (the contract reads the registry's handleOf and checks ownerOf).</li><li><b>Price</b>: each share is priced in U by its tier and converted to BNB live from Chainlink BNB/USD. Overpayment is refunded in the same transaction. Minting pauses if the price is over an hour old.</li><li><b>Quota</b>: up to 10 shares per Agent ID, in any number of transactions.</li><li><b>Tiers</b>: first 10,000 at 1U; then ${TIERS.length - 1} tiers of 1,000 shares, +0.1U each, up to ${fmtU(MAXP)}. ${TIERS.length} tiers, ${fmt(MAX)} shares.</li><li><b>Pool</b>: T1 ends when it sells out or when the project ends it early. At pool opening, 27,500,000 tokens per share (275B in total when T1 sells out) go to the burn address 0x000000000000000000000000000000000000dEaD — verifiable on-chain; 12,500,000 per share (125B in total) is added to the PancakeSwap pool together with the T1 proceeds. The pool is then registered in the contract and T2 starts.</li><li><b>Time</b>: no deadline; minting runs until sold out.</li></ul>${tbl}<p>When a transaction crosses tiers, each share is priced by the tier it falls in.</p>`,
-`<ul><li><b>資格</b>：ミントするウォレットが .ai Agent ID を保有していること（レジストリの handleOf を読み ownerOf を確認）。</li><li><b>価格</b>：各口をティアの U 価格で計算し、Chainlink BNB/USD でリアルタイムに BNB 換算。過払い分は同じ取引で返金。価格が 1 時間以上更新されない場合は停止。</li><li><b>上限</b>：Agent ID ごとに最大 10 口、複数回に分けても可。</li><li><b>ティア</b>：最初の 10,000 口は 1U、その後 1,000 口ずつ ${TIERS.length - 1} ティアで +0.1U、最高 ${fmtU(MAXP)}。全 ${TIERS.length} ティア、${fmt(MAX)} 口。</li><li><b>プール</b>：T1 は完売時、またはプロジェクトが早期終了した時に終わります。開設時に、1 口 2,750 万枚（T1 完売時は合計 2,750 億枚）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 1,250 万枚（合計 1,250 億枚）は T1 の売上とともに PancakeSwap プールへ追加します。その後プールをコントラクトに登録すると T2 開始。</li><li><b>期間</b>：期限なし、完売まで。</li></ul>${tbl}<p>1 つの取引がティアをまたぐ場合、各口はそれぞれのティアで計算されます。</p>`,
-`<ul><li><b>자격</b>: 민팅하는 지갑이 .ai Agent ID를 보유해야 합니다 (레지스트리의 handleOf를 읽고 ownerOf 확인).</li><li><b>가격</b>: 각 개를 해당 티어의 U 가격으로 계산하고 Chainlink BNB/USD로 실시간 BNB 환산합니다. 초과 결제분은 같은 거래에서 환불되며, 가격이 1시간 넘게 갱신되지 않으면 민팅이 중지됩니다.</li><li><b>한도</b>: Agent ID당 최대 10개, 여러 번 나눠도 됩니다.</li><li><b>티어</b>: 처음 10,000개 1U, 이후 1,000개씩 ${TIERS.length - 1}개 티어 +0.1U로 최고 ${fmtU(MAXP)}. 총 ${TIERS.length}개 티어, ${fmt(MAX)}개.</li><li><b>풀</b>: T1은 완판되거나 프로젝트가 조기 종료하면 끝납니다. 개설 시 개당 2,750만 개(T1 완판 시 총 2,750억 개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 1,250만 개(총 1,250억 개)는 T1 판매금과 함께 PancakeSwap 풀에 넣습니다. 이후 풀을 컨트랙트에 등록하면 T2가 시작됩니다.</li><li><b>기간</b>: 마감 없음, 완판까지.</li></ul>${tbl}<p>한 거래가 여러 티어에 걸치면 각 개는 해당 티어 가격으로 따로 계산됩니다.</p>`)],
+`<ul><li><b>资格</b>：铸造钱包必须持有 .ai Agent ID（合约读取注册合约 handleOf 并核对 ownerOf）。</li><li><b>价格</b>：每份按所在档位的 U 价计算，用 Chainlink BNB/USD 实时换算成 BNB；多付的 BNB 在同一笔交易退回；价格超过 1 小时未更新时暂停铸造。</li><li><b>额度</b>：每个 Agent ID 最多 10 份，可以分多次。</li><li><b>档位</b>：前 10,000 份 1U；之后 ${TIERS.length - 1} 档每档 1,000 份、每档 +0.1U，最高 ${fmtU(MAXP)}。共 ${TIERS.length} 档、${fmt(MAX)} 份。</li><li><b>开池</b>：首档铸满 10,000 份时自动结束。同一笔交易里，合约自动把每份 2,750 万枚（首档共 2,750 亿枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，把每份 1,250 万枚（共 1,250 亿枚）连同首档款项加入 PancakeSwap 池，LP 代币打入黑洞，并自动开放交易、进入 T2。</li><li><b>时间</b>：没有截止时间，铸满为止。</li></ul>${tbl}<p>一笔交易跨档时，每一份按它所在的档位单独计算。</p>`,
+`<ul><li><b>Eligibility</b>: the minting wallet must hold a .ai Agent ID (the contract reads the registry's handleOf and checks ownerOf).</li><li><b>Price</b>: each share is priced in U by its tier and converted to BNB live from Chainlink BNB/USD. Overpayment is refunded in the same transaction. Minting pauses if the price is over an hour old.</li><li><b>Quota</b>: up to 10 shares per Agent ID, in any number of transactions.</li><li><b>Tiers</b>: first 10,000 at 1U; then ${TIERS.length - 1} tiers of 1,000 shares, +0.1U each, up to ${fmtU(MAXP)}. ${TIERS.length} tiers, ${fmt(MAX)} shares.</li><li><b>Pool</b>: T1 ends automatically at 10,000 shares. In that same transaction the contract sends 27,500,000 tokens per share (275B in total) to the burn address 0x000000000000000000000000000000000000dEaD, adds 12,500,000 per share (125B in total) plus the T1 proceeds to the PancakeSwap pool, sends the LP tokens to the dead address and opens trading; T2 starts.</li><li><b>Time</b>: no deadline; minting runs until sold out.</li></ul>${tbl}<p>When a transaction crosses tiers, each share is priced by the tier it falls in.</p>`,
+`<ul><li><b>資格</b>：ミントするウォレットが .ai Agent ID を保有していること（レジストリの handleOf を読み ownerOf を確認）。</li><li><b>価格</b>：各口をティアの U 価格で計算し、Chainlink BNB/USD でリアルタイムに BNB 換算。過払い分は同じ取引で返金。価格が 1 時間以上更新されない場合は停止。</li><li><b>上限</b>：Agent ID ごとに最大 10 口、複数回に分けても可。</li><li><b>ティア</b>：最初の 10,000 口は 1U、その後 1,000 口ずつ ${TIERS.length - 1} ティアで +0.1U、最高 ${fmtU(MAXP)}。全 ${TIERS.length} ティア、${fmt(MAX)} 口。</li><li><b>プール</b>：T1 は 10,000 口で自動的に終了します。同じ取引で、コントラクトが 1 口 2,750 万枚（合計 2,750 億枚）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送り、1 口 1,250 万枚（合計 1,250 億枚）を T1 の売上とともに PancakeSwap プールへ追加し、LP トークンをブラックホールへ送って取引を開始、T2 へ進みます。</li><li><b>期間</b>：期限なし、完売まで。</li></ul>${tbl}<p>1 つの取引がティアをまたぐ場合、各口はそれぞれのティアで計算されます。</p>`,
+`<ul><li><b>자격</b>: 민팅하는 지갑이 .ai Agent ID를 보유해야 합니다 (레지스트리의 handleOf를 읽고 ownerOf 확인).</li><li><b>가격</b>: 각 개를 해당 티어의 U 가격으로 계산하고 Chainlink BNB/USD로 실시간 BNB 환산합니다. 초과 결제분은 같은 거래에서 환불되며, 가격이 1시간 넘게 갱신되지 않으면 민팅이 중지됩니다.</li><li><b>한도</b>: Agent ID당 최대 10개, 여러 번 나눠도 됩니다.</li><li><b>티어</b>: 처음 10,000개 1U, 이후 1,000개씩 ${TIERS.length - 1}개 티어 +0.1U로 최고 ${fmtU(MAXP)}. 총 ${TIERS.length}개 티어, ${fmt(MAX)}개.</li><li><b>풀</b>: T1은 10,000개에서 자동으로 종료됩니다. 같은 거래에서 컨트랙트가 개당 2,750만 개(총 2,750억 개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내고, 개당 1,250만 개(총 1,250억 개)를 T1 판매금과 함께 PancakeSwap 풀에 넣으며, LP 토큰을 블랙홀로 보내고 거래를 시작해 T2로 넘어갑니다.</li><li><b>기간</b>: 마감 없음, 완판까지.</li></ul>${tbl}<p>한 거래가 여러 티어에 걸치면 각 개는 해당 티어 가격으로 따로 계산됩니다.</p>`)],
 ["referral", tt("邀请", "Referrals", "紹介", "초대"), tt(
 `<p>被邀请人第一次铸造时，如果带上了邀请人地址，并且邀请人已经铸造过、不是自己，就会和邀请人绑定。此后被邀请人的每一次铸造，邀请人额外获得其所得代币的 5%，直接发到邀请人钱包。邀请奖励计入 2 万亿总量上限。</p>`,
 `<p>On an invitee's first mint, if a referrer address is supplied, the referrer has already minted and is not the invitee, the two are bound. Every later mint by the invitee sends the referrer an extra 5% of the invitee's tokens. Referral rewards count toward the 2T supply cap.</p>`,
@@ -822,21 +879,24 @@ return [
 `<p>予約分・チーム分なし。$KAIROS はミント時にのみ発行され、上限 2 兆。</p><ul><li>T1 の 1 口：参加者 ${fmt(T1TOK)}。さらにコントラクトがプール用に 1 口 ${fmt(CONFIG.poolTokens)} を計上。</li><li>開設時に、1 口 ${fmt(CONFIG.poolBurn)}（T1 完売時は合計 ${fmt(POOL_BURN)}）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 ${fmt(POOL10K)}（合計 ${fmt(POOL_IN)}）は T1 の売上 10,000U とともに PancakeSwap プールへ。初値 ${PX(P0)}（T1 コスト ${PX(1 / T1TOK)} の 4 倍）、流通時価総額 約 ${fmt(OPEN_MC)}U。</li><li>開設後の 1 口：価格 ÷ プール価格 ÷ 0.99（市場より 1% 有利）。</li><li>紹介報酬：被紹介者の受取量の 5% を追加発行。</li><li>税：購入 1%、売却 2%、トークンでプロジェクトのウォレットへ。ウォレット間送金 0%。</li></ul>`,
 `<p>예약·팀 물량 없음. $KAIROS는 민팅할 때만 생기며 상한 2조 개.</p><ul><li>T1 개당: 참여자 ${fmt(T1TOK)}개. 컨트랙트가 풀용으로 개당 ${fmt(CONFIG.poolTokens)}개를 추가 기록.</li><li>개설 시 개당 ${fmt(CONFIG.poolBurn)}개(T1 완판 시 총 ${fmt(POOL_BURN)}개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 ${fmt(POOL10K)}개(총 ${fmt(POOL_IN)}개)는 T1 판매금 10,000U와 함께 PancakeSwap 풀에 넣습니다. 시작가 ${PX(P0)} (T1 원가 ${PX(1 / T1TOK)}의 4배), 유통 시총 약 ${fmt(OPEN_MC)}U.</li><li>개설 후 개당: 가격 ÷ 풀 가격 ÷ 0.99 (시장가보다 1% 유리).</li><li>초대 보상: 초대받은 사람이 받는 양의 5%를 추가 발행.</li><li>세금: 매수 1%, 매도 2%, 토큰으로 프로젝트 지갑에 지급. 지갑 간 전송 0%.</li></ul>`)],
 ["funds", tt("资金流向", "Where the money goes", "資金の流れ", "자금 흐름"), tt(
-`<p>所有档位：每笔 BNB 在铸造的同一笔交易里直接转入项目方钱包，合约里不留钱。</p><p>开池时：首档每份 2,750 万枚（首档卖满时共 ${fmt(POOL_BURN)} 枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，链上可查；每份 1,250 万枚（共 ${fmt(POOL_IN)} 枚）连同首档款项加入 PancakeSwap 池子。这两步由项目方在开池时执行，之后在合约里登记池子。开池前 $KAIROS 不能转账。开池后的款项由项目方自行安排。</p>`,
-`<p>All tiers: every BNB payment goes to the project wallet in the same mint transaction; the contract holds nothing.</p><p>At pool opening, 27,500,000 tokens per share (${fmt(POOL_BURN)} in total when T1 sells out) go to the burn address 0x000000000000000000000000000000000000dEaD — verifiable on-chain; 12,500,000 per share (${fmt(POOL_IN)} in total) is added to the PancakeSwap pool together with the T1 proceeds. The project carries out both steps when the pool opens, then registers the pool in the contract. $KAIROS cannot be transferred before that. Payments after the pool opens are managed by the project.</p>`,
-`<p>全ティア：BNB の支払いはミントと同じ取引でプロジェクトのウォレットへ直接送られ、コントラクトには残りません。</p><p>開設時に、1 口 2,750 万（T1 完売時は合計 ${fmt(POOL_BURN)}）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 1,250 万（合計 ${fmt(POOL_IN)}）は T1 の売上とともに PancakeSwap プールへ追加します。どちらも開設時にプロジェクトが実行し、その後コントラクトにプールを登録します。それまで $KAIROS は送金できません。プール開設後の支払いはプロジェクトが管理します。</p>`,
-`<p>모든 티어: BNB 결제 금액은 민팅과 같은 거래에서 프로젝트 지갑으로 바로 전송되며 컨트랙트에는 남지 않습니다.</p><p>개설 시 개당 2,750만 개(T1 완판 시 총 ${fmt(POOL_BURN)}개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 1,250만 개(총 ${fmt(POOL_IN)}개)는 T1 판매금과 함께 PancakeSwap 풀에 넣습니다. 두 단계 모두 개설 시 프로젝트가 실행하고, 이후 컨트랙트에 풀을 등록합니다. 그 전에는 $KAIROS를 전송할 수 없습니다. 풀 개설 후 결제 금액은 프로젝트가 관리합니다.</p>`)],
+`<p>首档（前 10,000 份）：BNB 留在合约里，专门用于开池。第 10,000 份铸造的同一笔交易中，合约自动把这笔 BNB 和 1,250 亿枚 KAIROS 加入 PancakeSwap 池，把 2,750 亿枚转入黑洞，LP 代币也打入黑洞，并自动开放交易；加池后剩余的 BNB 转入项目方钱包。</p><p>T2 起：每笔 BNB 在铸造的同一笔交易里直接转入项目方钱包，合约不留钱。开池前 $KAIROS 不能转账。</p>`,
+`<p>T1 (the first 10,000 shares): BNB stays in the contract and is used only to fund the pool. In the same transaction as the 10,000th mint the contract adds that BNB plus 125B KAIROS to PancakeSwap, sends 275B to the burn address, sends the LP tokens to the dead address and opens trading; any remaining BNB is forwarded to the project wallet.</p><p>From T2 on: every BNB payment goes to the project wallet in the same mint transaction and the contract keeps nothing. $KAIROS cannot be transferred before the pool opens.</p>`,
+`<p>T1（最初の 10,000 口）：BNB はプール用としてコントラクトに保留されます。10,000 口目のミントと同じ取引で、コントラクトはその BNB と 1,250 億枚の KAIROS を PancakeSwap に追加し、2,750 億枚を焼却アドレスへ送り、LP トークンもブラックホールへ送って取引を開始します。追加後の残りの BNB はプロジェクトのウォレットへ送金されます。</p><p>T2 以降：BNB の支払いはミントと同じ取引でプロジェクトのウォレットへ直接送られ、コントラクトには残りません。プール開設前は $KAIROS を送金できません。</p>`,
+`<p>T1(최초 10,000개): BNB는 풀 자금으로만 쓰이도록 컨트랙트에 보관됩니다. 10,000번째 민팅과 같은 거래에서 컨트랙트가 해당 BNB와 1,250억 개 KAIROS를 PancakeSwap에 추가하고, 2,750억 개를 소각 주소로 보내며, LP 토큰도 블랙홀로 보내고 거래를 시작합니다. 추가 후 남은 BNB는 프로젝트 지갑으로 전송됩니다.</p><p>T2부터: BNB 결제 금액은 민팅과 같은 거래에서 프로젝트 지갑으로 바로 전송되며 컨트랙트에는 남지 않습니다. 풀 개설 전에는 $KAIROS를 전송할 수 없습니다.</p>`)],
 ["contract", tt("合约与安全", "Contract and security", "コントラクトと安全性", "컨트랙트와 보안"), tt(
-`<ul><li>管理员（部署者）可以：暂停 / 恢复铸造、提前结束首档、领取开池代币、登记池子、更换收款地址。不能改价格、档位、税率和总量上限，也不能动用户的代币。</li><li>读取币安 Agent ID 注册合约、Chainlink BNB/USD 价格源和 PancakeSwap 池子。</li><li>同一区块内池子刚被交易过时拒绝按池价铸造，防止闪电贷操纵。</li><li>防重入；直接向合约转 BNB 会被拒收。</li><li>合约尚未经过第三方审计。</li></ul>`,
-`<ul><li>The admin (deployer) can pause/resume minting, end T1 early, claim the pool tokens, register the pool and change the payout wallet. The admin cannot change prices, tiers, tax rates or the supply cap, and cannot touch holders' tokens.</li><li>Reads the Binance Agent ID registry, Chainlink BNB/USD and the PancakeSwap pool.</li><li>Mints priced off the pool are refused if the pool traded in the same block, to resist flash-loan manipulation.</li><li>Reentrancy-guarded; plain BNB transfers to the contract are rejected.</li><li>Not yet audited by a third party.</li></ul>`,
-`<ul><li>管理者（デプロイ者）ができること：ミントの一時停止 / 再開、T1 の早期終了、プール用トークンの受け取り、プールの登録、受取ウォレットの変更。価格・ティア・税率・上限の変更や保有者のトークンへの操作はできません。</li><li>Binance Agent ID レジストリ、Chainlink BNB/USD、PancakeSwap プールを読み取ります。</li><li>同じブロックでプールが取引された場合はプール価格でのミントを拒否し、フラッシュローン操作を防ぎます。</li><li>リエントランシー対策済み。直接送金は拒否されます。</li><li>第三者監査はまだ受けていません。</li></ul>`,
-`<ul><li>관리자(배포자)는 민팅 일시정지/재개, T1 조기 종료, 풀용 토큰 수령, 풀 등록, 수령 지갑 변경을 할 수 있습니다. 가격·티어·세율·상한은 바꿀 수 없고 보유자의 토큰도 건드릴 수 없습니다.</li><li>바이낸스 Agent ID 레지스트리, Chainlink BNB/USD, PancakeSwap 풀을 읽습니다.</li><li>같은 블록에서 풀이 거래된 경우 풀 가격 민팅을 거부해 플래시론 조작을 막습니다.</li><li>재진입 방지, 직접 송금은 거부됩니다.</li><li>아직 제3자 감사를 받지 않았습니다.</li></ul>`)],
-["addrs", tt("合约地址", "Contracts", "コントラクト", "컨트랙트"), `<ul>${[[tt("KAIROS 合约（铸造 + 代币）", "KAIROS contract (mint + token)", "KAIROS コントラクト（ミント + トークン）", "KAIROS 컨트랙트 (민팅 + 토큰)"), CONFIG.presale], [tt("币安 Agent ID 注册合约", "Binance Agent ID registry", "Binance Agent ID レジストリ", "바이낸스 Agent ID 레지스트리"), CONFIG.registrar], [tt("项目方钱包", "Project wallet", "プロジェクトのウォレット", "프로젝트 지갑"), CONFIG.treasury]].map(([k, a]) => `<li><b>${k}</b> · ${a ? `<a class="mono" style="overflow-wrap:anywhere" href="https://bscscan.com/address/${a}" target="_blank" rel="noopener">${a}</a>` : tt("上线前公布", "published before launch", "開始前に公開", "오픈 전 공개")}</li>`).join("")}</ul>`],
+`<ul><li>管理员（部署者）可以：暂停 / 恢复铸造、更换收款地址；开池、销毁与池子登记由合约在第 10,000 份时自动完成。不能改价格、档位、税率和总量上限，也不能动用户的代币。</li><li>读取币安 Agent ID 注册合约、Chainlink BNB/USD 价格源和 PancakeSwap 池子。</li><li>同一区块内池子刚被交易过时拒绝按池价铸造，防止闪电贷操纵。</li><li>防重入；直接向合约转 BNB 会被拒收。</li><li>合约尚未经过第三方审计。</li></ul>`,
+`<ul><li>The admin (deployer) can pause/resume minting and change the payout wallet; the pool, the burn and the pool registration are handled by the contract automatically at 10,000 shares. The admin cannot change prices, tiers, tax rates or the supply cap, and cannot touch holders' tokens.</li><li>Reads the Binance Agent ID registry, Chainlink BNB/USD and the PancakeSwap pool.</li><li>Mints priced off the pool are refused if the pool traded in the same block, to resist flash-loan manipulation.</li><li>Reentrancy-guarded; plain BNB transfers to the contract are rejected.</li><li>Not yet audited by a third party.</li></ul>`,
+`<ul><li>管理者（デプロイ者）ができること：ミントの一時停止 / 再開、受取ウォレットの変更。プール追加・焼却・プール登録は 10,000 口でコントラクトが自動実行します。価格・ティア・税率・上限の変更や保有者のトークンへの操作はできません。</li><li>Binance Agent ID レジストリ、Chainlink BNB/USD、PancakeSwap プールを読み取ります。</li><li>同じブロックでプールが取引された場合はプール価格でのミントを拒否し、フラッシュローン操作を防ぎます。</li><li>リエントランシー対策済み。直接送金は拒否されます。</li><li>第三者監査はまだ受けていません。</li></ul>`,
+`<ul><li>관리자(배포자)는 민팅 일시정지/재개, 수령 지갑 변경을 할 수 있습니다. 풀 추가·소각·풀 등록은 10,000개에서 컨트랙트가 자동으로 처리합니다. 가격·티어·세율·상한은 바꿀 수 없고 보유자의 토큰도 건드릴 수 없습니다.</li><li>바이낸스 Agent ID 레지스트리, Chainlink BNB/USD, PancakeSwap 풀을 읽습니다.</li><li>같은 블록에서 풀이 거래된 경우 풀 가격 민팅을 거부해 플래시론 조작을 막습니다.</li><li>재진입 방지, 직접 송금은 거부됩니다.</li><li>아직 제3자 감사를 받지 않았습니다.</li></ul>`)],
+["addrs", tt("合约地址", "Contracts", "コントラクト", "컨트랙트"), `<ul>${[[tt("KAIROS 代币合约（ERC-20）", "KAIROS token contract (ERC-20)", "KAIROS トークン（ERC-20）", "KAIROS 토큰 컨트랙트 (ERC-20)"), CONFIG.token],
+ [tt("KAIROS 铸造合约", "KAIROS mint contract", "KAIROS ミントコントラクト", "KAIROS 민팅 컨트랙트"), CONFIG.presale], [tt("币安 Agent ID 注册合约", "Binance Agent ID registry", "Binance Agent ID レジストリ", "바이낸스 Agent ID 레지스트리"), CONFIG.registrar], [tt("金库（Agentic Wallet）", "Treasury (Agentic Wallet)", "金庫（Agentic Wallet）", "금고 (Agentic Wallet)"), CONFIG.treasury],
+ [tt("LP 销毁地址（黑洞）", "LP burn address (dead)", "LP 焼却アドレス（ブラックホール）", "LP 소각 주소(블랙홀)"), "0x000000000000000000000000000000000000dEaD"],
+ [tt("KAIROS/WBNB 交易对", "KAIROS/WBNB pair", "KAIROS/WBNB ペア", "KAIROS/WBNB 페어"), tt("开池后由合约自动创建", "created by the contract at pool opening", "プール開設時にコントラクトが自動作成", "풀 개설 시 컨트랙트가 자동 생성")]].map(([k, a]) => `<li><b>${k}</b> · ${a ? `<a class="mono" style="overflow-wrap:anywhere" href="https://bscscan.com/address/${a}" target="_blank" rel="noopener">${a}</a>` : tt("上线前公布", "published before launch", "開始前に公開", "오픈 전 공개")}</li>`).join("")}</ul>`],
 ["risks", tt("风险提示", "Risks", "リスク", "위험 고지"), tt(
-`<div class="warn"><ul><li>开池后价格由市场决定，可能低于你的铸造成本。</li><li>开盘价是首档成本的 4 倍，但那是靠销毁 ${fmt(POOL_BURN)} 枚、池子只放 ${fmt(POOL_IN)} 枚换来的：池子比较浅，开池初期集中抛售时价格会比厚池子跌得更快。</li><li>开池后每 1U 换到的代币约 1,263 万枚（如果把 4,000 亿枚全放进池子、开盘 1.25 倍，则是约 4,040 万枚）——这是 4 倍开盘的代价。</li><li>款项直接进入项目方钱包，加池与销毁由项目方手动完成，请自行评估对项目方的信任。</li><li>合约未经第三方审计。</li><li>KAIROS 是独立项目，与币安无关。参与前请自行评估，并确认你所在地区的法律是否允许。</li></ul></div>`,
-`<div class="warn"><ul><li>After the pool opens the market sets the price, which may fall below your cost.</li><li>The opening price is 4× the T1 cost, but that comes from burning ${fmt(POOL_BURN)} tokens and putting only ${fmt(POOL_IN)} in the pool: it is a thin pool, so a wave of selling at the open can push the price down faster than in a deep pool.</li><li>After the pool opens, 1U buys roughly 12.6M tokens (with all 400B in the pool at a 1.25× open it would be about 40.4M) — that is the trade-off of a 4× opening.</li><li>Payments go straight to the project wallet; the pool and the burn are done by the project by hand, so judge your trust in the project accordingly.</li><li>The contract has not been audited by a third party.</li><li>KAIROS is independent and not affiliated with Binance. Do your own research and check that participation is legal where you live.</li></ul></div>`,
-`<div class="warn"><ul><li>プール開設後の価格は市場が決め、費用を下回る可能性があります。</li><li>初値は T1 コストの 4 倍ですが、それは ${fmt(POOL_BURN)} を焼却し、プールには ${fmt(POOL_IN)} しか入れないためです。プールが浅く、開設直後にまとめて売られると価格の下落が速くなります。</li><li>開設後は 1U で約 1,263 万トークン（4,000 億すべてをプールに入れて初値 1.25 倍なら約 4,040 万）— これが 4 倍の代償です。</li><li>支払いはプロジェクトのウォレットへ直接送られ、プール追加と焼却はプロジェクトが手動で行います。プロジェクトへの信頼はご自身で判断してください。</li><li>第三者監査を受けていません。</li><li>KAIROS は独立したプロジェクトで、Binance とは関係ありません。参加前にご自身で判断し、地域の法律を確認してください。</li></ul></div>`,
-`<div class="warn"><ul><li>풀 개설 후 가격은 시장이 정하며 비용보다 낮아질 수 있습니다.</li><li>시작가는 T1 원가의 4배지만, ${fmt(POOL_BURN)}개를 소각하고 풀에는 ${fmt(POOL_IN)}개만 넣은 결과입니다. 풀이 얕아 개설 직후 매도가 몰리면 가격이 더 빨리 내려갈 수 있습니다.</li><li>개설 후 1U로 약 1,263만 개(4,000억 개를 모두 풀에 넣고 1.25배로 시작하면 약 4,040만 개) — 이것이 4배의 대가입니다.</li><li>결제 금액은 프로젝트 지갑으로 바로 가며 풀 추가와 소각은 프로젝트가 직접 합니다. 프로젝트에 대한 신뢰는 직접 판단하세요.</li><li>제3자 감사를 받지 않았습니다.</li><li>KAIROS는 독립 프로젝트이며 바이낸스와 관련이 없습니다. 참여 전에 직접 판단하고 지역 법률을 확인하세요.</li></ul></div>`)],
+`<div class="warn"><ul><li>开池后价格由市场决定，可能低于你的铸造成本。</li><li>开盘价是首档成本的 4 倍，但那是靠销毁 ${fmt(POOL_BURN)} 枚、池子只放 ${fmt(POOL_IN)} 枚换来的：池子比较浅，开池初期集中抛售时价格会比厚池子跌得更快。</li><li>开池后每 1U 换到的代币约 1,263 万枚（如果把 4,000 亿枚全放进池子、开盘 1.25 倍，则是约 4,040 万枚）——这是 4 倍开盘的代价。</li><li>首档期间款项由合约保管，开池与销毁由合约在第 10,000 份时自动执行；若因滑点或流动性异常导致加池失败，需项目方调用重试函数完成，请自行评估合约风险。</li><li>合约未经第三方审计。</li><li>KAIROS 是独立项目，与币安无关。参与前请自行评估，并确认你所在地区的法律是否允许。</li></ul></div>`,
+`<div class="warn"><ul><li>After the pool opens the market sets the price, which may fall below your cost.</li><li>The opening price is 4× the T1 cost, but that comes from burning ${fmt(POOL_BURN)} tokens and putting only ${fmt(POOL_IN)} in the pool: it is a thin pool, so a wave of selling at the open can push the price down faster than in a deep pool.</li><li>After the pool opens, 1U buys roughly 12.6M tokens (with all 400B in the pool at a 1.25× open it would be about 40.4M) — that is the trade-off of a 4× opening.</li><li>During T1 the funds are held by the contract; the pool add and the burn run automatically on the 10,000th share. If the pool add fails because of slippage or thin liquidity, the project has to trigger a retry, so judge the contract risk accordingly.</li><li>The contract has not been audited by a third party.</li><li>KAIROS is independent and not affiliated with Binance. Do your own research and check that participation is legal where you live.</li></ul></div>`,
+`<div class="warn"><ul><li>プール開設後の価格は市場が決め、費用を下回る可能性があります。</li><li>初値は T1 コストの 4 倍ですが、それは ${fmt(POOL_BURN)} を焼却し、プールには ${fmt(POOL_IN)} しか入れないためです。プールが浅く、開設直後にまとめて売られると価格の下落が速くなります。</li><li>開設後は 1U で約 1,263 万トークン（4,000 億すべてをプールに入れて初値 1.25 倍なら約 4,040 万）— これが 4 倍の代償です。</li><li>T1 中は資金をコントラクトが保管し、プール追加と焼却は 10,000 口目で自動実行されます。スリッページや流動性の問題で追加に失敗した場合はプロジェクトが再実行する必要があるため、コントラクトのリスクはご自身で判断してください。</li><li>第三者監査を受けていません。</li><li>KAIROS は独立したプロジェクトで、Binance とは関係ありません。参加前にご自身で判断し、地域の法律を確認してください。</li></ul></div>`,
+`<div class="warn"><ul><li>풀 개설 후 가격은 시장이 정하며 비용보다 낮아질 수 있습니다.</li><li>시작가는 T1 원가의 4배지만, ${fmt(POOL_BURN)}개를 소각하고 풀에는 ${fmt(POOL_IN)}개만 넣은 결과입니다. 풀이 얕아 개설 직후 매도가 몰리면 가격이 더 빨리 내려갈 수 있습니다.</li><li>개설 후 1U로 약 1,263만 개(4,000억 개를 모두 풀에 넣고 1.25배로 시작하면 약 4,040만 개) — 이것이 4배의 대가입니다.</li><li>T1 기간에는 자금을 컨트랙트가 보관하며, 풀 추가와 소각은 10,000번째에서 자동 실행됩니다. 슬리피지나 유동성 문제로 추가가 실패하면 프로젝트가 재시도해야 하므로 컨트랙트 위험은 직접 판단하세요.</li><li>제3자 감사를 받지 않았습니다.</li><li>KAIROS는 독립 프로젝트이며 바이낸스와 관련이 없습니다. 참여 전에 직접 판단하고 지역 법률을 확인하세요.</li></ul></div>`)],
 ];
 };
 
@@ -1175,6 +1235,8 @@ const wp = WP();
 $("toc").innerHTML = wp.map(([id, h], i) => `<a href="#whitepaper" data-to="wp-${id}">${String(i + 1).padStart(2, "0")} · ${h}</a>`).join("");
 $("paper").innerHTML = `<span class="kicker">WHITEPAPER · v1.2 · 2026-11</span><h1>KAIROS</h1><span class="meta">${tt("只为 Agent 而生的代币", "A token minted by agents", "Agent のためのトークン", "에이전트를 위한 토큰")} · BNB Smart Chain</span>` +
 wp.map(([id, h, body], i) => `<h2 id="wp-${id}"><span>${String(i + 1).padStart(2, "0")}</span>${h}</h2>${body}`).join("");
+// 兜底：链上读不到数据时，按钮也显示文字，不要留空白
+try { const nb = $("navConnect"); if (!nb.textContent) nb.textContent = t("connect"); } catch {}
 render(); route();
 }
 
@@ -1239,8 +1301,8 @@ else if (left === 0) { mb.textContent = tt("已铸满 10 份", "All 10 shares mi
 else { mb.textContent = tt(`铸造 ${n} 份`, `Mint ${n} share${n > 1 ? "s" : ""}`, `${n} 口ミントする`, `${n}개 민팅하기`); mb.disabled = busy; }
 $("quotaTxt").textContent = acct?.w ? tt(`已铸 ${mine}/10 份 · 记账 ${fmt(acct.w.alloc)} $KAIROS · 已邀请 ${acct.w.invites}`, `${mine}/10 shares · ${fmt(acct.w.alloc)} $KAIROS recorded · ${acct.w.invites} invited`, `${mine}/10 口 · ${fmt(acct.w.alloc)} $KAIROS 記録 · 紹介 ${acct.w.invites}`, `${mine}/10개 민팅 · ${fmt(acct.w.alloc)} $KAIROS 기록 · 초대 ${acct.w.invites}명`) : "";
 $("tiersSub").textContent = (DEMO ? tt(`预览按 1/${SCALE} 规模计算份数。`, `Demo runs at 1/${SCALE} scale. `, `デモは口数を 1/${SCALE} で計算。`, `데모는 수량을 1/${SCALE} 규모로 계산합니다. `) : "") +
-tt(`共 ${TIERS.length} 档、${fmt(MAX)} 份，全部列在下面。前 ${fmt(T1N)} 份每份 1U，首档结束后由项目方加池；之后每档 1,000 份、每档 +0.1U，最高 ${fmtU(MAXP)}。跨档交易逐份计算。`, `${TIERS.length} tiers, ${fmt(MAX)} shares, all listed below. The first ${fmt(T1N)} shares are 1U, and the project adds the pool after T1; then 1,000 shares per tier at +0.1U each, up to ${fmtU(MAXP)}.`, `全 ${TIERS.length} ティア・${fmt(MAX)} 口をすべて掲載。最初の ${fmt(T1N)} 口は 1U、T1 終了後にプロジェクトがプールを追加。その後 1,000 口ごとに +0.1U、最高 ${fmtU(MAXP)}。`, `총 ${TIERS.length}개 티어·${fmt(MAX)}개를 모두 표시합니다. 처음 ${fmt(T1N)}개는 1U이며 T1 종료 후 프로젝트가 풀을 추가합니다. 이후 1,000개마다 +0.1U, 최고 ${fmtU(MAXP)}.`);
-const sub = (i) => [tt("结束后项目方加池", "pool added after", "終了後にプール追加", "종료 후 풀 추가"), tt("每档 1,000 份 · +0.1U", "1,000 per tier · +0.1U", "各 1,000 口 · +0.1U", "티어당 1,000개 · +0.1U"), tt("每档 1,000 份 · +0.1U", "1,000 per tier · +0.1U", "各 1,000 口 · +0.1U", "티어당 1,000개 · +0.1U")][i];
+tt(`共 ${TIERS.length} 档、${fmt(MAX)} 份，全部列在下面。前 ${fmt(T1N)} 份每份 1U，铸满后由合约自动加池；之后每档 1,000 份、每档 +0.1U，最高 ${fmtU(MAXP)}。跨档交易逐份计算。`, `${TIERS.length} tiers, ${fmt(MAX)} shares, all listed below. The first ${fmt(T1N)} shares are 1U, and the contract adds the pool automatically once they sell out; then 1,000 shares per tier at +0.1U each, up to ${fmtU(MAXP)}.`, `全 ${TIERS.length} ティア・${fmt(MAX)} 口をすべて掲載。最初の ${fmt(T1N)} 口は 1U、完売時にコントラクトが自動でプールを追加。その後 1,000 口ごとに +0.1U、最高 ${fmtU(MAXP)}。`, `총 ${TIERS.length}개 티어·${fmt(MAX)}개를 모두 표시합니다. 처음 ${fmt(T1N)}개는 1U이며, 완판 시 컨트랙트가 자동으로 풀을 추가합니다. 이후 1,000개마다 +0.1U, 최고 ${fmtU(MAXP)}.`);
+const sub = (i) => [tt("铸满自动开池", "pool auto at 10k", "完売で自動開設", "완판 시 자동 개설"), tt("每档 1,000 份 · +0.1U", "1,000 per tier · +0.1U", "各 1,000 口 · +0.1U", "티어당 1,000개 · +0.1U"), tt("每档 1,000 份 · +0.1U", "1,000 per tier · +0.1U", "各 1,000 口 · +0.1U", "티어당 1,000개 · +0.1U")][i];
 $("tcards").innerHTML = CARDS.map((c, i) => {
 const on = (ov.open || ov.pre) && tier.no >= c.a && tier.no <= c.b, past = ov.sold >= c.to;
 return `<div class="tcard${on ? " on" : ""}${past && !on ? " past" : ""}"><span class="tn">TIER ${String(c.a).padStart(2, "0")}${c.b > c.a ? "–" + c.b : ""}${i === 0 ? " / " + sub(0) : ""}</span><span class="tp">${priceRange(c)}</span><span class="ts">${fmt(c.from - 1)}–${fmt(c.to)} ${SH()}${i ? " · " + sub(i) : ""}</span></div>`;
@@ -1248,7 +1310,17 @@ return `<div class="tcard${on ? " on" : ""}${past && !on ? " past" : ""}"><span 
 goldExtra();
 $("tierRows").innerHTML = TIERS.map((x) => `<tr class="${(ov.open || ov.pre) && x.no === tier.no ? "cur" : ""}"><td>T${x.no}</td><td class="m">${fmt(x.from)}–${fmt(x.to)}</td><td class="m">${fmtU(x.mU)}</td></tr>`).join("");
 renderBoard();
-$("contractLine").innerHTML = PRE ? tt("合约地址将在开放前公布", "Contract address published before launch", "コントラクトアドレスは開始前に公開", "컨트랙트 주소는 오픈 전에 공개됩니다") : `<span>${tt("铸造合约 ", "Mint contract ", "ミントコントラクト ", "민팅 컨트랙트 ")}${CONFIG.presale}</span><button class="cpy" type="button" data-copy="${CONFIG.presale}">${tt("复制", "Copy", "コピー", "복사")}</button>`;
+$("contractLine").innerHTML = PRE ? tt("合约地址将在开放前公布", "Contract address published before launch", "コントラクトアドレスは開始前に公開", "컨트랙트 주소는 오픈 전에 공개됩니다") : `<span>${tt("铸造合约 ", "Mint contract ", "ミントコントラクト ", "민팅 컨트랙트 ")}${CONFIG.presale}</span><button class="cpy" type="button" data-copy="${CONFIG.presale}">${tt("复制", "Copy", "コピー", "복사")}</button><a class="cpy" style="margin-left:6px;text-decoration:none" href="https://bscscan.com/token/${CONFIG.presale}" target="_blank" rel="noopener">BscScan ↗</a>`;
+// 按钮下方：合约地址 + BscScan / GMGN 跳转
+try {
+const ca = CONFIG.presale || "";
+$("gcCa").hidden = !ca;
+if (ca) {
+$("caGmgn").href = "https://gmgn.ai/bsc/token/" + ca;
+$("caCopy").setAttribute("data-copy", ca);
+$("caCopy").textContent = tt("复制", "Copy", "コピー", "복사");
+}
+} catch {}
 $("netName").textContent = PRE ? tt("即将开放", "SOON", "近日", "곧 오픈") : "BNB Chain";
 $("pickAgent").hidden = !(DEMO || CONFIG.agentWallet);
 $("pickNormal").hidden = PRE;
