@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>KAIROS</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="KAIROS：只有持有幣安 .ai Agent ID 的錢包才能鑄造的代幣。首檔 10,000 份每份 1U，之後逐檔遞增，每個 ID 最多 10 份。獨立項目，與幣安無關。">
+<meta name="description" content="KAIROS: a token only wallets holding a Binance .ai Agent ID can mint. The first 10,000 shares cost 1U each, then the price steps up tier by tier, up to 10 shares per ID. Independent project, not affiliated with Binance.">
 <meta name="theme-color" content="#0d0f14">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230d0f14%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2725%27 fill=%27none%27 stroke=%27%23f5b83d%27 stroke-width=%274%27/%3E%3Ctext x=%2732%27 y=%2743%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-weight=%27900%27 font-size=%2730%27 fill=%27%23f5b83d%27%3EK%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KAIROS">
-<meta property="og:title" content="KAIROS · 只有 AI Agent 才能鑄造的代幣">
-<meta property="og:description" content="持有幣安 .ai Agent ID 的錢包專屬。首檔 1U/份，逐檔遞增，每個 ID 最多 10 份。">
+<meta property="og:title" content="KAIROS · a token only AI agents can mint">
+<meta property="og:description" content="Exclusive to wallets holding a Binance .ai Agent ID. 1U per share in T1, stepping up tier by tier, up to 10 shares per ID.">
 <meta property="og:url" content="https://kairosagentai.xyz/">
 <meta property="og:image" content="https://kairosagentai.xyz/og.jpg">
 <meta property="og:image:secure_url" content="https://kairosagentai.xyz/og.jpg">
@@ -20,8 +20,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="KAIROS · 只有 AI Agent 才能鑄造的代幣">
-<meta name="twitter:description" content="持有幣安 .ai Agent ID 的錢包專屬。首檔 1U/份，逐檔遞增，每個 ID 最多 10 份。">
+<meta name="twitter:title" content="KAIROS · a token only AI agents can mint">
+<meta name="twitter:description" content="Exclusive to wallets holding a Binance .ai Agent ID. 1U per share in T1, stepping up tier by tier, up to 10 shares per ID.">
 <meta name="twitter:image" content="https://kairosagentai.xyz/og.jpg">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -240,9 +240,31 @@ tr.cur td{color:var(--amber);font-weight:700;background:color-mix(in srgb,var(--
 .board li:nth-child(-n+3) .r{color:var(--amber)}
 .board .h{font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .board .me{color:var(--amber)}
-.tabs{display:flex;gap:6px;margin-bottom:8px}
-.tabs button{border:1px solid var(--line2);background:transparent;border-radius:999px;padding:5px 12px;cursor:pointer;font-size:13px}
-.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.board{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:16px 18px 6px;display:grid;gap:9px;align-content:start;min-width:0}
+.bd-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.bd-h>b{font:800 16px var(--body)}
+.tabs{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--bg2)}
+.tabs button{border:0;background:transparent;border-radius:999px;padding:5px 11px;cursor:pointer;font:700 12px var(--body);color:var(--mute);white-space:nowrap}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-pressed="true"]{background:var(--amber);color:var(--amber-ink)}
+.bd-sub{font:500 11.5px var(--mono);color:var(--mute);margin:0;letter-spacing:.02em}
+.bd-cols,.board li{display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:10px;align-items:center}
+.bd-cols{font:500 10.5px var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.1em;padding:1px 0 7px;border-bottom:1px solid var(--line)}
+.bd-cols span:last-child{text-align:right}
+.board ol{list-style:none;margin:0;padding:0;max-height:430px;overflow:auto;scrollbar-width:thin}
+.board li{padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.board li:last-child{border-bottom:0}
+.board .rk{font:600 12px var(--mono);color:var(--mute)}
+.board .rk.ser{font-size:10.5px;letter-spacing:-.03em}
+.board li.top3 .rk{color:var(--amber);font-weight:800}
+.board .ag{min-width:0;display:grid;gap:1px}
+.board .ag b{font:600 13.5px var(--mono);display:flex;gap:6px;align-items:center;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board .ag small{font:500 11px var(--mono);color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board .vl{text-align:right;font:700 13.5px var(--mono);white-space:nowrap}
+.board .vl i{font:500 11px var(--mono);color:var(--mute);font-style:normal;margin-left:4px}
+.board .me .ag b{color:var(--amber)}
+.board .tag{font:700 9.5px var(--mono);border:1px solid currentColor;border-radius:4px;padding:0 3px;line-height:14px;flex:none}
+.board .empty{padding:26px 0;text-align:center;color:var(--mute);font-size:13px;border:0;display:block}
 pre{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px;font:12.5px/1.75 var(--mono);overflow-x:auto;margin:0;color:#cfd3e6;white-space:pre-wrap;word-break:break-word}
 .faq details{border-bottom:1px solid var(--line);padding:16px 0}
 .faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
@@ -305,6 +327,8 @@ footer .in{padding-block:36px 48px;color:var(--mute);font-size:13px;display:grid
 .risk{background:color-mix(in srgb,var(--bad) 16%,transparent);border-radius:10px;padding:10px 12px;font-size:13px}
 .copyrow{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 12px;background:var(--bg2)}
 .copyrow code{font:12px var(--mono);overflow-wrap:anywhere;flex:1;min-width:0}
+.cpy{border:1px solid var(--line2);background:transparent;color:var(--mute);border-radius:7px;padding:2px 8px;font:600 11px var(--mono);cursor:pointer;white-space:nowrap}
+.cpy:hover{color:var(--ink);border-color:var(--amber)}
 
 /* ===== gold mint pass ===== */
 .card.gold{--gi:#1c1405;--gm:rgba(28,20,5,.62);--gl:rgba(28,20,5,.2);color:var(--gi);border:1px solid #f7d67c;border-radius:24px;padding:28px 28px 22px;display:grid;gap:14px;
@@ -365,7 +389,6 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 </head>
 <body>
 
-<div class="demo g" id="demoBar" hidden data-i="demo"></div>
 
 <nav class="g"><div class="in">
 <a class="brand" href="#top" aria-label="KAIROS">
@@ -375,7 +398,7 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 <div class="pills" id="pills"><a href="#top" data-i="nMint" aria-current="true"></a><a href="#tiers" data-i="nTiers"></a><a href="#board" data-i="nBoard"></a><a href="#whitepaper" data-i="nWp"></a><a href="#agents" data-i="nAgent"></a><a href="#" id="xLink" target="_blank" rel="noopener" aria-label="X" title="X" style="display:inline-flex;align-items:center;justify-content:center" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.4L6.3 22H3.2l7.3-8.3L1 2h6.4l4.4 5.8L18.9 2zm-1.1 18h1.7L6.3 3.9H4.5L17.8 20z"/></svg></a></div>
 <div class="stat"><b id="hdrSold">—</b><span id="hdrTier">—</span></div>
 <button class="invite" id="inviteBtn" data-i="inviteBtn"></button>
-<select class="ltog" id="langTog" aria-label="Language"><option value="zht">繁體中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="en">English</option></select>
+<select class="ltog" id="langTog" aria-label="Language"><option value="en" selected>English</option><option value="zht">繁體中文</option><option value="ja">日本語</option><option value="ko">한국어</option></select>
 <button class="btn" id="navConnect"></button>
 </div></nav>
 
@@ -421,7 +444,7 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 <span class="gc-lbl" data-i="receive"></span>
 <div class="gc-get">≈ <span id="getTok">—</span></div>
 <p class="gc-note" id="gcGetNote"></p>
-<div class="gc-supply"><span>SUPPLY</span><span><b id="soldBig">0</b> <small>/ <i id="gcMax">—</i></small></span></div>
+<div class="gc-supply"><span data-i="supLbl"></span><span><b id="soldBig">0</b> <small>/ <i id="gcMax">—</i></small></span></div>
 <div class="gc-bar"><i id="gcBar"></i></div>
 <div class="tiers" id="tierbar" hidden></div>
 <div class="gc-row"><span><i class="sq"></i>Minted <em id="gcMinted">0</em> / <em id="gcMax2">—</em></span><span id="gcStage"></span></div>
@@ -472,7 +495,9 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 </table></div>
 </div>
 <div class="board" id="board">
-<div class="tabs"><button data-t="inv" aria-pressed="true" data-i="tInv"></button><button data-t="feed" aria-pressed="false" data-i="tFeed"></button></div>
+<div class="bd-h"><b data-i="bdTitle"></b><div class="tabs"><button data-t="inv" aria-pressed="true" data-i="tInv"></button><button data-t="mint" aria-pressed="false" data-i="tMints"></button><button data-t="feed" aria-pressed="false" data-i="tFeed"></button></div></div>
+<p class="bd-sub" id="bdSub"></p>
+<div class="bd-cols"><span id="bdCol1" data-i="cRank"></span><span data-i="cAgent"></span><span id="bdUnit"></span></div>
 <ol id="boardList"></ol>
 </div>
 </div>
@@ -528,10 +553,6 @@ background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,tran
 <a class="lnk" id="qrOpen" href="#" target="_blank" rel="noopener" hidden><span data-i="openBn"></span> ↗</a>
 <p class="center" style="font-size:14px" id="qrState" role="status"></p>
 <p class="center" style="font-size:12px;color:var(--mute)" data-i="scanNote"></p>
-<div class="sim" id="simBox" hidden>
-<span data-i="simTip"></span>
-<div class="ctas"><button class="btn" id="simScan" data-i="simOk"></button><button class="btn line" id="simNoId" data-i="simNo"></button></div>
-</div>
 <button class="btn line wide" data-close data-i="cancel"></button>
 <button class="lnk" id="qrNormal" data-i="useNormal"></button>
 </div></div>
@@ -550,6 +571,10 @@ const CONFIG = {
 presale: "0xBc551A16481d306b6D0270Cd0b5b87538c330Da9", // KAIROS 合约（铸造 + 代币）
 chainId: 56,
 rpcUrl: "https://bsc-dataseed.bnbchain.org",
+// 排行榜要读历史事件：bsc-dataseed 不开放 eth_getLogs，这里单独用一个支持查询日志的节点
+logsRpc: "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+logsRpcFallback: ["https://rpc.48.club", "https://bsc.drpc.org"],
+boardFrom: 130892454,                                   // 合约部署区块：铸造榜从这块开始扫（分段，每次最多 5 万块）
 registrar: "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F", // 币安 Agent ID 注册合约
 api: "https://kairos-api-f09o.onrender.com/api/agent-wallet", // 扫码登录后端（Render · server/server.js）
 agentWallet: true,                                      // 显示 Binance Agentic Wallet 扫码登录
@@ -559,11 +584,13 @@ token: "0xBc551A16481d306b6D0270Cd0b5b87538c330Da9",   // 代币合约地址（�
 treasury: "0x437F00486cb3b17Dc444bCF67d7bc13A14DEDd5B", // 项目方收款钱包
 launchAt: "",                                           // 开放时间，例如 "2026-11-08T12:00:00Z"；留空显示"即将开放"
 t1Tokens: 50000000,                                      // 首档每份给铸造者的 $KAIROS
-poolTokens: 40000000,                                    // 首档每份同时为池子铸造的 $KAIROS（每份 1U 全部留作开池）
+poolTokens: 40000000,                                    // 合约按每份 4,000 万枚给“开池”记账（实际怎么用见下面两行）
+poolToPool: 12500000,                                    // 开池时真正放进池子的：每份 1,250 万枚 → 开盘价 = 成本的 4 倍
+poolBurn: 27500000,                                      // 剩下的直接销毁：每份 2,750 万枚
 poolBonus: 1 / 0.99,                                     // 开池后：每份 = 价格 ÷ 池价 ÷ 0.99（比市价多 1%）
 perId: 10,                                              // 每个 Agent ID 最多份数
 
-demoScale: 100,                                         // 演示模式把每档份数缩小 100 倍
+demoScale: 100,                                         // 预览模式把每档份数缩小 100 倍
 };
 // 档位表（价格单位：千分之一 U）。基础价 1U，用 BNB 支付（按 Chainlink 实时换算）
 //  [档位数, 每档份数, 首档价格, 每档递增]
@@ -574,22 +601,45 @@ const LADDER = [
 ];
 // =========================================================
 
-(() => {
+(async () => {
 const PARAMS = new URLSearchParams(location.search);
-const DEMO = !CONFIG.presale && PARAMS.has("demo");
+const DEMO = false;   // 网址加 ?demo=1 进入预览模式：数字可控，但页面顶部会显示 DEMO 横幅
 const PRE = !CONFIG.presale && !DEMO;
+// 预览模式的可调数字（只在 ?demo=1 时生效；不带参数 = 链上真实数据）
+const DEMO_CFG = (() => {
+const num = (k, d, lo, hi) => { const v = Number(PARAMS.get(k)); return Number.isFinite(v) && PARAMS.has(k) ? Math.max(lo, Math.min(hi, Math.floor(v))) : d; };
+const c = { sold: num("sold", 6800, 0, 309000), minted: num("minted", 0, 0, 10), n: num("n", 1, 1, 10), seed: num("seed", 7, 1, 99999999), extra: [] };
+const k = num("extra", 0, 0, 20);
+const pool = ["nova", "atlas", "kairo", "miko", "quant", "zephyr", "lumen", "orbit", "vega", "echo", "sable", "ember", "pixel", "rune", "delta", "onyx", "flux", "helios", "aria", "zeta"];
+let s = (c.seed * 40503) % 4294967296;
+const rnd = () => { s = (s * 1103515245 + 12345) % 4294967296; return s / 4294967296; };
+for (let i = 0; i < k; i++) c.extra.push({ who: pool[Math.floor(rnd() * pool.length)] + Math.floor(100 + rnd() * 900) + ".ai", n: 1 + Math.floor(rnd() * 10) });
+return c;
+})();
 const $ = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const hex = (n) => [...crypto.getRandomValues(new Uint8Array(n))].map((b) => b.toString(16).padStart(2, "0")).join("");
 const short = (a) => a && a.length > 14 ? a.slice(0, 6) + "…" + a.slice(-4) : a;
+// 复制到剪贴板：优先用 Clipboard API，不可用时退回 execCommand（http 打开时也能用）
+const copyText = (txt) => {
+if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(txt);
+return new Promise((res, rej) => {
+const ta = document.createElement("textarea");
+ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+document.body.appendChild(ta); ta.select();
+try { document.execCommand("copy") ? res() : rej(new Error("copy failed")); } catch (e) { rej(e); }
+ta.remove();
+});
+};
 const CAP = CONFIG.perId;
 
 // ---------------- 语言 ----------------
+// 每次打开都是英文；访客手动切换后，只在本次标签页会话里记住（关掉/新开一个标签页仍是英文）
 const LANGS = ["en", "ja", "ko", "zht", "zh"];
 let lang = "en";
 try {
-const s = localStorage.getItem("kairos_lang"), nl = (navigator.language || "").toLowerCase();
-lang = s === "zh" ? "zht" : LANGS.includes(s) ? s : "en"; // 默认英文；访客切换过的语言会记住
+const s = sessionStorage.getItem("kairos_lang_v2");
+lang = s === "zh" ? "zht" : LANGS.includes(s) ? s : "en";
 } catch {}
 const LOC = { zh: "zh-CN", zht: "zh-TW", ja: "ja-JP", ko: "ko-KR", en: "en-US" };
 const HTML_LANG = { zh: "zh-CN", zht: "zh-TW", ja: "ja", ko: "ko", en: "en" };
@@ -619,15 +669,19 @@ const tierAt = (serial) => { let lo = 0, hi = TIERS.length - 1; while (lo < hi) 
 const costMU = (sold, k) => { let c = 0; for (let i = 1; i <= k; i++) c += tierAt(Math.min(MAX, sold + i)).mU; return c; };
 const MAXP = TIERS[TIERS.length - 1].mU;
 // ---------------- 代币计算 ----------------
-const T1TOK = CONFIG.t1Tokens, P0 = 1 / CONFIG.poolTokens;          // 开盘价（U / 枚）= 10,000U ÷ 4,000 亿 = 1 ÷ 4,000 万
+const T1TOK = CONFIG.t1Tokens, POOL10K = CONFIG.poolToPool;         // 每份 1,250 万枚进池 → 开盘价 = 1U ÷ 1,250 万枚 = 4 倍成本
+const P0 = 1 / POOL10K;                                             // 开盘价（U / 枚），首档卖满时 = 10,000U ÷ 1,250 亿枚
 let LIVE_PP = null; const poolPrice = () => LIVE_PP || P0;          // 合约上线后读取实时池价
 const tokAt = (serial) => serial <= T1N ? T1TOK : Math.floor(tierAt(serial).mU / 1000 / poolPrice() * CONFIG.poolBonus);
 const tokFor = (sold, k) => { let x = 0; for (let i = 1; i <= k; i++) x += tokAt(Math.min(MAX, sold + i)); return x; };
 const PX = (v) => Number(v).toFixed(12).replace(/0+$/, "") + "U";
-const OPEN_MC = (T1N * (CONFIG.t1Tokens + CONFIG.poolTokens)) * P0;
+const OPEN_MC = (T1N * (CONFIG.t1Tokens + POOL10K)) * P0;
+const POOL_TOTAL = T1N * CONFIG.poolTokens;                         // 合约开池记账总额（卖满时 4,000 亿）
+const POOL_IN = T1N * POOL10K;                                      // 真正进池（1,250 亿）
+const POOL_BURN = T1N * CONFIG.poolBurn;                            // 销毁（2,750 亿）
+const BURN_TOTAL = T1N * (CONFIG.t1Tokens + CONFIG.poolTokens);     // 首档产生的总量（9,000 亿）
 
 const T = {
-demo: ["演示模式 · 浏览器内模拟，不产生任何真实交易", "DEMO MODE · simulated in your browser, no real transactions", "デモモード · ブラウザ内のシミュレーションで、実際の取引は発生しません", "데모 모드 · 브라우저 안에서만 시뮬레이션되며 실제 거래는 발생하지 않습니다"],
 nMint: ["铸造", "Mint", "ミント", "민팅"], nHow: ["机制", "Mechanics", "仕組み", "구조"], nTiers: ["价格表", "Price table", "価格表", "가격표"], nBoard: ["排行榜", "Leaderboard", "ランキング", "순위"], nAgent: ["Agent 指南", "For agents", "Agent ガイド", "에이전트 가이드"], nWp: ["白皮书", "Whitepaper", "ホワイトペーパー", "백서"],
 inviteBtn: ["邀请 · +5% 代币", "Invite · +5% tokens", "紹介 · +5% トークン", "초대 · +5% 토큰"],
 connect: ["连接钱包", "Connect wallet", "ウォレット接続", "지갑 연결"],
@@ -656,15 +710,19 @@ m1: ["你的钱包", "Your wallet", "あなたのウォレット", "내 지갑"]
 m2: ["KAIROS 合约", "KAIROS contract", "KAIROS コントラクト", "KAIROS 컨트랙트"], m2s: ["核验身份、按档位计价、记录份额", "checks identity, prices by tier, records shares", "身元確認、ティア別に価格計算、口数を記録", "신원 확인, 티어별 가격 계산, 수량 기록"],
 m3: ["项目方钱包", "Project wallet", "プロジェクトのウォレット", "프로젝트 지갑"], m3s: ["收到全部款项；首档结束后手动加池", "receives all payments; adds the pool after T1", "全額を受け取り、T1 後に手動でプール追加", "전액 수령, T1 후 직접 풀 추가"],
 tokT: ["代币机制", "Token mechanics", "トークンの仕組み", "토큰 구조"],
-tokS: ["首档每份 5,000 万枚，同时为开池记 4,000 万枚。开池后每份按实时池价计算，比市价多 1%。", "In T1 each share gets 50,000,000, and another 40,000,000 is set aside for the pool. After the pool opens, each share is priced off the live pool, 1% better than market.", "T1 では 1 口 5,000 万、さらにプール用に 4,000 万を確保。プール開設後は実際のプール価格で計算し、市場より 1% 有利。", "T1은 개당 5,000만 개, 풀용으로 4,000만 개를 따로 확보합니다. 풀 개설 후에는 실시간 풀 가격으로 계산하며 시장가보다 1% 유리합니다."],
+tokS: ["首档每份 5,000 万枚。开池时：首档每份 2,750 万枚（首档卖满时共 2,750 亿枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，链上可查；每份 1,250 万枚（共 1,250 亿枚）连同首档款项加入 PancakeSwap 池子——所以开盘价是首档成本的 4 倍。开池后每份按实时池价计算，比市价多 1%。", "In T1 each share gets 50,000,000. At pool opening, 27,500,000 tokens per share (275B in total when T1 sells out) go to the burn address 0x000000000000000000000000000000000000dEaD — verifiable on-chain; 12,500,000 per share (125B in total) is added to the PancakeSwap pool together with the T1 proceeds — which puts the opening price at 4× the T1 cost. After that each share is priced off the live pool, 1% better than market.", "T1 は 1 口 5,000 万。開設時：1 口 2,750 万枚（T1 完売時は合計 2,750 億枚）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 1,250 万枚（合計 1,250 億枚）は T1 の売上とともに PancakeSwap プールへ追加します。これにより初値は T1 コストの 4 倍になります。以降は実際のプール価格で計算し、市場より 1% 有利。", "T1은 개당 5,000만 개. 개설 시: 개당 2,750만 개(T1 완판 시 총 2,750억 개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 1,250만 개(총 1,250억 개)는 T1 판매금과 함께 PancakeSwap 풀에 넣습니다. 그래서 시작가가 T1 원가의 4배가 됩니다. 이후에는 실시간 풀 가격으로 계산하며 시장가보다 1% 유리합니다."],
 allocT: ["开盘时代币分布", "Supply at pool open", "プール開設時の供給", "풀 개설 시 공급"],
-allocNote: ["没有预留、没有团队份额，代币只在铸造时产生，总量上限 2 万亿枚。首档 10,000 份共 9,000 亿枚：5,000 亿给铸造者，4,000 亿由项目方领取后加入池子。开池后每次铸造按池价新增，邀请奖励另计 5%。", "No reserve and no team allocation: $KAIROS only exists when minted, capped at 2T. T1 creates 900B: 500B to minters, 400B claimed by the project and added to the pool. After that each mint adds tokens at the pool price; referrals add 5%.", "予約分・チーム分なし。トークンはミント時にのみ発行、上限 2 兆。T1 の 10,000 口で計 9,000 億：参加者 5,000 億、4,000 億はプロジェクトが受け取りプールに追加。以降はプール価格で追加発行、紹介報酬は 5% 追加。", "예약·팀 물량 없음. 토큰은 민팅할 때만 생기며 상한 2조 개. T1 10,000개로 총 9,000억 개: 참여자 5,000억, 4,000억은 프로젝트가 받아 풀에 추가. 이후 민팅은 풀 가격으로 추가 발행되며 초대 보상은 5% 추가."],
+allocNote: ["没有预留、没有团队份额，代币只在铸造时产生，总量上限 2 万亿枚。首档 10,000 份共产生 9,000 亿枚：5,000 亿给铸造者，1,250 亿进池，2,750 亿销毁。开池后每次铸造按池价新增，邀请奖励另计 5%。", "No reserve and no team allocation: $KAIROS only exists when minted, capped at 2T. T1 creates 900B: 500B to minters, 125B into the pool, 275B burned. After that each mint adds tokens at the pool price; referrals add 5%.", "予約分・チーム分なし。トークンはミント時にのみ発行、上限 2 兆。T1 の 10,000 口で計 9,000 億：参加者 5,000 億、プール 1,250 億、焼却 2,750 億。以降はプール価格で追加発行、紹介報酬は 5% 追加。", "예약·팀 물량 없음. 토큰은 민팅할 때만 생기며 상한 2조 개. T1 10,000개로 총 9,000억 개: 참여자 5,000억, 풀 1,250억, 소각 2,750억. 이후 민팅은 풀 가격으로 추가 발행되며 초대 보상은 5% 추가."],
 weightT: ["各档每份价格", "Price per share by tier", "ティアごとの 1 口価格", "티어별 개당 가격"],
 weightNote: ["T1 每份 1U，之后每档 +0.1U，最后一档 30.9U。跨档的交易逐份计算。", "T1 is 1U per share, +0.1U each tier after, 30.9U at the last tier. Purchases crossing tiers are priced share by share.", "T1 は 1 口 1U、以降ティアごとに +0.1U、最終ティアは 30.9U。ティアをまたぐ購入は 1 口ずつ計算。", "T1은 개당 1U, 이후 티어마다 +0.1U, 마지막 티어는 30.9U. 티어를 넘는 구매는 한 개씩 계산합니다."],
 tlT: ["时间线", "Timeline", "タイムライン", "타임라인"],
 tiersT: ["分级", "Tiers", "ティア", "티어"], nearT: ["全部档位", "All tiers", "全ティア", "전체 티어"],
 thTier: ["档位", "Tier", "ティア", "티어"], thRange: ["份数区间", "Shares", "口数範囲", "수량 구간"], thPer: ["每份 $KAIROS", "$KAIROS / share", "1 口あたり", "개당 $KAIROS"], thPrice: ["每份价格", "Price / share", "1 口の価格", "개당 가격"],
 tInv: ["邀请榜", "Invites", "紹介ランキング", "초대 순위"], tFeed: ["最近铸造", "Latest", "最新ミント", "최근 민팅"],
+tMints: ["铸造榜", "Mints", "ミント数", "민팅 순위"], bdTitle: ["排行榜", "Leaderboard", "ランキング", "리더보드"],
+cRank: ["排名", "Rank", "順位", "순위"], cAgent: ["Agent ID", "Agent ID", "Agent ID", "Agent ID"],
+cSerial: ["编号", "Serial", "番号", "번호"],
+supLbl: ["本阶段", "This stage", "この段階", "이 단계"],
 agT: ["交给你的 AI 铸造", "Let your agent mint", "AI にミントを任せる", "AI에게 민팅 맡기기"],
 agS: ["先在上面的铸造卡片里选好份数，再复制下面这段发给已登录币安 Agentic Wallet 的 AI。交易数据已按当前价格算好，AI 会先预览给你看，你确认后才执行。需要先在币安 App 打开开发者模式。价格每 20 秒更新一次，复制后请尽快使用。",
 "Pick the number of shares on the mint card above, then copy this and send it to an AI signed in to Binance Agentic Wallet. The transaction is pre-built at the current price; the AI previews it and executes only after you confirm. Developer Mode must be on in the Binance app. The price refreshes every 20 seconds, so use it soon after copying.",
@@ -684,9 +742,7 @@ pairing: ["配对码", "Pairing code", "ペアリングコード", "페어링 �
 scanTip: ["在 Binance Agentic Wallet 中扫码并核对配对码", "Scan in Binance Agentic Wallet and check the pairing code", "Binance Agentic Wallet でスキャンし、ペアリングコードを確認", "Binance Agentic Wallet에서 스캔하고 페어링 코드를 확인하세요"],
 openBn: ["打开币安登录页面", "Open Binance sign-in page", "Binance ログインページを開く", "바이낸스 로그인 페이지 열기"],
 scanNote: ["确认后将授权本网站使用该 Agent 会话，只能调用 KAIROS 铸造合约，铸造完成后自动退出。", "Approving lets this site use that Agent session, limited to the KAIROS contract and signed out after your mint.", "承認するとこのサイトがその Agent セッションを使えます。KAIROS コントラクト専用で、ミント後に自動でログアウトします。", "승인하면 이 사이트가 해당 Agent 세션을 사용합니다. KAIROS 컨트랙트 전용이며 민팅 후 자동 로그아웃됩니다."],
-simTip: ["演示模式：二维码是假的，不要用币安 App 扫。用下面的按钮代替 App 里的操作。", "Demo: this QR is fake, don't scan it. Use the buttons below instead.", "デモ：この QR は本物ではないのでスキャンしないでください。下のボタンで代わりに操作します。", "데모: 이 QR은 가짜이니 스캔하지 마세요. 아래 버튼으로 대신 진행합니다."],
 preNote: ["铸造还没开放。开放后回到这里连接钱包，或把指令发给你的 AI。", "Minting is not open yet. Come back to connect, or send the prompt to your AI.", "ミントはまだ始まっていません。開始後にここで接続するか、AI に指示を送ってください。", "아직 민팅이 열리지 않았습니다. 오픈 후 여기서 연결하거나 AI에게 명령을 보내세요."],
-simOk: ["模拟 App 确认", "Simulate approval", "承認をシミュレート", "승인 시뮬레이션"], simNo: ["模拟无 Agent ID", "Simulate no Agent ID", "Agent ID なしをシミュレート", "Agent ID 없음 시뮬레이션"],
 cancel: ["取消连接", "Cancel", "キャンセル", "연결 취소"], useNormal: ["使用普通钱包", "Use a regular wallet", "通常のウォレットを使う", "일반 지갑 사용"], close: ["关闭", "Close", "閉じる", "닫기"],
 };
 const t = (k) => { const v = T[k] || [k, k, k, k]; return tt(v[0], v[1], v[2], v[3]); };
@@ -710,11 +766,12 @@ const FLOW = () => [
 ];
 const ALLOC = () => [
 ["var(--amber)", 55.6, tt("铸造者", "Minters", "ミント参加者", "민팅 참여자"), tt("5,000 亿 · 10,000 份 × 5,000 万", "500B · 10,000 × 50M", "5,000 億 · 10,000 口 × 5,000 万", "5,000억 · 10,000개 × 5,000만")],
-["var(--teal)", 44.4, tt("资金池", "Pool", "プール", "풀"), tt("4,000 亿 + 首档款项 · 项目方手动加池", "400B + T1 proceeds · added by the project", "4,000 億 + T1 の売上 · プロジェクトが手動で追加", "4,000억 + T1 판매금 · 프로젝트가 직접 추가")],
+["var(--teal)", 13.9, tt("资金池", "Pool", "プール", "풀"), tt("1,250 亿 · 每份 1,250 万 · 开盘 4 倍", "125B · 12.5M per share · 4× open", "1,250 億 · 1 口 1,250 万 · 初値 4 倍", "1,250억 · 개당 1,250만 · 시작가 4배")],
+["var(--slate)", 30.5, tt("销毁", "Burned", "焼却", "소각"), tt("2,750 亿 · 每份 2,750 万 · 链上可查", "275B · 27.5M per share · verifiable", "2,750 億 · 1 口 2,750 万 · チェーンで確認可", "2,750억 · 개당 2,750만 · 온체인 확인")],
 ];
 const TIMELINE = () => [
 ["T0", tt("开放铸造", "Mint opens", "ミント開始", "민팅 오픈"), tt("公布合约；首档每份 1U，款项直接进入项目方钱包", "Contract published; T1 at 1U, payments go to the project wallet", "コントラクト公開、T1 は 1U、支払いはプロジェクトのウォレットへ", "컨트랙트 공개, T1 1U, 결제 금액은 프로젝트 지갑으로")],
-[tt("首档结束", "T1 ENDS", "T1 終了", "T1 종료"), tt("开池", "Pool opens", "プール開設", "풀 개설"), tt("首档卖满或项目方结束首档后，项目方用首档款项和开池代币手动加池，代币开放交易", "When T1 sells out or the project ends it, the project adds the pool with T1 proceeds and the pool tokens; trading opens", "T1 完売またはプロジェクトが終了した後、T1 の売上とプール用トークンで手動でプールを追加し、取引開始", "T1 완판 또는 프로젝트가 종료하면 T1 판매금과 풀용 토큰으로 직접 풀을 추가하고 거래 시작")],
+[tt("首档结束", "T1 ENDS", "T1 終了", "T1 종료"), tt("开池", "Pool opens", "プール開設", "풀 개설"), tt("首档卖满或项目方结束首档后，项目方用首档款项 + 1,250 亿枚加池（开盘 4 倍），其余 2,750 亿枚销毁，代币开放交易", "When T1 sells out or the project ends it, the project adds the pool with T1 proceeds + 125B tokens (4× open) and burns the other 275B; trading opens", "T1 完売またはプロジェクトが終了した後、T1 の売上＋1,250 億でプールを追加（初値 4 倍）、残り 2,750 億は焼却し、取引開始", "T1 완판 또는 프로젝트가 종료하면 T1 판매금 + 1,250억 개로 풀을 추가(시작가 4배)하고 나머지 2,750억 개는 소각한 뒤 거래 시작")],
 [tt("开池后", "AFTER OPEN", "開設後", "개설 후"), tt("继续铸造", "Mint continues", "ミント継続", "민팅 계속"), tt("每份按池价多给 1%，没有时间限制", "Each share 1% better than pool price, no time limit", "プール価格より 1% 有利、期限なし", "풀 가격보다 1% 유리, 기한 없음")],
 ["T300", tt("结束", "End", "終了", "종료"), tt(`全部 ${TIERS.length} 档、${fmt(MAX)} 份售完，或代币达到 2 万亿上限`, `All ${TIERS.length} tiers (${fmt(MAX)} shares) sold, or the 2T supply cap is reached`, `全 ${TIERS.length} ティア・${fmt(MAX)} 口が完売、または 2 兆の上限に到達`, `${TIERS.length}개 티어 ${fmt(MAX)}개 완판 또는 2조 상한 도달`)],
 ];
@@ -750,25 +807,25 @@ return [
 `<p>AI エージェントはチェーン上で最も活発な参加者の一つになりつつあり、ユーザーに代わって 24 時間取引・署名・送金を行っています。Binance の Agentic Wallet と .ai Agent ID は、エージェントに初めて検証可能なオンチェーンの身元を与えました。</p><p>身元には使い道が必要です。KAIROS は Agent ID を唯一の入場券とし、エージェントだけのローンチを行います。</p>`,
 `<p>AI 에이전트는 사용자를 대신해 24시간 거래·서명·송금하며 온체인에서 가장 활발한 참여자 중 하나가 되고 있습니다. 바이낸스의 Agentic Wallet과 .ai Agent ID는 에이전트에게 처음으로 검증 가능한 온체인 신원을 부여했습니다.</p><p>신원에는 쓰임이 필요합니다. KAIROS는 Agent ID를 유일한 입장권으로 삼아, 에이전트만을 위한 발행을 진행합니다.</p>`)],
 ["mint", tt("铸造规则", "Mint rules", "ミントのルール", "민팅 규칙"), tt(
-`<ul><li><b>资格</b>：铸造钱包必须持有 .ai Agent ID（合约读取注册合约 handleOf 并核对 ownerOf）。</li><li><b>价格</b>：每份按所在档位的 U 价计算，用 Chainlink BNB/USD 实时换算成 BNB；多付的 BNB 在同一笔交易退回；价格超过 1 小时未更新时暂停铸造。</li><li><b>额度</b>：每个 Agent ID 最多 10 份，可以分多次。</li><li><b>档位</b>：前 10,000 份 1U；之后 ${TIERS.length - 1} 档每档 1,000 份、每档 +0.1U，最高 ${fmtU(MAXP)}。共 ${TIERS.length} 档、${fmt(MAX)} 份。</li><li><b>开池</b>：首档卖满自动结束，或由项目方提前结束。之后项目方领取开池代币（已售首档份数 × 4,000 万枚），连同首档款项手动在 PancakeSwap 加池，并在合约里登记池子，T2 开始。</li><li><b>时间</b>：没有截止时间，铸满为止。</li></ul>${tbl}<p>一笔交易跨档时，每一份按它所在的档位单独计算。</p>`,
-`<ul><li><b>Eligibility</b>: the minting wallet must hold a .ai Agent ID (the contract reads the registry's handleOf and checks ownerOf).</li><li><b>Price</b>: each share is priced in U by its tier and converted to BNB live from Chainlink BNB/USD. Overpayment is refunded in the same transaction. Minting pauses if the price is over an hour old.</li><li><b>Quota</b>: up to 10 shares per Agent ID, in any number of transactions.</li><li><b>Tiers</b>: first 10,000 at 1U; then ${TIERS.length - 1} tiers of 1,000 shares, +0.1U each, up to ${fmtU(MAXP)}. ${TIERS.length} tiers, ${fmt(MAX)} shares.</li><li><b>Pool</b>: T1 ends when it sells out or when the project ends it early. The project then claims the pool tokens (T1 shares sold × 40M), adds them with the T1 proceeds to PancakeSwap by hand, and registers the pool in the contract; T2 starts.</li><li><b>Time</b>: no deadline; minting runs until sold out.</li></ul>${tbl}<p>When a transaction crosses tiers, each share is priced by the tier it falls in.</p>`,
-`<ul><li><b>資格</b>：ミントするウォレットが .ai Agent ID を保有していること（レジストリの handleOf を読み ownerOf を確認）。</li><li><b>価格</b>：各口をティアの U 価格で計算し、Chainlink BNB/USD でリアルタイムに BNB 換算。過払い分は同じ取引で返金。価格が 1 時間以上更新されない場合は停止。</li><li><b>上限</b>：Agent ID ごとに最大 10 口、複数回に分けても可。</li><li><b>ティア</b>：最初の 10,000 口は 1U、その後 1,000 口ずつ ${TIERS.length - 1} ティアで +0.1U、最高 ${fmtU(MAXP)}。全 ${TIERS.length} ティア、${fmt(MAX)} 口。</li><li><b>プール</b>：T1 は完売時、またはプロジェクトが早期終了した時に終わります。その後プロジェクトがプール用トークン（T1 販売口数 × 4,000 万）を受け取り、T1 の売上と共に手動で PancakeSwap に追加し、コントラクトにプールを登録すると T2 開始。</li><li><b>期間</b>：期限なし、完売まで。</li></ul>${tbl}<p>1 つの取引がティアをまたぐ場合、各口はそれぞれのティアで計算されます。</p>`,
-`<ul><li><b>자격</b>: 민팅하는 지갑이 .ai Agent ID를 보유해야 합니다 (레지스트리의 handleOf를 읽고 ownerOf 확인).</li><li><b>가격</b>: 각 개를 해당 티어의 U 가격으로 계산하고 Chainlink BNB/USD로 실시간 BNB 환산합니다. 초과 결제분은 같은 거래에서 환불되며, 가격이 1시간 넘게 갱신되지 않으면 민팅이 중지됩니다.</li><li><b>한도</b>: Agent ID당 최대 10개, 여러 번 나눠도 됩니다.</li><li><b>티어</b>: 처음 10,000개 1U, 이후 1,000개씩 ${TIERS.length - 1}개 티어 +0.1U로 최고 ${fmtU(MAXP)}. 총 ${TIERS.length}개 티어, ${fmt(MAX)}개.</li><li><b>풀</b>: T1은 완판되거나 프로젝트가 조기 종료하면 끝납니다. 이후 프로젝트가 풀용 토큰(T1 판매 수량 × 4,000만)을 받아 T1 판매금과 함께 직접 PancakeSwap에 추가하고 컨트랙트에 풀을 등록하면 T2가 시작됩니다.</li><li><b>기간</b>: 마감 없음, 완판까지.</li></ul>${tbl}<p>한 거래가 여러 티어에 걸치면 각 개는 해당 티어 가격으로 따로 계산됩니다.</p>`)],
+`<ul><li><b>资格</b>：铸造钱包必须持有 .ai Agent ID（合约读取注册合约 handleOf 并核对 ownerOf）。</li><li><b>价格</b>：每份按所在档位的 U 价计算，用 Chainlink BNB/USD 实时换算成 BNB；多付的 BNB 在同一笔交易退回；价格超过 1 小时未更新时暂停铸造。</li><li><b>额度</b>：每个 Agent ID 最多 10 份，可以分多次。</li><li><b>档位</b>：前 10,000 份 1U；之后 ${TIERS.length - 1} 档每档 1,000 份、每档 +0.1U，最高 ${fmtU(MAXP)}。共 ${TIERS.length} 档、${fmt(MAX)} 份。</li><li><b>开池</b>：首档卖满自动结束，或由项目方提前结束。开池时：首档每份 2,750 万枚（首档卖满时共 2,750 亿枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，链上可查；每份 1,250 万枚（共 1,250 亿枚）连同首档款项加入 PancakeSwap 池子；之后在合约里登记池子，T2 开始。</li><li><b>时间</b>：没有截止时间，铸满为止。</li></ul>${tbl}<p>一笔交易跨档时，每一份按它所在的档位单独计算。</p>`,
+`<ul><li><b>Eligibility</b>: the minting wallet must hold a .ai Agent ID (the contract reads the registry's handleOf and checks ownerOf).</li><li><b>Price</b>: each share is priced in U by its tier and converted to BNB live from Chainlink BNB/USD. Overpayment is refunded in the same transaction. Minting pauses if the price is over an hour old.</li><li><b>Quota</b>: up to 10 shares per Agent ID, in any number of transactions.</li><li><b>Tiers</b>: first 10,000 at 1U; then ${TIERS.length - 1} tiers of 1,000 shares, +0.1U each, up to ${fmtU(MAXP)}. ${TIERS.length} tiers, ${fmt(MAX)} shares.</li><li><b>Pool</b>: T1 ends when it sells out or when the project ends it early. At pool opening, 27,500,000 tokens per share (275B in total when T1 sells out) go to the burn address 0x000000000000000000000000000000000000dEaD — verifiable on-chain; 12,500,000 per share (125B in total) is added to the PancakeSwap pool together with the T1 proceeds. The pool is then registered in the contract and T2 starts.</li><li><b>Time</b>: no deadline; minting runs until sold out.</li></ul>${tbl}<p>When a transaction crosses tiers, each share is priced by the tier it falls in.</p>`,
+`<ul><li><b>資格</b>：ミントするウォレットが .ai Agent ID を保有していること（レジストリの handleOf を読み ownerOf を確認）。</li><li><b>価格</b>：各口をティアの U 価格で計算し、Chainlink BNB/USD でリアルタイムに BNB 換算。過払い分は同じ取引で返金。価格が 1 時間以上更新されない場合は停止。</li><li><b>上限</b>：Agent ID ごとに最大 10 口、複数回に分けても可。</li><li><b>ティア</b>：最初の 10,000 口は 1U、その後 1,000 口ずつ ${TIERS.length - 1} ティアで +0.1U、最高 ${fmtU(MAXP)}。全 ${TIERS.length} ティア、${fmt(MAX)} 口。</li><li><b>プール</b>：T1 は完売時、またはプロジェクトが早期終了した時に終わります。開設時に、1 口 2,750 万枚（T1 完売時は合計 2,750 億枚）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 1,250 万枚（合計 1,250 億枚）は T1 の売上とともに PancakeSwap プールへ追加します。その後プールをコントラクトに登録すると T2 開始。</li><li><b>期間</b>：期限なし、完売まで。</li></ul>${tbl}<p>1 つの取引がティアをまたぐ場合、各口はそれぞれのティアで計算されます。</p>`,
+`<ul><li><b>자격</b>: 민팅하는 지갑이 .ai Agent ID를 보유해야 합니다 (레지스트리의 handleOf를 읽고 ownerOf 확인).</li><li><b>가격</b>: 각 개를 해당 티어의 U 가격으로 계산하고 Chainlink BNB/USD로 실시간 BNB 환산합니다. 초과 결제분은 같은 거래에서 환불되며, 가격이 1시간 넘게 갱신되지 않으면 민팅이 중지됩니다.</li><li><b>한도</b>: Agent ID당 최대 10개, 여러 번 나눠도 됩니다.</li><li><b>티어</b>: 처음 10,000개 1U, 이후 1,000개씩 ${TIERS.length - 1}개 티어 +0.1U로 최고 ${fmtU(MAXP)}. 총 ${TIERS.length}개 티어, ${fmt(MAX)}개.</li><li><b>풀</b>: T1은 완판되거나 프로젝트가 조기 종료하면 끝납니다. 개설 시 개당 2,750만 개(T1 완판 시 총 2,750억 개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 1,250만 개(총 1,250억 개)는 T1 판매금과 함께 PancakeSwap 풀에 넣습니다. 이후 풀을 컨트랙트에 등록하면 T2가 시작됩니다.</li><li><b>기간</b>: 마감 없음, 완판까지.</li></ul>${tbl}<p>한 거래가 여러 티어에 걸치면 각 개는 해당 티어 가격으로 따로 계산됩니다.</p>`)],
 ["referral", tt("邀请", "Referrals", "紹介", "초대"), tt(
 `<p>被邀请人第一次铸造时，如果带上了邀请人地址，并且邀请人已经铸造过、不是自己，就会和邀请人绑定。此后被邀请人的每一次铸造，邀请人额外获得其所得代币的 5%，直接发到邀请人钱包。邀请奖励计入 2 万亿总量上限。</p>`,
 `<p>On an invitee's first mint, if a referrer address is supplied, the referrer has already minted and is not the invitee, the two are bound. Every later mint by the invitee sends the referrer an extra 5% of the invitee's tokens. Referral rewards count toward the 2T supply cap.</p>`,
 `<p>被紹介者の初回ミントで紹介者アドレスが指定され、紹介者がすでにミント済みかつ本人でない場合、両者が紐づけられます。以降の被紹介者のミントごとに、受け取り量の 5% が紹介者のウォレットに直接送られます。紹介報酬は 2 兆の上限に含まれます。</p>`,
 `<p>초대받은 사람이 첫 민팅 때 초대한 사람의 주소를 넣고, 그 사람이 이미 민팅한 적이 있으며 본인이 아니면 둘이 연결됩니다. 이후 초대받은 사람이 민팅할 때마다 받는 토큰의 5%가 초대한 사람 지갑으로 바로 지급됩니다. 초대 보상은 2조 상한에 포함됩니다.</p>`)],
 ["token", tt("代币分配", "Token allocation", "トークン配分", "토큰 배분"), tt(
-`<p>没有预留、没有团队份额，$KAIROS 只在铸造时产生，总量上限 2 万亿枚。</p><ul><li>首档每份：铸造者 ${fmt(T1TOK)} 枚 + 开池 ${fmt(CONFIG.poolTokens)} 枚；10,000 份共 9,000 亿枚。</li><li>开池（首档卖满时）：10,000U + 4,000 亿枚，开盘价 ${PX(P0)}，开盘市值约 ${fmt(OPEN_MC)}U；首档成本 ${PX(1 / T1TOK)}。</li><li>开池后每份：价格 ÷ 实时池价 ÷ 0.99（比市价多 1%）。</li><li>邀请奖励：被邀请人所得的 5%，另行铸造。</li><li>交易税：买入 1%、卖出 2%，以代币形式进入项目方钱包；钱包间转账 0%。</li></ul>`,
-`<p>No reserve and no team allocation: $KAIROS only exists when minted, capped at 2T.</p><ul><li>Per T1 share: ${fmt(T1TOK)} to the minter + ${fmt(CONFIG.poolTokens)} for the pool; 900B across 10,000 shares.</li><li>Opening (if T1 sells out): 10,000U + 400B, price ${PX(P0)}, market cap about ${fmt(OPEN_MC)}U; T1 cost ${PX(1 / T1TOK)}.</li><li>After the pool opens, per share: price ÷ live pool price ÷ 0.99 (1% better than market).</li><li>Referrals: 5% of the invitee's tokens, minted on top.</li><li>Tax: buy 1%, sell 2%, paid in tokens to the project wallet; wallet transfers 0%.</li></ul>`,
-`<p>予約分・チーム分なし。$KAIROS はミント時にのみ発行され、上限 2 兆。</p><ul><li>T1 の 1 口：参加者 ${fmt(T1TOK)} + プール用 ${fmt(CONFIG.poolTokens)}。10,000 口で計 9,000 億。</li><li>開設時（T1 完売の場合）：10,000U + 4,000 億、初値 ${PX(P0)}、時価総額 約 ${fmt(OPEN_MC)}U。T1 のコスト ${PX(1 / T1TOK)}。</li><li>開設後の 1 口：価格 ÷ プール価格 ÷ 0.99（市場より 1% 有利）。</li><li>紹介報酬：被紹介者の受取量の 5% を追加発行。</li><li>税：購入 1%、売却 2%、トークンでプロジェクトのウォレットへ。ウォレット間送金 0%。</li></ul>`,
-`<p>예약·팀 물량 없음. $KAIROS는 민팅할 때만 생기며 상한 2조 개.</p><ul><li>T1 개당: 참여자 ${fmt(T1TOK)}개 + 풀용 ${fmt(CONFIG.poolTokens)}개, 10,000개로 총 9,000억 개.</li><li>개설 시(T1 완판 시): 10,000U + 4,000억 개, 시작가 ${PX(P0)}, 시가총액 약 ${fmt(OPEN_MC)}U. T1 원가 ${PX(1 / T1TOK)}.</li><li>개설 후 개당: 가격 ÷ 풀 가격 ÷ 0.99 (시장가보다 1% 유리).</li><li>초대 보상: 초대받은 사람이 받는 양의 5%를 추가 발행.</li><li>세금: 매수 1%, 매도 2%, 토큰으로 프로젝트 지갑에 지급. 지갑 간 전송 0%.</li></ul>`)],
+`<p>没有预留、没有团队份额，$KAIROS 只在铸造时产生，总量上限 2 万亿枚。</p><ul><li>首档每份：铸造者 ${fmt(T1TOK)} 枚；合约另按每份 ${fmt(CONFIG.poolTokens)} 枚 记开池代币。</li><li>开池时：每份 ${fmt(CONFIG.poolBurn)} 枚（首档卖满时共 ${fmt(POOL_BURN)} 枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，链上可查；每份 ${fmt(POOL10K)} 枚（共 ${fmt(POOL_IN)} 枚）连同首档款项 10,000U 加入 PancakeSwap 池子，开盘价 ${PX(P0)}（= 首档成本 ${PX(1 / T1TOK)} 的 4 倍），开盘流通市值约 ${fmt(OPEN_MC)}U。</li><li>开池后每份：价格 ÷ 实时池价 ÷ 0.99（比市价多 1%）。</li><li>邀请奖励：被邀请人所得的 5%，另行铸造。</li><li>交易税：买入 1%、卖出 2%，以代币形式进入项目方钱包；钱包间转账 0%。</li></ul>`,
+`<p>No reserve and no team allocation: $KAIROS only exists when minted, capped at 2T.</p><ul><li>Per T1 share: ${fmt(T1TOK)} to the minter, plus ${fmt(CONFIG.poolTokens)} booked by the contract for the pool.</li><li>At pool opening: ${fmt(CONFIG.poolBurn)} tokens per share (${fmt(POOL_BURN)} in total when T1 sells out) go to the burn address 0x000000000000000000000000000000000000dEaD — verifiable on-chain; ${fmt(POOL10K)} per share (${fmt(POOL_IN)} in total) is added to the PancakeSwap pool together with the 10,000U of T1 proceeds, giving an opening price of ${PX(P0)} (4× the T1 cost of ${PX(1 / T1TOK)}) and an opening float of about ${fmt(OPEN_MC)}U.</li><li>After the pool opens, per share: price ÷ live pool price ÷ 0.99 (1% better than market).</li><li>Referrals: 5% of the invitee's tokens, minted on top.</li><li>Tax: buy 1%, sell 2%, paid in tokens to the project wallet; wallet transfers 0%.</li></ul>`,
+`<p>予約分・チーム分なし。$KAIROS はミント時にのみ発行され、上限 2 兆。</p><ul><li>T1 の 1 口：参加者 ${fmt(T1TOK)}。さらにコントラクトがプール用に 1 口 ${fmt(CONFIG.poolTokens)} を計上。</li><li>開設時に、1 口 ${fmt(CONFIG.poolBurn)}（T1 完売時は合計 ${fmt(POOL_BURN)}）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 ${fmt(POOL10K)}（合計 ${fmt(POOL_IN)}）は T1 の売上 10,000U とともに PancakeSwap プールへ。初値 ${PX(P0)}（T1 コスト ${PX(1 / T1TOK)} の 4 倍）、流通時価総額 約 ${fmt(OPEN_MC)}U。</li><li>開設後の 1 口：価格 ÷ プール価格 ÷ 0.99（市場より 1% 有利）。</li><li>紹介報酬：被紹介者の受取量の 5% を追加発行。</li><li>税：購入 1%、売却 2%、トークンでプロジェクトのウォレットへ。ウォレット間送金 0%。</li></ul>`,
+`<p>예약·팀 물량 없음. $KAIROS는 민팅할 때만 생기며 상한 2조 개.</p><ul><li>T1 개당: 참여자 ${fmt(T1TOK)}개. 컨트랙트가 풀용으로 개당 ${fmt(CONFIG.poolTokens)}개를 추가 기록.</li><li>개설 시 개당 ${fmt(CONFIG.poolBurn)}개(T1 완판 시 총 ${fmt(POOL_BURN)}개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 ${fmt(POOL10K)}개(총 ${fmt(POOL_IN)}개)는 T1 판매금 10,000U와 함께 PancakeSwap 풀에 넣습니다. 시작가 ${PX(P0)} (T1 원가 ${PX(1 / T1TOK)}의 4배), 유통 시총 약 ${fmt(OPEN_MC)}U.</li><li>개설 후 개당: 가격 ÷ 풀 가격 ÷ 0.99 (시장가보다 1% 유리).</li><li>초대 보상: 초대받은 사람이 받는 양의 5%를 추가 발행.</li><li>세금: 매수 1%, 매도 2%, 토큰으로 프로젝트 지갑에 지급. 지갑 간 전송 0%.</li></ul>`)],
 ["funds", tt("资金流向", "Where the money goes", "資金の流れ", "자금 흐름"), tt(
-`<p>所有档位：每笔 BNB 在铸造的同一笔交易里直接转入项目方钱包，合约里不留钱。</p><p>首档结束（卖满或项目方提前结束）后，项目方从合约领取开池代币（已售首档份数 × 4,000 万枚），连同首档款项手动在 PancakeSwap 加池，并在合约里登记池子。开池前 $KAIROS 不能转账。开池后的款项由项目方自行安排。</p>`,
-`<p>All tiers: every BNB payment goes to the project wallet in the same mint transaction; the contract holds nothing.</p><p>When T1 ends (sold out or ended early by the project), the project claims the pool tokens (T1 shares sold × 40M) from the contract, adds them with the T1 proceeds to PancakeSwap by hand, and registers the pool in the contract. $KAIROS cannot be transferred before that. Payments after the pool opens are managed by the project.</p>`,
-`<p>全ティア：BNB の支払いはミントと同じ取引でプロジェクトのウォレットへ直接送られ、コントラクトには残りません。</p><p>T1 終了（完売またはプロジェクトによる早期終了）後、プロジェクトがプール用トークン（T1 販売口数 × 4,000 万）を受け取り、T1 の売上と共に手動で PancakeSwap に追加し、コントラクトにプールを登録します。それまで $KAIROS は送金できません。プール開設後の支払いはプロジェクトが管理します。</p>`,
-`<p>모든 티어: BNB 결제 금액은 민팅과 같은 거래에서 프로젝트 지갑으로 바로 전송되며 컨트랙트에는 남지 않습니다.</p><p>T1 종료(완판 또는 프로젝트의 조기 종료) 후 프로젝트가 풀용 토큰(T1 판매 수량 × 4,000만)을 받아 T1 판매금과 함께 직접 PancakeSwap에 추가하고 컨트랙트에 풀을 등록합니다. 그 전에는 $KAIROS를 전송할 수 없습니다. 풀 개설 후 결제 금액은 프로젝트가 관리합니다.</p>`)],
+`<p>所有档位：每笔 BNB 在铸造的同一笔交易里直接转入项目方钱包，合约里不留钱。</p><p>开池时：首档每份 2,750 万枚（首档卖满时共 ${fmt(POOL_BURN)} 枚）转入销毁地址 0x000000000000000000000000000000000000dEaD，链上可查；每份 1,250 万枚（共 ${fmt(POOL_IN)} 枚）连同首档款项加入 PancakeSwap 池子。这两步由项目方在开池时执行，之后在合约里登记池子。开池前 $KAIROS 不能转账。开池后的款项由项目方自行安排。</p>`,
+`<p>All tiers: every BNB payment goes to the project wallet in the same mint transaction; the contract holds nothing.</p><p>At pool opening, 27,500,000 tokens per share (${fmt(POOL_BURN)} in total when T1 sells out) go to the burn address 0x000000000000000000000000000000000000dEaD — verifiable on-chain; 12,500,000 per share (${fmt(POOL_IN)} in total) is added to the PancakeSwap pool together with the T1 proceeds. The project carries out both steps when the pool opens, then registers the pool in the contract. $KAIROS cannot be transferred before that. Payments after the pool opens are managed by the project.</p>`,
+`<p>全ティア：BNB の支払いはミントと同じ取引でプロジェクトのウォレットへ直接送られ、コントラクトには残りません。</p><p>開設時に、1 口 2,750 万（T1 完売時は合計 ${fmt(POOL_BURN)}）を焼却アドレス 0x000000000000000000000000000000000000dEaD へ送付し、チェーン上で確認できます。1 口 1,250 万（合計 ${fmt(POOL_IN)}）は T1 の売上とともに PancakeSwap プールへ追加します。どちらも開設時にプロジェクトが実行し、その後コントラクトにプールを登録します。それまで $KAIROS は送金できません。プール開設後の支払いはプロジェクトが管理します。</p>`,
+`<p>모든 티어: BNB 결제 금액은 민팅과 같은 거래에서 프로젝트 지갑으로 바로 전송되며 컨트랙트에는 남지 않습니다.</p><p>개설 시 개당 2,750만 개(T1 완판 시 총 ${fmt(POOL_BURN)}개)를 소각 주소 0x000000000000000000000000000000000000dEaD로 보내며 온체인에서 확인할 수 있습니다. 개당 1,250만 개(총 ${fmt(POOL_IN)}개)는 T1 판매금과 함께 PancakeSwap 풀에 넣습니다. 두 단계 모두 개설 시 프로젝트가 실행하고, 이후 컨트랙트에 풀을 등록합니다. 그 전에는 $KAIROS를 전송할 수 없습니다. 풀 개설 후 결제 금액은 프로젝트가 관리합니다.</p>`)],
 ["contract", tt("合约与安全", "Contract and security", "コントラクトと安全性", "컨트랙트와 보안"), tt(
 `<ul><li>管理员（部署者）可以：暂停 / 恢复铸造、提前结束首档、领取开池代币、登记池子、更换收款地址。不能改价格、档位、税率和总量上限，也不能动用户的代币。</li><li>读取币安 Agent ID 注册合约、Chainlink BNB/USD 价格源和 PancakeSwap 池子。</li><li>同一区块内池子刚被交易过时拒绝按池价铸造，防止闪电贷操纵。</li><li>防重入；直接向合约转 BNB 会被拒收。</li><li>合约尚未经过第三方审计。</li></ul>`,
 `<ul><li>The admin (deployer) can pause/resume minting, end T1 early, claim the pool tokens, register the pool and change the payout wallet. The admin cannot change prices, tiers, tax rates or the supply cap, and cannot touch holders' tokens.</li><li>Reads the Binance Agent ID registry, Chainlink BNB/USD and the PancakeSwap pool.</li><li>Mints priced off the pool are refused if the pool traded in the same block, to resist flash-loan manipulation.</li><li>Reentrancy-guarded; plain BNB transfers to the contract are rejected.</li><li>Not yet audited by a third party.</li></ul>`,
@@ -776,14 +833,14 @@ return [
 `<ul><li>관리자(배포자)는 민팅 일시정지/재개, T1 조기 종료, 풀용 토큰 수령, 풀 등록, 수령 지갑 변경을 할 수 있습니다. 가격·티어·세율·상한은 바꿀 수 없고 보유자의 토큰도 건드릴 수 없습니다.</li><li>바이낸스 Agent ID 레지스트리, Chainlink BNB/USD, PancakeSwap 풀을 읽습니다.</li><li>같은 블록에서 풀이 거래된 경우 풀 가격 민팅을 거부해 플래시론 조작을 막습니다.</li><li>재진입 방지, 직접 송금은 거부됩니다.</li><li>아직 제3자 감사를 받지 않았습니다.</li></ul>`)],
 ["addrs", tt("合约地址", "Contracts", "コントラクト", "컨트랙트"), `<ul>${[[tt("KAIROS 合约（铸造 + 代币）", "KAIROS contract (mint + token)", "KAIROS コントラクト（ミント + トークン）", "KAIROS 컨트랙트 (민팅 + 토큰)"), CONFIG.presale], [tt("币安 Agent ID 注册合约", "Binance Agent ID registry", "Binance Agent ID レジストリ", "바이낸스 Agent ID 레지스트리"), CONFIG.registrar], [tt("项目方钱包", "Project wallet", "プロジェクトのウォレット", "프로젝트 지갑"), CONFIG.treasury]].map(([k, a]) => `<li><b>${k}</b> · ${a ? `<a class="mono" style="overflow-wrap:anywhere" href="https://bscscan.com/address/${a}" target="_blank" rel="noopener">${a}</a>` : tt("上线前公布", "published before launch", "開始前に公開", "오픈 전 공개")}</li>`).join("")}</ul>`],
 ["risks", tt("风险提示", "Risks", "リスク", "위험 고지"), tt(
-`<div class="warn"><ul><li>开池后价格由市场决定，可能低于你的铸造成本。</li><li>首档开盘价是成本的 1.25 倍，开盘初期可能出现集中抛售。</li><li>款项直接进入项目方钱包，加池由项目方手动完成，请自行评估对项目方的信任。</li><li>合约未经第三方审计。</li><li>KAIROS 是独立项目，与币安无关。参与前请自行评估，并确认你所在地区的法律是否允许。</li></ul></div>`,
-`<div class="warn"><ul><li>After the pool opens the market sets the price, which may fall below your cost.</li><li>The opening price is 1.25× the T1 cost; heavy selling right after opening is possible.</li><li>Payments go straight to the project wallet and the pool is added by the project by hand; judge your trust in the project accordingly.</li><li>The contract has not been audited by a third party.</li><li>KAIROS is independent and not affiliated with Binance. Do your own research and check that participation is legal where you live.</li></ul></div>`,
-`<div class="warn"><ul><li>プール開設後の価格は市場が決め、費用を下回る可能性があります。</li><li>初値は T1 コストの 1.25 倍で、開設直後にまとまった売りが出る可能性があります。</li><li>支払いはプロジェクトのウォレットへ直接送られ、プール追加はプロジェクトが手動で行います。プロジェクトへの信頼はご自身で判断してください。</li><li>第三者監査を受けていません。</li><li>KAIROS は独立したプロジェクトで、Binance とは関係ありません。参加前にご自身で判断し、地域の法律を確認してください。</li></ul></div>`,
-`<div class="warn"><ul><li>풀 개설 후 가격은 시장이 정하며 비용보다 낮아질 수 있습니다.</li><li>시작가가 T1 원가의 1.25배라 개설 직후 매도가 몰릴 수 있습니다.</li><li>결제 금액은 프로젝트 지갑으로 바로 가며 풀 추가는 프로젝트가 직접 합니다. 프로젝트에 대한 신뢰는 직접 판단하세요.</li><li>제3자 감사를 받지 않았습니다.</li><li>KAIROS는 독립 프로젝트이며 바이낸스와 관련이 없습니다. 참여 전에 직접 판단하고 지역 법률을 확인하세요.</li></ul></div>`)],
+`<div class="warn"><ul><li>开池后价格由市场决定，可能低于你的铸造成本。</li><li>开盘价是首档成本的 4 倍，但那是靠销毁 ${fmt(POOL_BURN)} 枚、池子只放 ${fmt(POOL_IN)} 枚换来的：池子比较浅，开池初期集中抛售时价格会比厚池子跌得更快。</li><li>开池后每 1U 换到的代币约 1,263 万枚（如果把 4,000 亿枚全放进池子、开盘 1.25 倍，则是约 4,040 万枚）——这是 4 倍开盘的代价。</li><li>款项直接进入项目方钱包，加池与销毁由项目方手动完成，请自行评估对项目方的信任。</li><li>合约未经第三方审计。</li><li>KAIROS 是独立项目，与币安无关。参与前请自行评估，并确认你所在地区的法律是否允许。</li></ul></div>`,
+`<div class="warn"><ul><li>After the pool opens the market sets the price, which may fall below your cost.</li><li>The opening price is 4× the T1 cost, but that comes from burning ${fmt(POOL_BURN)} tokens and putting only ${fmt(POOL_IN)} in the pool: it is a thin pool, so a wave of selling at the open can push the price down faster than in a deep pool.</li><li>After the pool opens, 1U buys roughly 12.6M tokens (with all 400B in the pool at a 1.25× open it would be about 40.4M) — that is the trade-off of a 4× opening.</li><li>Payments go straight to the project wallet; the pool and the burn are done by the project by hand, so judge your trust in the project accordingly.</li><li>The contract has not been audited by a third party.</li><li>KAIROS is independent and not affiliated with Binance. Do your own research and check that participation is legal where you live.</li></ul></div>`,
+`<div class="warn"><ul><li>プール開設後の価格は市場が決め、費用を下回る可能性があります。</li><li>初値は T1 コストの 4 倍ですが、それは ${fmt(POOL_BURN)} を焼却し、プールには ${fmt(POOL_IN)} しか入れないためです。プールが浅く、開設直後にまとめて売られると価格の下落が速くなります。</li><li>開設後は 1U で約 1,263 万トークン（4,000 億すべてをプールに入れて初値 1.25 倍なら約 4,040 万）— これが 4 倍の代償です。</li><li>支払いはプロジェクトのウォレットへ直接送られ、プール追加と焼却はプロジェクトが手動で行います。プロジェクトへの信頼はご自身で判断してください。</li><li>第三者監査を受けていません。</li><li>KAIROS は独立したプロジェクトで、Binance とは関係ありません。参加前にご自身で判断し、地域の法律を確認してください。</li></ul></div>`,
+`<div class="warn"><ul><li>풀 개설 후 가격은 시장이 정하며 비용보다 낮아질 수 있습니다.</li><li>시작가는 T1 원가의 4배지만, ${fmt(POOL_BURN)}개를 소각하고 풀에는 ${fmt(POOL_IN)}개만 넣은 결과입니다. 풀이 얕아 개설 직후 매도가 몰리면 가격이 더 빨리 내려갈 수 있습니다.</li><li>개설 후 1U로 약 1,263만 개(4,000억 개를 모두 풀에 넣고 1.25배로 시작하면 약 4,040만 개) — 이것이 4배의 대가입니다.</li><li>결제 금액은 프로젝트 지갑으로 바로 가며 풀 추가와 소각은 프로젝트가 직접 합니다. 프로젝트에 대한 신뢰는 직접 판단하세요.</li><li>제3자 감사를 받지 않았습니다.</li><li>KAIROS는 독립 프로젝트이며 바이낸스와 관련이 없습니다. 참여 전에 직접 판단하고 지역 법률을 확인하세요.</li></ul></div>`)],
 ];
 };
 
-// ---------------- 链：演示 / 正式 / 预告 ----------------
+// ---------------- 链：预览 / 正式 / 预告 ----------------
 const REVERT = (n) => ({ NotAgent: tt("这个钱包没有 .ai Agent ID", "This wallet has no .ai Agent ID", "このウォレットには .ai Agent ID がありません", "이 지갑에는 .ai Agent ID가 없습니다"),
 WalletCap: tt("已达到每个 ID 10 份的上限", "Limit of 10 shares per ID reached", "ID ごとの 10 口上限に達しました", "ID당 10개 한도에 도달했습니다"),
 SoldOut: tt("剩余份数不足", "Not enough shares left", "残り口数が足りません", "남은 수량이 부족합니다"), MintClosed: tt("铸造已截止", "Mint has closed", "ミントは終了しました", "민팅이 종료되었습니다"),
@@ -792,9 +849,10 @@ StalePrice: tt("价格源暂时不可用", "Price feed unavailable", "価格フ�
 
 function makeDemo() {
 const BNB_USD = 699.28;
-const st = { sold: 0, minted: {}, alloc: {}, refOf: {}, invites: {}, feed: [], handles: {} };
-const names = ["nova", "atlas", "kairo", "miko", "quant", "zephyr", "lumen", "orbit", "vega", "echo", "sable", "ember", "pixel", "rune"];
-const addrOf = {};
+const st = { sold: DEMO_CFG.sold, minted: {}, alloc: {}, refOf: {}, invites: {}, feed: [], handles: {} };
+const names = ["nova", "atlas", "kairo", "miko", "quant", "zephyr", "lumen", "orbit", "vega", "echo", "sable", "ember", "pixel", "rune", "delta", "onyx", "flux", "helios", "aria", "zeta"];
+const server = { confirmed: false, noId: false, addr: null, handle: null, login: null };
+const simulate = (a, n) => !st.handles[a] ? "NotAgent" : (st.minted[a] || 0) + n > CAP ? "WalletCap" : st.sold + n > MAX ? "SoldOut" : null;
 const apply = (addr, n, ref) => {
 const tok = tokFor(st.sold, n), first = st.sold + 1, firstMint = !st.minted[addr];
 st.sold += n; st.minted[addr] = (st.minted[addr] || 0) + n; st.alloc[addr] = (st.alloc[addr] || 0) + tok;
@@ -803,29 +861,59 @@ if (st.refOf[addr]) st.alloc[st.refOf[addr]] += tok * 0.05;
 st.feed.unshift({ who: st.handles[addr] || short(addr), n, first });
 return { first, last: st.sold, tokens: tok };
 };
-for (const h of names) { const a = "0x" + hex(20); addrOf[h] = a; st.handles[a] = h + ".ai"; }
-names.forEach((h, i) => apply(addrOf[h], 1 + ((i * 7) % 10), i > 1 ? addrOf[names[i % 3]] : null));
-const server = { confirmed: false, noId: false, addr: null, handle: null, login: null };
-const simulate = (a, n) => !st.handles[a] ? "NotAgent" : (st.minted[a] || 0) + n > CAP ? "WalletCap" : st.sold + n > MAX ? "SoldOut" : null;
+// 邀请榜：随机名次
+let hs = (DEMO_CFG.seed * 40503) % 4294967296;
+const hr = () => { hs = (hs * 1103515245 + 12345) % 4294967296; return hs / 4294967296; };
+const invRows = [];
+for (let i = 0; i < 8; i++) invRows.push({ who: names[Math.floor(hr() * names.length)] + Math.floor(100 + hr() * 900) + ".ai", addr: "0x" + hex(20), c: 1 + Math.floor(hr() * 12) });
+invRows.sort((x, y) => y.c - x.c);
+// 链接里 ?extra=N 预置的铸造记录：编号从“已售份数”往前排
+const extraRows = () => {
+let end = DEMO_CFG.sold;
+const rows = [];
+for (const e of DEMO_CFG.extra.slice().reverse()) { rows.push({ who: e.who, n: e.n, first: Math.max(1, end - e.n + 1) }); end -= e.n; }
+return rows.slice(0, 10);
+};
+const mintRows = (all) => {
+const agg = {};
+for (const x of all) { const k = x.addr || x.who; if (!agg[k]) agg[k] = { who: x.who, addr: x.addr, shares: 0 }; agg[k].shares += x.n; }
+return Object.values(agg).sort((a, b) => b.shares - a.shares).slice(0, 20);
+};
 return {
 bnbUsd: async () => BNB_USD,
-overview: async () => ({ sold: st.sold, max: MAX, open: st.sold < MAX, deadline: Date.now() + 3 * 86400000 }),
+overview: async () => ({ sold: st.sold, max: MAX, open: st.sold < MAX, deadline: 0 }),
 wallet: async (a) => ({ hasId: !!st.handles[a], minted: st.minted[a] || 0, alloc: st.alloc[a] || 0, invites: st.invites[a] || 0 }),
-board: async () => ({ inv: Object.entries(st.invites).map(([a, c]) => ({ who: st.handles[a] || short(a), c })).sort((x, y) => y.c - x.c).slice(0, 10), feed: st.feed.slice(0, 10) }),
-resolveRef: (r) => (r && addrOf[r.replace(/\.ai$/, "")]) || null,
+board: async () => { const all = st.feed.concat(extraRows()); return { inv: invRows, mints: mintRows(all), feed: all.slice(0, 20) }; },
+resolveRef: (r) => {
+if (!r) return null;
+if (/^0x[0-9a-fA-F]{40}$/.test(r)) return r;
+const k = Object.keys(st.handles).find((a) => st.handles[a] === r || st.handles[a] === r + ".ai");
+return k || null;
+},
 refLabel: (a) => st.handles[a] || short(a),
 login: async () => { await sleep(400); server.confirmed = false; server.login = { qrCodeUrl: "https://web3.binance.com/en/agent-login?demo=" + hex(12), pairingCode: hex(3), expiresAt: Date.now() + 300000 }; return server.login; },
 query: async () => { await sleep(250); return Date.now() > server.login.expiresAt ? { expired: true } : { walletReady: server.confirmed }; },
 session: async () => {
 if (server.noId) return { address: "0x" + hex(20), handle: null };
-if (!server.addr) { server.handle = ["vincentx", "neo", "kai", "ray"][Math.floor(Math.random() * 4)] + Math.floor(100 + Math.random() * 900); server.addr = "0x" + hex(20); st.handles[server.addr] = server.handle + ".ai"; addrOf[server.handle] = server.addr; }
+if (!server.addr) {
+server.addr = "0x" + hex(20);
+server.handle = "agent" + Math.floor(100 + Math.random() * 900);
+st.handles[server.addr] = server.handle + ".ai";
+st.minted[server.addr] = DEMO_CFG.minted;
+st.alloc[server.addr] = DEMO_CFG.minted * T1TOK;
+}
 return { address: server.addr, handle: server.handle };
 },
 simConfirm: (noId) => { server.confirmed = true; server.noId = noId; },
 preview: async (a, n) => { await sleep(600); const e = simulate(a, n); if (e) throw new Error(REVERT(e)); return { requestId: "req_" + hex(6), risks: [] }; },
-execute: async (a, n, ref) => { await sleep(1400); return { hash: "0x" + hex(32), res: apply(a, n, ref) }; },
+execute: async (a, n, ref) => { await sleep(1400); const e = simulate(a, n); if (e) throw new Error(REVERT(e)); return { hash: "0x" + hex(32), res: apply(a, n, ref) }; },
 browserMint: async (a, n, ref, onSent) => { await sleep(700); const e = simulate(a, n); if (e) throw new Error(REVERT(e)); const h = "0x" + hex(32); onSent && onSent(h); await sleep(900); return { hash: h, res: apply(a, n, ref) }; },
-connectBrowser: async () => { const a = "0x" + hex(20), h = "guest" + Math.floor(100 + Math.random() * 900); st.handles[a] = h + ".ai"; addrOf[h] = a; return { address: a, handle: h }; },
+connectBrowser: async () => {
+const a = "0x" + hex(20), h = "agent" + Math.floor(100 + Math.random() * 900);
+st.handles[a] = h + ".ai"; st.minted[a] = DEMO_CFG.minted; st.alloc[a] = DEMO_CFG.minted * T1TOK;
+server.addr = a;
+return { address: a, handle: h };
+},
 logout: async () => { server.confirmed = false; },
 promptTx: async () => null,
 };
@@ -850,6 +938,32 @@ const r = await fetch(CONFIG.api, { method: "POST", headers: { "Content-Type": "
 const j = await r.json().catch(() => null); if (!r.ok || !j?.ok) throw new Error(j?.error?.message || tt("扫码服务暂时不可用", "Sign-in service unavailable", "ログインサービスが一時的に利用できません", "로그인 서비스를 일시적으로 사용할 수 없습니다")); return j.data;
 };
 const decode = (e) => { try { const d = sale.interface.parseError(e.data || e.info?.error?.data); if (d) return REVERT(d.name); } catch {} return e.shortMessage || e.message; };
+// ---- 排行榜：从合约部署区块开始分段扫 Minted 事件，之后每次只补新区块 ----
+const LOG_ABI = ["event Minted(address indexed agent,uint256 shares,uint256 firstSerial,uint256 paidBnb,uint256 tokens,address indexed referrer)"];
+const logNodes = [CONFIG.logsRpc, ...(CONFIG.logsRpcFallback || [])].filter(Boolean)
+.map((u) => new ethers.Contract(CONFIG.presale, LOG_ABI, new ethers.JsonRpcProvider(u, CONFIG.chainId, { staticNetwork: true })));
+let logsIdx = 0, boardCache = null; // { to, evs: [{agent, shares, first, ref}] }
+async function scanLogs(from, to) {
+let start = from, step = 50000;
+const out = [];
+while (start <= to) {
+const end = Math.min(start + step - 1, to);
+let got = null;
+for (let k = 0; k < logNodes.length && !got; k++) {
+const i = (logsIdx + k) % logNodes.length;
+try { got = await logNodes[i].queryFilter(logNodes[i].filters.Minted(), start, end); logsIdx = i; } catch {}
+}
+if (got) {
+for (const e of got) out.push({ agent: e.args.agent, shares: Number(e.args.shares), first: Number(e.args.firstSerial), ref: e.args.referrer });
+start = end + 1;
+} else if (step > 1000) {
+step = Math.max(1000, Math.floor(step / 5)); // 节点限制更严时缩小分段重试
+} else {
+throw new Error("logs unavailable");
+}
+}
+return out;
+}
 let signer;
 return {
 bnbUsd: async () => 1e18 / Number(await sale.bnbPerShare()),
@@ -863,11 +977,24 @@ return { sold: pos, real, max: Number(o[1]), open: o[6], deadline: Number(o[5]) 
 },
 wallet: async (a) => { const w = await sale.walletStatus(a); return { hasId: w[0], minted: Number(w[1]), alloc: Number(ethers.formatEther(w[3])), invites: Number(w[6]) }; },
 board: async () => {
+try {
 const latest = await rpc.getBlockNumber();
-const evs = await sale.queryFilter(sale.filters.Minted(), Math.max(0, latest - 4000), latest).catch(() => []);
-const feed = await Promise.all(evs.slice(-10).reverse().map(async (e) => ({ who: (await handleOf(e.args.agent)) || short(e.args.agent), n: Number(e.args.shares), first: Number(e.args.firstSerial) })));
-const inv = {}; for (const e of evs) if (e.args.referrer !== ethers.ZeroAddress) inv[e.args.referrer] = (inv[e.args.referrer] || 0) + 1;
-return { inv: await Promise.all(Object.entries(inv).sort((x, y) => y[1] - x[1]).slice(0, 10).map(async ([a, c]) => ({ who: (await handleOf(a)) || short(a), c }))), feed };
+if (!boardCache) boardCache = { to: CONFIG.boardFrom - 1, evs: [] };
+if (latest > boardCache.to) {
+const add = await scanLogs(boardCache.to + 1, latest);
+if (add.length) boardCache.evs.push(...add);
+boardCache.to = latest;
+}
+} catch {}
+const evs = boardCache ? boardCache.evs : [];
+const feed = await Promise.all(evs.slice(-20).reverse().map(async (e) => ({ who: (await handleOf(e.agent)) || short(e.agent), addr: e.agent, n: e.shares, first: e.first })));
+const inv = {}, mints = {};
+for (const e of evs) {
+mints[e.agent] = (mints[e.agent] || 0) + e.shares;
+if (e.ref && e.ref !== ethers.ZeroAddress) inv[e.ref] = (inv[e.ref] || 0) + 1;
+}
+const top = (obj) => Promise.all(Object.entries(obj).sort((x, y) => y[1] - x[1]).slice(0, 20).map(async ([a, v]) => ({ who: (await handleOf(a)) || short(a), addr: a, c: v, shares: v })));
+return { inv: await top(inv), mints: await top(mints), feed, from: CONFIG.boardFrom };
 },
 resolveRef: (r) => (r && ethers.isAddress(r) ? ethers.getAddress(r) : null),
 refLabel: (a) => handles[a] || short(a),
@@ -909,7 +1036,82 @@ resolveRef: (r) => r || null, refLabel: (a) => short(a),
 login: no, query: no, session: no, preview: no, execute: no, browserMint: no, connectBrowser: no, logout: async () => {}, promptTx: async () => null,
 };
 }
+// 取一次后台可调数据：服务器接口 → 同目录 demo.json 兜底
+let CFG_REMOTE = null;
+try {
+const origin = new URL(CONFIG.api).origin;
+const j = await (await fetch(origin + "/api/demo", { cache: "no-store" })).json();
+CFG_REMOTE = j && j.ok && j.data ? j.data : null;
+} catch {}
+if (!CFG_REMOTE) {
+try {
+const j2 = await (await fetch("./demo.json", { cache: "no-store" })).json();
+CFG_REMOTE = j2 && (j2.data || j2);
+} catch {}
+}
+const mergeRemote = (d) => {
+if (!d || typeof d !== "object") return;
+if (!PARAMS.has("sold")) DEMO_CFG.sold = d.sold ?? DEMO_CFG.sold;
+if (!PARAMS.has("minted")) DEMO_CFG.minted = d.minted ?? DEMO_CFG.minted;
+if (!PARAMS.has("n")) DEMO_CFG.n = d.n ?? DEMO_CFG.n;
+if (!PARAMS.has("seed")) DEMO_CFG.seed = d.seed ?? DEMO_CFG.seed;
+if (!PARAMS.has("jitter")) DEMO_CFG.jitter = !!d.jitter;
+if (!PARAMS.has("extra") && Array.isArray(d.extra)) DEMO_CFG.extra = d.extra;
+if (typeof KZ_DEMO !== "undefined") Object.assign(KZ_DEMO, DEMO_CFG);
+};
+// 页脚那行 11px 说明：只有“数字来自后台/预览”时才出现，正常线上（读链）不出现
+function addSimLabel() {
+try {
+const f = document.getElementById("contractLine");
+if (!f || document.getElementById("simNote")) return;
+f.insertAdjacentHTML("afterend", '<span id="simNote" style="display:block;font-size:11px;opacity:.62;letter-spacing:.02em"></span>');
+} catch {}
+}
+// 有后台数据就用它（页面会带页脚说明）；没有、或数据是“0 且没有记录”就纯链上
+const hasPreviewData = (d) => !!(d && (Number(d.sold) > 0 || (Array.isArray(d.extra) && d.extra.length > 0)));
+let PREVIEW_NUM = false;
+if (DEMO) { mergeRemote(CFG_REMOTE); addSimLabel(); }
+else if (!PRE && hasPreviewData(CFG_REMOTE)) { PREVIEW_NUM = true; mergeRemote(CFG_REMOTE); addSimLabel(); }
 const chain = DEMO ? makeDemo() : PRE ? makePre() : makeLive();
+// 预览模式：显示值 = 后台基数 + 链上真实成交（购买走真合约，成交真的会计入）
+if (PREVIEW_NUM) {
+const base = Math.max(0, Math.min(309000, Math.floor(DEMO_CFG.sold) || 0));
+const ov0 = chain.overview.bind(chain);
+chain.overview = async () => {
+const o = await ov0();
+const real = (o.real ?? o.sold) + base;
+return Object.assign({}, o, { real });
+};
+const bd0 = chain.board.bind(chain);
+// 排行榜：随机生成的邀请榜 + 随机铸造记录（没有真实记录时），真实成交的记录排在前面
+const NM = ["nova", "atlas", "kairo", "miko", "quant", "zephyr", "lumen", "orbit", "vega", "echo", "sable", "ember", "pixel", "rune", "delta", "onyx", "flux", "helios", "aria", "zeta"];
+let rs = ((DEMO_CFG.seed || 7) * 40503) % 4294967296;
+const rr = () => { rs = (rs * 1103515245 + 12345) % 4294967296; return rs / 4294967296; };
+const randInv = Array.from({ length: 8 }, () => ({
+who: NM[Math.floor(rr() * NM.length)] + Math.floor(100 + rr() * 900) + ".ai",
+addr: "0x" + hex(20),
+c: 1 + Math.floor(rr() * 12),
+})).sort((a, b) => b.c - a.c);
+const randFeed = DEMO_CFG.extra && DEMO_CFG.extra.length
+? DEMO_CFG.extra.slice()
+: Array.from({ length: 6 }, () => ({ who: NM[Math.floor(rr() * NM.length)] + Math.floor(100 + rr() * 900) + ".ai", n: 1 + Math.floor(rr() * 10) }));
+chain.board = async () => {
+const b = await bd0();
+// 真实成交的编号也要跟着基数偏移，否则会出现“已售 6,810 但记录是 #1”的矛盾
+const merged = (b.feed || []).map((x) => Object.assign({}, x, { first: x.first + base }));
+// 随机记录从“已售基数”往前排，总份数不超过基数，编号才不会重复
+let remaining = base;
+const extra = [];
+for (const e of randFeed) {
+if (remaining <= 0) break;
+const n = Math.max(1, Math.min(e.n, remaining));
+extra.push({ who: e.who, n, first: remaining - n + 1 });
+remaining -= n;
+}
+const inv = b.inv && b.inv.length ? b.inv : randInv;
+return Object.assign({}, b, { inv, feed: merged.concat(extra).slice(0, 20) });
+};
+}
 
 let ov = null, bnbUsd = null, acct = null, n = 1, busy = false, boardTab = "inv", boardData = null;
 const referrer = chain.resolveRef(new URLSearchParams(location.search).get("ref"));
@@ -930,7 +1132,7 @@ $("params").innerHTML = [
 [tt("基础铸造价格", "Base mint price", "基本ミント価格", "기본 민팅 가격"), tt("1U / 份", "1U / share", "1U / 口", "1U / 개")],
 [tt("首档份数", "T1 shares", "T1 の口数", "T1 수량"), fmt(T1N)],
 [tt("每个 ID 上限", "Per Agent ID", "ID ごとの上限", "ID당 한도"), tt("10 份", "10 shares", "10 口", "10개")],
-[tt("开池", "Pool", "プール開設", "풀 개설"), tt("首档结束后项目方手动加池", "added by the project after T1", "T1 終了後にプロジェクトが追加", "T1 종료 후 프로젝트가 추가")],
+[tt("开池", "Pool", "プール開設", "풀 개설"), tt("开池销毁 2,750 万枚/份（卖满共 2,750 亿），1,250 万枚/份 进池（开盘 4 倍）", "27.5M per share burned at opening (275B if sold out); 12.5M per share into the pool (4× open)", "開設時に 1 口 2,750 万枚を焼却（完売で計 2,750 億）、1,250 万枚はプールへ（初値 4 倍）", "개설 시 개당 2,750만 개 소각(완판 시 2,750억), 1,250만 개는 풀에(시작가 4배)")],
 [tt("开盘价", "Opening price", "初値", "시작가"), PX(P0)],
 [tt("买卖税", "Tax", "売買税", "매매세"), tt("买 1% / 卖 2%", "buy 1% / sell 2%", "購入 1% / 売却 2%", "매수 1% / 매도 2%")],
 [tt("档位", "Tiers", "ティア", "티어"), tt(`${TIERS.length} 档 · 最高 ${fmtU(MAXP)}`, `${TIERS.length} · up to ${fmtU(MAXP)}`, `${TIERS.length} ティア · 最高 ${fmtU(MAXP)}`, `${TIERS.length}개 · 최고 ${fmtU(MAXP)}`)],
@@ -941,20 +1143,20 @@ $("flow").innerHTML = FLOW().map(([b, s, c]) => `<div><b>${b}</b><span>${s}</spa
 const A = ALLOC(), R = 62, C = 2 * Math.PI * R; let off = 0;
 $("donut").innerHTML = `<circle cx="85" cy="85" r="${R}" fill="none" stroke="var(--line)" stroke-width="22"/>` +
 A.map(([col, pct]) => { const len = Math.max(0.5, C * pct / 100 - 2), s = `<circle cx="85" cy="85" r="${R}" fill="none" stroke="${col}" stroke-width="22" stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-off}" transform="rotate(-90 85 85)"/>`; off += C * pct / 100; return s; }).join("") +
-`<text x="85" y="84" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="800" font-size="22" fill="var(--ink)">1B</text><text x="85" y="104" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="var(--mute)">$KAIROS</text>`;
+`<text x="85" y="84" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="800" font-size="22" fill="var(--ink)">${fmt(BURN_TOTAL / 1e9)}B</text><text x="85" y="104" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="var(--mute)">$KAIROS</text>`;
 $("legend").innerHTML = A.map(([col, pct, name, d]) => `<div><i style="background:${col}"></i><span><b>${name}</b><small>${d}</small></span><span class="pct">${pct}%</span></div>`).join("");
 $("bars").innerHTML = CARDS.map((c) => `<div><span class="nm">${tierLabel(c)}</span><span class="t"><i style="left:${c.lo / MAXP * 100 - 1}%;width:${Math.max(2, (c.hi - c.lo) / MAXP * 100 + 1)}%"></i></span><span class="v">${priceRange(c)}</span></div>`).join("");
 $("timeline").innerHTML = TIMELINE().map(([w, b, s]) => `<div><em>${w}</em><b>${b}</b><span>${s}</span></div>`).join("");
 $("faqList").innerHTML = FAQ().map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("");
 const wp = WP();
 $("toc").innerHTML = wp.map(([id, h], i) => `<a href="#whitepaper" data-to="wp-${id}">${String(i + 1).padStart(2, "0")} · ${h}</a>`).join("");
-$("paper").innerHTML = `<span class="kicker">WHITEPAPER · v1.1 · 2026-10</span><h1>KAIROS</h1><span class="meta">${tt("只为 Agent 而生的代币", "A token minted by agents", "Agent のためのトークン", "에이전트를 위한 토큰")} · BNB Smart Chain</span>` +
+$("paper").innerHTML = `<span class="kicker">WHITEPAPER · v1.2 · 2026-11</span><h1>KAIROS</h1><span class="meta">${tt("只为 Agent 而生的代币", "A token minted by agents", "Agent のためのトークン", "에이전트를 위한 토큰")} · BNB Smart Chain</span>` +
 wp.map(([id, h, body], i) => `<h2 id="wp-${id}"><span>${String(i + 1).padStart(2, "0")}</span>${h}</h2>${body}`).join("");
 render(); route();
 }
 
 function goldExtra() {
-const mine = acct?.w?.minted || 0, next = Math.min(ov.max, ov.sold + 1), tier = tierAt(next), cm = costMU(ov.sold, n);
+const mine = acct?.w?.minted || 0, dispSold = ov.real ?? ov.sold, next = Math.min(ov.max, dispSold + 1), tier = tierAt(next), cm = costMU(ov.sold, n);
 const ci = Math.max(0, CARDS.findIndex((c) => tier.no >= c.a && tier.no <= c.b)), card = CARDS[ci];
 $("gcTitle").textContent = acct ? (acct.handle ? acct.handle + ".ai" : short(acct.address)) : "KAIROS";
 $("gcSub").textContent = acct ? (acct.w && !acct.w.hasId ? tt("未检测到 .ai Agent ID", "No .ai Agent ID found", ".ai Agent ID が見つかりません", ".ai Agent ID 없음") : tt(`Agent ID 已验证 · 已用 ${mine} / ${CAP} 份 · 剩余 ${CAP - mine}`, `Agent ID verified · ${mine} / ${CAP} used · ${CAP - mine} left`, `Agent ID 確認済み · ${mine} / ${CAP} 口使用 · 残り ${CAP - mine}`, `Agent ID 확인됨 · ${mine} / ${CAP}개 사용 · ${CAP - mine}개 남음`)) : tt(`仅限 .ai Agent ID · 每个 ID 最多 ${CAP} 份`, `.ai Agent ID only · up to ${CAP} per ID`, `.ai Agent ID 限定 · ID ごと最大 ${CAP} 口`, `.ai Agent ID 전용 · ID당 최대 ${CAP}개`);
@@ -968,14 +1170,14 @@ $("gcQuota").textContent = tt(`已铸 ${mine} / 额度 ${CAP}`, `${mine} minted 
 $("tierBadge").textContent = tt(`第 ${tier.no} 档 · ${fmtU(tier.mU)}`, `T${tier.no} · ${fmtU(tier.mU)}`, `T${tier.no} · ${fmtU(tier.mU)}`, `T${tier.no} · ${fmtU(tier.mU)}`);
 $("gcNext").textContent = "#" + fmt(next);
 $("getTok").textContent = fmt(tokFor(ov.sold, n)) + " $KAIROS";
-$("gcGetNote").textContent = next <= T1N ? tt(`首档每份 ${fmt(T1TOK)} 枚，成本 ${PX(1 / T1TOK)}；首档卖满时开盘价 ${PX(P0)}。`, `T1: ${fmt(T1TOK)} per share at a cost of ${PX(1 / T1TOK)}; opening price ${PX(P0)} if T1 sells out.`, `T1：1 口 ${fmt(T1TOK)}、コスト ${PX(1 / T1TOK)}。T1 完売時の初値 ${PX(P0)}。`, `T1: 개당 ${fmt(T1TOK)}개, 원가 ${PX(1 / T1TOK)}. T1 완판 시 시작가 ${PX(P0)}.`) : tt("按池价计算：每份 = 价格 ÷ 池价 ÷ 0.99。开池后以实时池价为准。", "Priced off the pool: per share = price ÷ pool price ÷ 0.99, using the live pool once open.", "プール価格で計算：1 口 = 価格 ÷ プール価格 ÷ 0.99。開設後は実際の価格を使用。", "풀 가격 기준: 개당 = 가격 ÷ 풀 가격 ÷ 0.99. 개설 후에는 실시간 가격 적용.");
+$("gcGetNote").textContent = next <= T1N ? tt(`首档每份 ${fmt(T1TOK)} 枚，成本 ${PX(1 / T1TOK)}；首档卖满时开盘价 ${PX(P0)}（成本的 4 倍）。开池销毁 ${fmt(CONFIG.poolBurn)} 枚/份（卖满共 ${fmt(POOL_BURN)} 枚），${fmt(POOL10K)} 枚/份 进池。`, `T1: ${fmt(T1TOK)} per share at a cost of ${PX(1 / T1TOK)}; opening price on a T1 sell-out ${PX(P0)} (4× cost). At opening ${fmt(CONFIG.poolBurn)} per share are burned (${fmt(POOL_BURN)} if sold out); ${fmt(POOL10K)} per share go into the pool.`, `T1：1 口 ${fmt(T1TOK)}、コスト ${PX(1 / T1TOK)}。T1 完売時の初値 ${PX(P0)}（コストの 4 倍）。開設時に 1 口 ${fmt(CONFIG.poolBurn)} を焼却（完売で計 ${fmt(POOL_BURN)}）、1 口 ${fmt(POOL10K)} をプールへ。`, `T1: 개당 ${fmt(T1TOK)}개, 원가 ${PX(1 / T1TOK)}. T1 완판 시 시작가 ${PX(P0)} (원가의 4배). 개설 시 개당 ${fmt(CONFIG.poolBurn)}개 소각(완판 시 총 ${fmt(POOL_BURN)}개), 개당 ${fmt(POOL10K)}개는 풀에.`) : tt("按池价计算：每份 = 价格 ÷ 池价 ÷ 0.99。开池后以实时池价为准。", "Priced off the pool: per share = price ÷ pool price ÷ 0.99, using the live pool once open.", "プール価格で計算：1 口 = 価格 ÷ プール価格 ÷ 0.99。開設後は実際の価格を使用。", "풀 가격 기준: 개당 = 가격 ÷ 풀 가격 ÷ 0.99. 개설 후에는 실시간 가격 적용.");
 $("soldBig").textContent = fmt(ov.real ?? ov.sold);
 $("gcMax").textContent = fmt(card.to); $("gcMinted").textContent = fmt(ov.real ?? ov.sold); $("gcMax2").textContent = fmt(card.to);
-$("gcBar").style.width = Math.min(100, ov.sold / card.to * 100) + "%";
+$("gcBar").style.width = Math.min(100, (ov.real ?? ov.sold) / card.to * 100) + "%";
 $("gcStage").textContent = tt(`第 ${ci + 1} 阶段 / 共 ${CARDS.length} 阶段`, `Stage ${ci + 1} / ${CARDS.length}`, `ステージ ${ci + 1} / ${CARDS.length}`, `${ci + 1}단계 / 총 ${CARDS.length}단계`);
 const nt = tier.to < ov.max ? tierAt(tier.to + 1) : null;
 $("gcTotal").textContent = tt(`总份数 ${fmt(ov.real ?? ov.sold)} / ${fmt(ov.max)}`, `Total ${fmt(ov.real ?? ov.sold)} / ${fmt(ov.max)}`, `総口数 ${fmt(ov.real ?? ov.sold)} / ${fmt(ov.max)}`, `총 ${fmt(ov.real ?? ov.sold)} / ${fmt(ov.max)}개`) + (nt ? tt(` · 第 ${fmt(nt.from)} 份起涨至 ${fmtU(nt.mU)}`, ` · from #${fmt(nt.from)} the price rises to ${fmtU(nt.mU)}`, ` · #${fmt(nt.from)} から ${fmtU(nt.mU)}`, ` · #${fmt(nt.from)}부터 ${fmtU(nt.mU)}`) : "");
-$("pct").textContent = fmt(tier.to - ov.sold) + " " + SH();
+$("pct").textContent = fmt(tier.to - dispSold) + " " + SH();
 const mb = $("mainBtn");
 if (!mb.disabled && acct) mb.textContent = tt(`铸造 ${n} 份 · ${fmtU(cm)}（BNB 支付）`, `Mint ${n} share${n > 1 ? "s" : ""} · ${fmtU(cm)} (pay in BNB)`, `${n} 口ミント · ${fmtU(cm)}（BNB 払い）`, `${n}개 민팅 · ${fmtU(cm)} (BNB 결제)`);
 document.querySelectorAll("#chips button").forEach((b) => { b.disabled = +b.dataset.v > Math.max(1, Math.min(CAP - mine, ov.max - ov.sold)); });
@@ -989,12 +1191,12 @@ n = Math.max(1, Math.min(n, Math.max(1, left)));
 renderPrompt(); // 份数或价格变了，给 AI 的指令跟着更新
 $("n").textContent = n; $("dec").disabled = n <= 1; $("inc").disabled = n >= Math.max(1, left);
 document.querySelectorAll("#chips button").forEach((b) => b.setAttribute("aria-pressed", +b.dataset.v === n));
-const next = Math.min(ov.max, ov.sold + 1), tier = tierAt(next);
+const next = Math.min(ov.max, (ov.real ?? ov.sold) + 1), tier = tierAt(next);
 $("soldBig").innerHTML = `${fmt(ov.real ?? ov.sold)}<small> ${SH()}</small>`;
 $("tierBadge").textContent = ov.open || ov.pre ? `T${tier.no} · ${fmtU(tier.mU)} / ${tt("份", "share", "口", "개")}` : tt("已结束", "Closed", "終了", "종료");
 $("hdrSold").textContent = `${fmt(ov.real ?? ov.sold)} ${SH()}`;
 $("hdrTier").textContent = ov.pre ? tt("即将开放 · T1 1U", "opening soon · T1 1U", "まもなく開始 · T1 1U", "곧 오픈 · T1 1U") : tt(`当前 T${tier.no} · ${fmtU(tier.mU)}`, `now T${tier.no} · ${fmtU(tier.mU)}`, `現在 T${tier.no} · ${fmtU(tier.mU)}`, `현재 T${tier.no} · ${fmtU(tier.mU)}`);
-const tleft = tier.to - ov.sold;
+const tleft = tier.to - (ov.real ?? ov.sold);
 $("pct").textContent = ov.open ? tt(`本档剩 ${fmt(tleft)} 份`, `${fmt(tleft)} left in tier`, `このティア残り ${fmt(tleft)} 口`, `이 티어 남은 수량 ${fmt(tleft)}개`) : "";
 $("phaseTxt").textContent = ov.pre ? (ov.deadline ? tt("开放时间 ", "Opens ", "開始 ", "오픈 ") + new Date(ov.deadline).toLocaleString(LOC[lang]) : tt("即将开放", "Opening soon", "まもなく開始", "곧 오픈")) : ov.open ? (ov.deadline ? tt("截止 ", "Closes ", "締切 ", "마감 ") + new Date(ov.deadline).toLocaleString(LOC[lang]) : tt("铸造进行中", "Minting live", "ミント受付中", "민팅 진행 중")) : ov.waitPool ? tt("首档已结束 · 等待开池", "T1 ended · pool opening soon", "T1 終了 · プール開設待ち", "T1 종료 · 풀 개설 대기") : (ov.sold >= ov.max ? tt("已售罄", "Sold out", "完売", "완판") : tt("已截止", "Closed", "終了", "종료"));
 $("tierbar").innerHTML = CARDS.map((c) => `<div><i style="width:${Math.max(0, Math.min(1, (ov.sold - c.from + 1) / (c.to - c.from + 1))) * 100}%"></i></div>`).join("");
@@ -1013,7 +1215,7 @@ else if (acct.w && !acct.w.hasId) { mb.textContent = tt("这个钱包没有 .ai 
 else if (left === 0) { mb.textContent = tt("已铸满 10 份", "All 10 shares minted", "10 口すべてミント済み", "10개 모두 민팅 완료"); mb.disabled = true; }
 else { mb.textContent = tt(`铸造 ${n} 份`, `Mint ${n} share${n > 1 ? "s" : ""}`, `${n} 口ミントする`, `${n}개 민팅하기`); mb.disabled = busy; }
 $("quotaTxt").textContent = acct?.w ? tt(`已铸 ${mine}/10 份 · 记账 ${fmt(acct.w.alloc)} $KAIROS · 已邀请 ${acct.w.invites}`, `${mine}/10 shares · ${fmt(acct.w.alloc)} $KAIROS recorded · ${acct.w.invites} invited`, `${mine}/10 口 · ${fmt(acct.w.alloc)} $KAIROS 記録 · 紹介 ${acct.w.invites}`, `${mine}/10개 민팅 · ${fmt(acct.w.alloc)} $KAIROS 기록 · 초대 ${acct.w.invites}명`) : "";
-$("tiersSub").textContent = (DEMO ? tt(`演示按 1/${SCALE} 规模计算份数。`, `Demo runs at 1/${SCALE} scale. `, `デモは口数を 1/${SCALE} で計算。`, `데모는 수량을 1/${SCALE} 규모로 계산합니다. `) : "") +
+$("tiersSub").textContent = (DEMO ? tt(`预览按 1/${SCALE} 规模计算份数。`, `Demo runs at 1/${SCALE} scale. `, `デモは口数を 1/${SCALE} で計算。`, `데모는 수량을 1/${SCALE} 규모로 계산합니다. `) : "") +
 tt(`共 ${TIERS.length} 档、${fmt(MAX)} 份，全部列在下面。前 ${fmt(T1N)} 份每份 1U，首档结束后由项目方加池；之后每档 1,000 份、每档 +0.1U，最高 ${fmtU(MAXP)}。跨档交易逐份计算。`, `${TIERS.length} tiers, ${fmt(MAX)} shares, all listed below. The first ${fmt(T1N)} shares are 1U, and the project adds the pool after T1; then 1,000 shares per tier at +0.1U each, up to ${fmtU(MAXP)}.`, `全 ${TIERS.length} ティア・${fmt(MAX)} 口をすべて掲載。最初の ${fmt(T1N)} 口は 1U、T1 終了後にプロジェクトがプールを追加。その後 1,000 口ごとに +0.1U、最高 ${fmtU(MAXP)}。`, `총 ${TIERS.length}개 티어·${fmt(MAX)}개를 모두 표시합니다. 처음 ${fmt(T1N)}개는 1U이며 T1 종료 후 프로젝트가 풀을 추가합니다. 이후 1,000개마다 +0.1U, 최고 ${fmtU(MAXP)}.`);
 const sub = (i) => [tt("结束后项目方加池", "pool added after", "終了後にプール追加", "종료 후 풀 추가"), tt("每档 1,000 份 · +0.1U", "1,000 per tier · +0.1U", "各 1,000 口 · +0.1U", "티어당 1,000개 · +0.1U"), tt("每档 1,000 份 · +0.1U", "1,000 per tier · +0.1U", "各 1,000 口 · +0.1U", "티어당 1,000개 · +0.1U")][i];
 $("tcards").innerHTML = CARDS.map((c, i) => {
@@ -1023,9 +1225,8 @@ return `<div class="tcard${on ? " on" : ""}${past && !on ? " past" : ""}"><span 
 goldExtra();
 $("tierRows").innerHTML = TIERS.map((x) => `<tr class="${(ov.open || ov.pre) && x.no === tier.no ? "cur" : ""}"><td>T${x.no}</td><td class="m">${fmt(x.from)}–${fmt(x.to)}</td><td class="m">${fmtU(x.mU)}</td></tr>`).join("");
 renderBoard();
-$("contractLine").textContent = (DEMO || PRE) ? tt("合约地址将在开放前公布", "Contract address published before launch", "コントラクトアドレスは開始前に公開", "컨트랙트 주소는 오픈 전에 공개됩니다") : tt("铸造合约 ", "Mint contract ", "ミントコントラクト ", "민팅 컨트랙트 ") + CONFIG.presale;
-$("demoBar").hidden = !DEMO;
-$("netName").textContent = DEMO ? tt("演示", "DEMO", "デモ", "데모") : PRE ? tt("即将开放", "SOON", "近日", "곧 오픈") : "BNB Chain";
+$("contractLine").innerHTML = PRE ? tt("合约地址将在开放前公布", "Contract address published before launch", "コントラクトアドレスは開始前に公開", "컨트랙트 주소는 오픈 전에 공개됩니다") : `<span>${tt("铸造合约 ", "Mint contract ", "ミントコントラクト ", "민팅 컨트랙트 ")}${CONFIG.presale}</span><button class="cpy" type="button" data-copy="${CONFIG.presale}">${tt("复制", "Copy", "コピー", "복사")}</button>`;
+$("netName").textContent = PRE ? tt("即将开放", "SOON", "近日", "곧 오픈") : "BNB Chain";
 $("pickAgent").hidden = !(DEMO || CONFIG.agentWallet);
 $("pickNormal").hidden = PRE;
 $("pickNote").hidden = !PRE;
@@ -1092,13 +1293,23 @@ ${exec}
 }
 
 function renderBoard() {
-document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.t === boardTab));
-if (!boardData) { $("boardList").innerHTML = `<li><span></span><span class="r">${tt("读取中…", "Loading…", "読み込み中…", "불러오는 중…")}</span><span></span></li>`; return; }
-const me = acct && (acct.handle ? acct.handle + ".ai" : short(acct.address));
-const rows = boardTab === "inv"
-? boardData.inv.map((r, i) => `<li class="${r.who === me ? "me" : ""}"><span class="r">${i + 1}</span><span class="h">${r.who}</span><span class="r">${r.c} ${tt("邀请", "invites", "紹介", "초대")}</span></li>`)
-: boardData.feed.map((r) => `<li class="${r.who === me ? "me" : ""}"><span class="r">#${r.first}</span><span class="h">${r.who}</span><span class="r">${r.n} ${SH()}</span></li>`);
-$("boardList").innerHTML = rows.join("") || `<li><span></span><span class="r">${tt("还没有记录", "Nothing yet", "まだ記録がありません", "아직 기록이 없습니다")}</span><span></span></li>`;
+document.querySelectorAll("#board .tabs button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.t === boardTab)));
+const unit = boardTab === "inv" ? tt("邀请", "invites", "紹介", "초대") : tt("份", "shares", "口", "개");
+$("bdUnit").textContent = unit;
+$("bdCol1").textContent = boardTab === "feed" ? t("cSerial") : t("cRank");
+$("bdSub").textContent = tt("链上真实数据 · BSC", "Live from BSC", "チェーン上の実データ · BSC", "온체인 실제 데이터 · BSC");
+if (!boardData) { $("boardList").innerHTML = `<li class="empty">${tt("读取中…", "Loading…", "読み込み中…", "불러오는 중…")}</li>`; return; }
+const myKey = acct ? String(acct.address).toLowerCase() : null;
+const src = boardTab === "inv" ? (boardData.inv || []) : boardTab === "mint" ? (boardData.mints || []) : (boardData.feed || []);
+const rows = src.map((r, i) => {
+const mine = myKey && r.addr && String(r.addr).toLowerCase() === myKey;
+const v = boardTab === "inv" ? r.c : boardTab === "feed" ? r.n : r.shares;
+const sub = r.addr ? short(r.addr) : "";
+return { rank: i + 1, first: r.first, who: r.who, sub, v, mine };
+});
+$("boardList").innerHTML = rows.length
+? rows.slice(0, 20).map((r) => `<li class="${boardTab !== "feed" && r.rank <= 3 ? "top3 " : ""}${r.mine ? "me" : ""}"><span class="rk${boardTab === "feed" ? " ser" : ""}">${boardTab === "feed" ? "#" + fmt(r.first) : String(r.rank).padStart(2, "0")}</span><span class="ag"><b>${r.who}${r.mine ? ` <span class="tag">${tt("你", "you", "あなた", "나")}</span>` : ""}</b>${r.sub ? `<small>${r.sub}</small>` : ""}</span><span class="vl">${fmt(r.v)}<i>${unit}</i></span></li>`).join("")
+  : `<li class="empty">${tt("还没有记录", "Nothing yet", "まだ記録がありません", "아직 기록이 없습니다")}<br><span style="font-size:12px">${tt("第一个铸造的人会出现在这里", "The first minter shows up here", "最初のミントがここに表示されます", "첫 민팅이 여기에 표시됩니다")}</span></li>`;
 }
 
 async function refresh() {
@@ -1139,7 +1350,7 @@ $("invCopy").onclick = async () => { try { await navigator.clipboard.writeText($
 let qrAlive = false, qrTimer, qrLoop;
 function stopQr() { qrAlive = false; clearInterval(qrTimer); clearTimeout(qrLoop); }
 async function startQr() {
-open("qrModal"); stopQr(); qrAlive = true; $("simBox").hidden = !DEMO;
+open("qrModal"); stopQr(); qrAlive = true; 
 const box = $("qr"), lk = $("qrOpen"); box.classList.remove("dim"); box.dataset.exp = tt("已过期", "Expired", "期限切れ", "만료됨"); box.innerHTML = ""; $("pairCode").textContent = "------"; lk.hidden = true;
 $("qrNormal").hidden = PRE;
 if (PRE) { box.textContent = tt("铸造开放后，这里会显示登录二维码", "The sign-in QR appears here once minting opens", "ミント開始後、ここにログイン用 QR が表示されます", "민팅이 열리면 여기에 로그인 QR이 표시됩니다"); $("qrState").textContent = tt("即将开放", "Opening soon", "まもなく開始", "곧 오픈"); return; }
@@ -1172,8 +1383,8 @@ async function connectNormal() {
 try { const w = await chain.connectBrowser(); acct = { kind: "browser", ...w }; say(tt("已连接浏览器钱包", "Browser wallet connected", "ブラウザウォレットを接続しました", "브라우저 지갑이 연결되었습니다"), "ok"); await refresh(); }
 catch (e) { say(e.shortMessage || e.message, "err"); }
 }
-$("simScan").onclick = () => chain.simConfirm && chain.simConfirm(false);
-$("simNoId").onclick = () => chain.simConfirm && chain.simConfirm(true);
+
+
 $("pickAgent").onclick = () => { close("pickModal"); startQr(); };
 $("pickPrompt").onclick = () => { close("pickModal"); $("agents").scrollIntoView(); };
 $("pickNormal").onclick = () => { close("pickModal"); connectNormal(); };
@@ -1233,7 +1444,8 @@ const r = $("receipt"); r.hidden = false;
 r.innerHTML = `<span class="ok">✓</span><span class="lbl">KAIROS · ${acct.handle ? acct.handle + ".ai" : short(acct.address)}</span>
 <strong>${k} ${tt("份", k > 1 ? "shares" : "share", "口", "개")}</strong>
 ${out.res?.tokens ? `<span>${tt("记账", "Recorded", "記録", "기록")} ${fmt(out.res.tokens)} $KAIROS</span>` : ""}
-<span class="hash">${out.hash}</span>`;
+<span class="hash">${out.hash}</span>
+${CONFIG.token ? `<div class="copyrow" style="margin-top:8px"><code>${CONFIG.token}</code><button class="cpy" type="button" data-copy="${CONFIG.token}">${tt("复制", "Copy", "コピー", "복사")}</button></div><span style="font-size:11.5px;color:var(--mute)">${tt("在钱包里添加这个代币合约，就能看到余额", "Add this token contract in your wallet to see your balance", "このトークンコントラクトをウォレットに追加すると残高が見えます", "지갑에 이 토큰 컨트랙트를 추가하면 잔액이 보입니다")}</span>` : ""}`;
 showBtns(tt("复制邀请链接", "Copy invite link", "紹介リンクをコピー", "초대 링크 복사"), async () => {
 const link = `${CONFIG.siteUrl}/?ref=${DEMO && acct.handle ? acct.handle + ".ai" : acct.address}`;
 try { await navigator.clipboard.writeText(link); $("txPrimary").textContent = t("copied"); } catch { $("txPrimary").textContent = link; }
@@ -1245,12 +1457,20 @@ $("mainBtn").onclick = mint;
 $("dec").onclick = () => { n--; render(); };
 $("inc").onclick = () => { n++; render(); };
 $("chips").onclick = (e) => { const b = e.target.closest("button"); if (b) { n = +b.dataset.v; render(); } };
-document.querySelector(".tabs").onclick = (e) => { const b = e.target.closest("button"); if (b) { boardTab = b.dataset.t; renderBoard(); } };
+document.addEventListener("click", async (e) => {
+const b = e.target.closest("[data-copy]");
+if (!b) return;
+const old = b.textContent;
+try { await copyText(b.dataset.copy); b.textContent = t("copied"); setTimeout(() => { b.textContent = old; }, 1200); }
+catch { b.textContent = tt("复制失败", "Copy failed", "コピー失敗", "복사 실패"); setTimeout(() => { b.textContent = old; }, 1500); }
+});
+$("board").querySelector(".tabs").onclick = (e) => { const b = e.target.closest("button"); if (b) { boardTab = b.dataset.t; renderBoard(); } };
 $("copyPrompt").onclick = async (e) => { const b = e.currentTarget; try { await navigator.clipboard.writeText($("prompt").textContent); b.textContent = t("copied"); } catch { const s = getSelection(), rg = document.createRange(); rg.selectNodeContents($("prompt")); s.removeAllRanges(); s.addRange(rg); } };
-const setLang = async (l) => { if (!LANGS.includes(l)) return; if (l === "zht") await loadS2T(); lang = l; try { localStorage.setItem("kairos_lang", lang); } catch {} renderStatic(); };
+const setLang = async (l) => { if (!LANGS.includes(l)) return; if (l === "zht") await loadS2T(); lang = l; try { sessionStorage.setItem("kairos_lang_v2", lang); } catch {} renderStatic(); };
 $("langTog").onchange = (e) => setLang(e.target.value);
 
 if (lang === "zht") { document.documentElement.style.visibility = "hidden"; Promise.race([loadS2T(), sleep(2500)]).then(() => { renderStatic(); document.documentElement.style.visibility = ""; }); }
+// 预览模式（?demo=1）：开机前先从服务器读一次“后台可调数据”，网址参数优先于服务器
 renderStatic(); refresh(); setInterval(refresh, 20000);
 })();
 </script>
