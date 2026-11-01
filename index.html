@@ -576,7 +576,7 @@ logsRpc: "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
 logsRpcFallback: ["https://rpc.48.club", "https://bsc.drpc.org"],
 boardFrom: 130892454,                                   // 合约部署区块：铸造榜从这块开始扫（分段，每次最多 5 万块）
 registrar: "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F", // 币安 Agent ID 注册合约
-api: "https://kairos-api-f09o.onrender.com/api/agent-wallet", // 扫码登录后端（Render · server/server.js）
+api: "https://api.kairosagentai.xyz/api/agent-wallet", // 扫码登录后端（Render · server/server.js）
 agentWallet: true,                                      // 显示 Binance Agentic Wallet 扫码登录
 siteUrl: "https://kairosagentai.xyz",
 xUrl: "https://x.com/KAIROSAGENTID",                    // X（推特）链接；留空则不显示 X 图标
@@ -1074,12 +1074,13 @@ if (DEMO) { mergeRemote(CFG_REMOTE); addSimLabel(); }
 else if (!PRE && hasPreviewData(CFG_REMOTE)) { PREVIEW_NUM = true; mergeRemote(CFG_REMOTE); addSimLabel(); }
 const chain = DEMO ? makeDemo() : PRE ? makePre() : makeLive();
 // 预览模式：显示值 = 后台基数 + 链上真实成交（购买走真合约，成交真的会计入）
+let PREVIEW_BASE = 0;
 if (PREVIEW_NUM) {
-const base = Math.max(0, Math.min(309000, Math.floor(DEMO_CFG.sold) || 0));
+PREVIEW_BASE = Math.max(0, Math.min(309000, Math.floor(DEMO_CFG.sold) || 0));
 const ov0 = chain.overview.bind(chain);
 chain.overview = async () => {
 const o = await ov0();
-const real = (o.real ?? o.sold) + base;
+const real = (o.real ?? o.sold) + PREVIEW_BASE;
 return Object.assign({}, o, { real });
 };
 const bd0 = chain.board.bind(chain);
@@ -1098,9 +1099,9 @@ const randFeed = DEMO_CFG.extra && DEMO_CFG.extra.length
 chain.board = async () => {
 const b = await bd0();
 // 真实成交的编号也要跟着基数偏移，否则会出现“已售 6,810 但记录是 #1”的矛盾
-const merged = (b.feed || []).map((x) => Object.assign({}, x, { first: x.first + base }));
+const merged = (b.feed || []).map((x) => Object.assign({}, x, { first: x.first + PREVIEW_BASE }));
 // 随机记录从“已售基数”往前排，总份数不超过基数，编号才不会重复
-let remaining = base;
+let remaining = PREVIEW_BASE;
 const extra = [];
 for (const e of randFeed) {
 if (remaining <= 0) break;
@@ -1109,9 +1110,31 @@ extra.push({ who: e.who, n, first: remaining - n + 1 });
 remaining -= n;
 }
 const inv = b.inv && b.inv.length ? b.inv : randInv;
-return Object.assign({}, b, { inv, feed: merged.concat(extra).slice(0, 20) });
+const feed = merged.concat(extra).slice(0, 20);
+// Mints 榜按名字汇总（真实成交 + 随机记录），不然后两个 tab 是空的
+const agg = new Map();
+for (const r of feed) { const k = r.who; const cur = agg.get(k) || { who: k, addr: r.addr || "", shares: 0 }; cur.shares += r.n; agg.set(k, cur); }
+const mints = Array.from(agg.values()).sort((a, b) => b.shares - a.shares).slice(0, 20);
+return Object.assign({}, b, { inv, feed, mints });
 };
 }
+// 页面自动刷新：切回标签页/获得焦点时立刻刷新一次（配合 20 秒定时器）
+const BOOT_HAD_PREVIEW = PREVIEW_NUM, BOOT_SOLD = PREVIEW_BASE;
+let cfgPolling = false;
+async function autoSyncConfig() {
+if (DEMO || PRE || cfgPolling) return;
+cfgPolling = true;
+try {
+let d = null;
+try { const j = await (await fetch(new URL(CONFIG.api).origin + "/api/demo", { cache: "no-store" })).json(); d = j && j.ok && j.data; } catch {}
+if (!d) { try { const j2 = await (await fetch("./demo.json", { cache: "no-store" })).json(); d = j2 && (j2.data || j2); } catch {} }
+const has = !!(d && (Number(d.sold) > 0 || (Array.isArray(d.extra) && d.extra.length)));
+const sold = has ? Math.max(0, Math.min(309000, Math.floor(Number(d.sold)) || 0)) : 0;
+if (has !== BOOT_HAD_PREVIEW || (has && sold !== BOOT_SOLD)) { location.reload(); return; }
+} catch {} finally { cfgPolling = false; }
+}
+document.addEventListener("visibilitychange", () => { if (!document.hidden) try { refresh(); } catch {} });
+addEventListener("focus", () => { try { refresh(); } catch {} });
 
 let ov = null, bnbUsd = null, acct = null, n = 1, busy = false, boardTab = "inv", boardData = null;
 const referrer = chain.resolveRef(new URLSearchParams(location.search).get("ref"));
@@ -1317,6 +1340,7 @@ try {
 [ov, bnbUsd] = await Promise.all([chain.overview(), chain.bnbUsd().catch(() => null)]);
 if (acct) acct.w = await chain.wallet(acct.address);
 boardData = await chain.board().catch(() => boardData);
+autoSyncConfig(); // 后台数字被改过就自动更新，观众不用手动刷新
 } catch (e) { say(tt("读取链上数据失败：", "Could not read chain: ", "チェーンの読み込みに失敗：", "체인 데이터를 읽지 못했습니다: ") + (e.shortMessage || e.message), "err"); }
 render();
 }
