@@ -629,9 +629,9 @@ presale: "0xD18740f7199B912715Ab46d82Aa863dBEF1ccC7B", // KAIROS 合约（铸造
 chainId: 56,
 rpcUrl: "https://bsc-dataseed.bnbchain.org",
 // 排行榜要读历史事件：bsc-dataseed 不开放 eth_getLogs，这里单独用一个支持查询日志的节点
-logsRpc: "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+logsRpc: "https://bsc-rpc.publicnode.com",
 logsRpcFallback: ["https://rpc.48.club", "https://bsc.drpc.org"],
-boardFrom: 130892454,                                   // 合约部署区块：铸造榜从这块开始扫（分段，每次最多 5 万块）
+boardFrom: 131075844,                                   // 合约部署区块：铸造榜从这块开始扫（分段，每次最多 5 万块）
 registrar: "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F", // 币安 Agent ID 注册合约
 api: "https://api.kairosagentai.xyz/api/agent-wallet", // 扫码登录后端（Render · server/server.js）
 agentWallet: true,                                      // 显示 Binance Agentic Wallet 扫码登录
@@ -1003,7 +1003,7 @@ const logNodes = [CONFIG.logsRpc, ...(CONFIG.logsRpcFallback || [])].filter(Bool
 .map((u) => new ethers.Contract(CONFIG.presale, LOG_ABI, new ethers.JsonRpcProvider(u, CONFIG.chainId, { staticNetwork: true })));
 let logsIdx = 0, boardCache = null; // { to, evs: [{agent, shares, first, ref}] }
 async function scanLogs(from, to) {
-let start = from, step = 50000;
+let start = from, step = 45000;
 const out = [];
 while (start <= to) {
 const end = Math.min(start + step - 1, to);
