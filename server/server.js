@@ -229,10 +229,65 @@ function send(res, status, obj) {
   res.end(JSON.stringify(obj));
 }
 
+// ---------------------------------------------------------------- 演示数据（只给 /demo/ 演示页用）
+// 管理页调好数字 → POST /api/demo（带 X-Demo-Key）→ 演示页开机时 GET /api/demo 读一次。
+// 主站 index.html 不读这里，永远显示链上真实数据。
+
+const fs = require("node:fs");
+const path = require("node:path");
+const DEMO_KEY = process.env.DEMO_KEY || "kairos-demo"; // 没设环境变量就用默认值，开箱即用；想换密码在 Render 设 DEMO_KEY 即可
+const DEMO_FILE = path.join(__dirname, "demo.json");
+let demoCfg = null;
+try { demoCfg = JSON.parse(fs.readFileSync(DEMO_FILE, "utf8")); } catch {}
+
+const intIn = (v, lo, hi, d) => { const n = Math.floor(Number(v)); return Number.isFinite(n) ? Math.max(lo, Math.min(hi, n)) : d; };
+function normDemo(b) {
+  const o = b && typeof b === "object" ? b : {};
+  const extra = Array.isArray(o.extra)
+    ? o.extra.filter((x) => x && typeof x.who === "string" && Number.isInteger(x.n) && x.n >= 1 && x.n <= 10).slice(-20)
+    : [];
+  return {
+    sold: intIn(o.sold, 0, 309000, 6800),
+    minted: intIn(o.minted, 0, 10, 0),
+    n: intIn(o.n, 1, 10, 1),
+    seed: intIn(o.seed, 1, 99999999, 7),
+    jitter: !!o.jitter,
+    extra,
+    updatedAt: Date.now(),
+  };
+}
+function saveDemo() { try { fs.writeFileSync(DEMO_FILE, JSON.stringify(demoCfg)); } catch {} }
+function demoJson(req, res, status, obj) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, X-Demo-Key");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  send(res, status, obj);
+}
+async function readBody(req, limit = 20000) {
+  let raw = "";
+  for await (const chunk of req) { raw += chunk; if (raw.length > limit) throw httpErr(413, "too large"); }
+  return raw;
+}
+
 const server = http.createServer(async (req, res) => {
+  if (req.url.split("?")[0] === "/api/demo") {
+    if (req.method === "OPTIONS") { demoJson(req, res, 204, {}); return; }
+    if (req.method === "GET") return demoJson(req, res, 200, { ok: true, data: demoCfg });
+    if (req.method !== "POST") return demoJson(req, res, 405, { ok: false, error: { message: "method not allowed" } });
+    if (String(req.headers["x-demo-key"] || "") !== DEMO_KEY) return demoJson(req, res, 401, { ok: false, error: { message: "wrong key" } });
+    try {
+      const body = JSON.parse((await readBody(req)) || "{}");
+      demoCfg = normDemo(body.data || body);
+      saveDemo();
+      console.log("demo config saved", JSON.stringify(demoCfg).slice(0, 120));
+      return demoJson(req, res, 200, { ok: true, data: demoCfg });
+    } catch (e) {
+      return demoJson(req, res, e.status || 400, { ok: false, error: { message: e.message || "bad request" } });
+    }
+  }
   const allowed = cors(req, res);
   if (req.method === "OPTIONS") { res.writeHead(allowed ? 204 : 403); return res.end(); }
-  if (req.method === "GET" && (req.url === "/" || req.url === "/health")) return send(res, 200, { ok: true, contract: ALLOW_TO || null, sessions: sessions.size });
+  if (req.method === "GET" && (req.url === "/" || req.url === "/health")) return send(res, 200, { ok: true, contract: ALLOW_TO || null, sessions: sessions.size, demo: !!demoCfg });
   if (req.url !== "/api/agent-wallet" || req.method !== "POST") return send(res, 404, { ok: false, error: { message: "not found" } });
   if (!allowed) return send(res, 403, { ok: false, error: { message: "origin not allowed" } });
   let raw = "";
