@@ -625,7 +625,7 @@ section{padding-top:92px}
 <script>
 // ================== 配置：上线前只改这里 ==================
 const CONFIG = {
-presale: "0x26b63d62e54d15caa8d4e62917aabf0a6b986610", // KAIROS 合约（铸造 + 代币）
+presale: "0xBc551A16481d306b6D0270Cd0b5b87538c330Da9", // KAIROS 合约（铸造 + 代币）
 chainId: 56,
 rpcUrl: "https://bsc-dataseed.bnbchain.org",
 // 排行榜要读历史事件：bsc-dataseed 不开放 eth_getLogs，这里单独用一个支持查询日志的节点
@@ -888,8 +888,7 @@ return [
 `<ul><li>The admin (deployer) can pause/resume minting and change the payout wallet; the pool, the burn and the pool registration are handled by the contract automatically at 10,000 shares. The admin cannot change prices, tiers, tax rates or the supply cap, and cannot touch holders' tokens.</li><li>Reads the Binance Agent ID registry, Chainlink BNB/USD and the PancakeSwap pool.</li><li>Mints priced off the pool are refused if the pool traded in the same block, to resist flash-loan manipulation.</li><li>Reentrancy-guarded; plain BNB transfers to the contract are rejected.</li><li>Not yet audited by a third party.</li></ul>`,
 `<ul><li>管理者（デプロイ者）ができること：ミントの一時停止 / 再開、受取ウォレットの変更。プール追加・焼却・プール登録は 10,000 口でコントラクトが自動実行します。価格・ティア・税率・上限の変更や保有者のトークンへの操作はできません。</li><li>Binance Agent ID レジストリ、Chainlink BNB/USD、PancakeSwap プールを読み取ります。</li><li>同じブロックでプールが取引された場合はプール価格でのミントを拒否し、フラッシュローン操作を防ぎます。</li><li>リエントランシー対策済み。直接送金は拒否されます。</li><li>第三者監査はまだ受けていません。</li></ul>`,
 `<ul><li>관리자(배포자)는 민팅 일시정지/재개, 수령 지갑 변경을 할 수 있습니다. 풀 추가·소각·풀 등록은 10,000개에서 컨트랙트가 자동으로 처리합니다. 가격·티어·세율·상한은 바꿀 수 없고 보유자의 토큰도 건드릴 수 없습니다.</li><li>바이낸스 Agent ID 레지스트리, Chainlink BNB/USD, PancakeSwap 풀을 읽습니다.</li><li>같은 블록에서 풀이 거래된 경우 풀 가격 민팅을 거부해 플래시론 조작을 막습니다.</li><li>재진입 방지, 직접 송금은 거부됩니다.</li><li>아직 제3자 감사를 받지 않았습니다.</li></ul>`)],
-["addrs", tt("合约地址", "Contracts", "コントラクト", "컨트랙트"), `<ul>${[[tt("KAIROS 代币合约（ERC-20）", "KAIROS token contract (ERC-20)", "KAIROS トークン（ERC-20）", "KAIROS 토큰 컨트랙트 (ERC-20)"), CONFIG.token],
- [tt("KAIROS 铸造合约", "KAIROS mint contract", "KAIROS ミントコントラクト", "KAIROS 민팅 컨트랙트"), CONFIG.presale], [tt("币安 Agent ID 注册合约", "Binance Agent ID registry", "Binance Agent ID レジストリ", "바이낸스 Agent ID 레지스트리"), CONFIG.registrar], [tt("金库（Agentic Wallet）", "Treasury (Agentic Wallet)", "金庫（Agentic Wallet）", "금고 (Agentic Wallet)"), CONFIG.treasury],
+["addrs", tt("合约地址", "Contracts", "コントラクト", "컨트랙트"), `<ul>${[[tt("KAIROS 合约（铸造 + 代币）", "KAIROS contract (mint + token)", "KAIROS コントラクト（ミント + トークン）", "KAIROS 컨트랙트 (민팅 + 토큰)"), CONFIG.presale], [tt("币安 Agent ID 注册合约", "Binance Agent ID registry", "Binance Agent ID レジストリ", "바이낸스 Agent ID 레지스트리"), CONFIG.registrar], [tt("金库（Agentic Wallet）", "Treasury (Agentic Wallet)", "金庫（Agentic Wallet）", "금고 (Agentic Wallet)"), CONFIG.treasury],
  [tt("LP 销毁地址（黑洞）", "LP burn address (dead)", "LP 焼却アドレス（ブラックホール）", "LP 소각 주소(블랙홀)"), "0x000000000000000000000000000000000000dEaD"],
  [tt("KAIROS/WBNB 交易对", "KAIROS/WBNB pair", "KAIROS/WBNB ペア", "KAIROS/WBNB 페어"), tt("开池后由合约自动创建", "created by the contract at pool opening", "プール開設時にコントラクトが自動作成", "풀 개설 시 컨트랙트가 자동 생성")]].map(([k, a]) => `<li><b>${k}</b> · ${a ? `<a class="mono" style="overflow-wrap:anywhere" href="https://bscscan.com/address/${a}" target="_blank" rel="noopener">${a}</a>` : tt("上线前公布", "published before launch", "開始前に公開", "오픈 전 공개")}</li>`).join("")}</ul>`],
 ["risks", tt("风险提示", "Risks", "リスク", "위험 고지"), tt(
