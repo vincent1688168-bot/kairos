@@ -607,7 +607,7 @@ section{padding-top:92px}
 </table></div>
 </div>
 <div class="board" id="board">
-<div class="bd-h"><b data-i="bdTitle"></b><div class="tabs"><button data-t="inv" aria-pressed="true" data-i="tInv"></button><button data-t="mint" aria-pressed="false" data-i="tMints"></button><button data-t="feed" aria-pressed="false" data-i="tFeed"></button></div></div>
+<div class="bd-h"><b data-i="bdTitle"></b><div class="tabs"><button data-t="inv" aria-pressed="true" data-i="tInv"></button><button data-t="feed" aria-pressed="false" data-i="tFeed"></button></div></div>
 <p class="bd-sub" id="bdSub"></p>
 <div class="bd-cols"><span id="bdCol1" data-i="cRank"></span><span data-i="cAgent"></span><span id="bdUnit"></span></div>
 <ol id="boardList"></ol>
@@ -1250,42 +1250,64 @@ const randFeed = DEMO_CFG.extra && DEMO_CFG.extra.length
 : Array.from({ length: 20 }, () => ({ who: NM[Math.floor(rr() * NM.length)] + Math.floor(1000 + rr() * 9000) + ".ai", n: 1 + Math.floor(rr() * 10) }));
 chain.board = async () => {
 const b = await bd0();
-// 真实成交的编号也要跟着基数偏移，否则会出现“已售 6,810 但记录是 #1”的矛盾
-const GAP_TOP = 200; // 顶部留 20 个编号给随机记录，真实记录被顶到下面
-const merged = (b.feed || []).map((x) => Object.assign({}, x, { first: x.first + Math.max(0, PREVIEW_BASE - GAP_TOP) }));
-// 最近铸造：编号从“真实最新一条”往下连续排，随机记录补在下面
-// 随机记录从“最高编号”往下填，遇到真实记录占用的编号就跳过
-// 这样真实记录会被顶到中间/下面，编号仍然连续不重叠
-const occupied = new Set();
-for (const x of merged) for (let k = 0; k < x.n; k++) occupied.add(x.first + k);
+// 真实成交 = 最早的一批（编号 #1 起，与链上一致）
+const merged = (b.feed || []).map((x) => Object.assign({}, x, { real: true }));
 const chainShares = merged.reduce((a, x) => a + x.n, 0);
-const topSerial = PREVIEW_BASE + chainShares;
-const extra = [];
-let top = topSerial;
-let left = Math.max(0, Math.min(GAP_TOP, topSerial - 1)); // 顶部空出来的位置数
-for (const e of randFeed) {
-if (left <= 0 || extra.length >= 20) break;
-const want = Math.max(1, Math.min(e.n, 10, left));
-const st0 = top - want + 1;
-let overlap = false;
-for (let k = 0; k < want; k++) { if (occupied.has(st0 + k)) { overlap = true; break; } }
-if (overlap) { top = st0 - 1; left -= want; continue; }
-for (let k = 0; k < want; k++) occupied.add(st0 + k);
-extra.push({ who: e.who, n: want, first: st0, addr: e.addr || ("0x" + hex(20)), fake: true });
-top = st0 - 1;
-left -= want;
+
+// 后台补的份数：用本地账本按“到达顺序”编号，只往后追加（新记录编号更大，排最上面）
+const LKEY = "kz_fake_" + CONFIG.presale;
+let ledger = null;
+try { ledger = JSON.parse(localStorage.getItem(LKEY) || "null"); } catch (e) {}
+if (!ledger || !Array.isArray(ledger.rows) || ledger.chain !== chainShares) {
+ledger = { chain: chainShares, rows: [] };
 }
-// 最近铸造按编号从大到小（最新在前），编号连续不跳
+const covered = () => ledger.rows.reduce((a, r) => a + r.n, 0);
+let guard = 0;
+while (covered() < PREVIEW_BASE && guard++ < 400) {
+const wantN = rr() < 0.45 ? 10 : (1 + Math.floor(rr() * 10));
+const n = Math.max(1, Math.min(wantN, PREVIEW_BASE - covered(), 10));
+const first = chainShares + covered() + 1;
+ledger.rows.push({
+who: NM[Math.floor(rr() * NM.length)] + Math.floor(1000 + rr() * 9000) + ".ai",
+n,
+first,
+addr: "0x" + hex(20),
+inv: (() => { const r0 = rr(); const cap = Math.min(n, 6); const base = r0 < 0.62 ? 0 : r0 < 0.85 ? 1 : r0 < 0.95 ? 2 + Math.floor(rr() * 2) : 4 + Math.floor(rr() * 3); return Math.max(0, Math.min(cap, base)); })(),
+});
+}
+// 后台调低份数时，从最新开始裁掉多余记录
+while (covered() > PREVIEW_BASE && ledger.rows.length) {
+const last = ledger.rows[ledger.rows.length - 1];
+const over = covered() - PREVIEW_BASE;
+if (last.n <= over) ledger.rows.pop();
+else { last.n -= over; break; }
+}
+try { localStorage.setItem(LKEY, JSON.stringify(ledger)); } catch (e) {}
+
+const extra = ledger.rows.map((r) => Object.assign({}, r, { fake: true }));
+// 最近铸造：编号从大到小（新记录在最上面），真实记录编号最小、自然垫底
 const feed = merged.concat(extra).sort((a, b) => b.first - a.first).slice(0, 20);
-// 邀请榜：真实 + 随机补齐，按邀请数从多到少排（排名正确）
-const realInv = (b.inv || []).slice();
-const extraInv = randInv.filter((r) => !realInv.some((x) => x.who === r.who));
-const inv = realInv.concat(extraInv).sort((a, b) => b.c - a.c).slice(0, 10);
-// Mints 榜按名字汇总（真实成交 + 随机记录），不然后两个 tab 是空的
+
+// 铸造榜：按份数排，同份数时编号大的（更新的）在前
 const agg = new Map();
-const seenRow = new Set();   // 同一笔记录只累加一次，避免重复计数
-for (const r of feed) { if (!r.fake) continue; if (!r.addr) continue; const dk = String(r.addr).toLowerCase() + "#" + r.first; if (seenRow.has(dk)) continue; seenRow.add(dk); const k = r.who; const cur = agg.get(k) || { who: k, addr: r.addr || "", shares: 0 }; cur.shares += r.n; agg.set(k, cur); }
-const mints = Array.from(agg.values()).sort((a, b) => b.shares - a.shares).slice(0, 20);
+const seenRow = new Set();
+for (const r of feed) {
+if (!r.addr) continue;
+const dk = String(r.addr).toLowerCase() + "#" + r.first;
+if (seenRow.has(dk)) continue;
+seenRow.add(dk);
+const k = String(r.who).toLowerCase();
+const cur = agg.get(k) || { who: r.who, addr: r.addr || "", shares: 0, first: r.first };
+cur.shares += r.n;
+cur.first = Math.max(cur.first, r.first);
+agg.set(k, cur);
+}
+const mints = Array.from(agg.values()).sort((a, b) => b.shares - a.shares || a.first - b.first).slice(0, 20);
+
+// 邀请榜：真实邀请 + 随机邀请，按邀请数排序
+const realInv = (b.inv || []).slice().map((x) => ({ who: x.who, addr: x.addr, c: x.c }));
+const fakeInv = extra.map((r) => ({ who: r.who, addr: r.addr, c: r.inv || 0 })).filter((f) => f.c > 0);
+const inv = realInv.concat(fakeInv.filter((f) => !realInv.some((x) => x.who === f.who))).sort((a, z) => z.c - a.c).slice(0, 12);
 return Object.assign({}, b, { inv, feed, mints });
 };
 }
