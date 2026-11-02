@@ -1236,30 +1236,44 @@ return Object.assign({}, o, { real });
 };
 const bd0 = chain.board.bind(chain);
 // 排行榜：随机生成的邀请榜 + 随机铸造记录（没有真实记录时），真实成交的记录排在前面
-const NM = ["nova", "atlas", "kairo", "miko", "quant", "zephyr", "lumen", "orbit", "vega", "echo", "sable", "ember", "pixel", "rune", "delta", "onyx", "flux", "helios", "aria", "zeta"];
-let rs = ((DEMO_CFG.seed || 7) * 40503) % 4294967296;
+const NM = ["nova","atlas","kairo","miko","quant","zephyr","lumen","orbit","vega","echo","sable","ember","pixel","rune","delta","onyx","flux","helios","aria","zeta","cyber","nexus","prism","void","apex","bolt","cipher","drift","emberly","fable","glint","haze","iris","jade","kite","lark","mint","noble","opus","pulse","quill","raven","sol","tide","umbra","verse","wren","xeno","yarn","zen","aster","brisk","coral","dune","flint","gust","haven","ivory","jolt","krypt","loom"];
+const SEED0 = PARAMS.has("seed") ? Number(PARAMS.get("seed")) : (Date.now() % 100000000);
+let rs = ((SEED0 || 1) * 40503) % 4294967296;
 const rr = () => { rs = (rs * 1103515245 + 12345) % 4294967296; return rs / 4294967296; };
 const randInv = Array.from({ length: 8 }, () => ({
-who: NM[Math.floor(rr() * NM.length)] + Math.floor(100 + rr() * 900) + ".ai",
+who: NM[Math.floor(rr() * NM.length)] + Math.floor(1000 + rr() * 9000) + ".ai",
 addr: "0x" + hex(20),
 c: 1 + Math.floor(rr() * 12),
 })).sort((a, b) => b.c - a.c);
 const randFeed = DEMO_CFG.extra && DEMO_CFG.extra.length
 ? DEMO_CFG.extra.slice()
-: Array.from({ length: 6 }, () => ({ who: NM[Math.floor(rr() * NM.length)] + Math.floor(100 + rr() * 900) + ".ai", n: 1 + Math.floor(rr() * 10) }));
+: Array.from({ length: 20 }, () => ({ who: NM[Math.floor(rr() * NM.length)] + Math.floor(1000 + rr() * 9000) + ".ai", n: 1 + Math.floor(rr() * 10) }));
 chain.board = async () => {
 const b = await bd0();
 // 真实成交的编号也要跟着基数偏移，否则会出现“已售 6,810 但记录是 #1”的矛盾
-const merged = (b.feed || []).map((x) => Object.assign({}, x, { first: x.first + PREVIEW_BASE }));
+const GAP_TOP = 200; // 顶部留 20 个编号给随机记录，真实记录被顶到下面
+const merged = (b.feed || []).map((x) => Object.assign({}, x, { first: x.first + Math.max(0, PREVIEW_BASE - GAP_TOP) }));
 // 最近铸造：编号从“真实最新一条”往下连续排，随机记录补在下面
-// 随机记录从“真实最老一条”的下面开始补，绝不与真实编号重叠
-let cursor = merged.length ? Math.min(...merged.map((x) => x.first)) : PREVIEW_BASE;
+// 随机记录从“最高编号”往下填，遇到真实记录占用的编号就跳过
+// 这样真实记录会被顶到中间/下面，编号仍然连续不重叠
+const occupied = new Set();
+for (const x of merged) for (let k = 0; k < x.n; k++) occupied.add(x.first + k);
+const chainShares = merged.reduce((a, x) => a + x.n, 0);
+const topSerial = PREVIEW_BASE + chainShares;
 const extra = [];
+let top = topSerial;
+let left = Math.max(0, Math.min(GAP_TOP, topSerial - 1)); // 顶部空出来的位置数
 for (const e of randFeed) {
-if (cursor <= 1) break;
-const n = Math.max(1, Math.min(e.n, cursor - 1));
-cursor -= n;
-extra.push({ who: e.who, n, first: cursor + 1, addr: e.addr || ("0x" + hex(20)) });
+if (left <= 0 || extra.length >= 20) break;
+const want = Math.max(1, Math.min(e.n, 10, left));
+const st0 = top - want + 1;
+let overlap = false;
+for (let k = 0; k < want; k++) { if (occupied.has(st0 + k)) { overlap = true; break; } }
+if (overlap) { top = st0 - 1; left -= want; continue; }
+for (let k = 0; k < want; k++) occupied.add(st0 + k);
+extra.push({ who: e.who, n: want, first: st0, addr: e.addr || ("0x" + hex(20)), fake: true });
+top = st0 - 1;
+left -= want;
 }
 // 最近铸造按编号从大到小（最新在前），编号连续不跳
 const feed = merged.concat(extra).sort((a, b) => b.first - a.first).slice(0, 20);
@@ -1270,7 +1284,7 @@ const inv = realInv.concat(extraInv).sort((a, b) => b.c - a.c).slice(0, 10);
 // Mints 榜按名字汇总（真实成交 + 随机记录），不然后两个 tab 是空的
 const agg = new Map();
 const seenRow = new Set();   // 同一笔记录只累加一次，避免重复计数
-for (const r of feed) { if (!r.addr) continue; const dk = String(r.addr).toLowerCase() + "#" + r.first; if (seenRow.has(dk)) continue; seenRow.add(dk); const k = r.who; const cur = agg.get(k) || { who: k, addr: r.addr || "", shares: 0 }; cur.shares += r.n; agg.set(k, cur); }
+for (const r of feed) { if (!r.fake) continue; if (!r.addr) continue; const dk = String(r.addr).toLowerCase() + "#" + r.first; if (seenRow.has(dk)) continue; seenRow.add(dk); const k = r.who; const cur = agg.get(k) || { who: k, addr: r.addr || "", shares: 0 }; cur.shares += r.n; agg.set(k, cur); }
 const mints = Array.from(agg.values()).sort((a, b) => b.shares - a.shares).slice(0, 20);
 return Object.assign({}, b, { inv, feed, mints });
 };
