@@ -1330,7 +1330,7 @@ $("spec").textContent =
 quote     bnbQuote(uint256 shares) → uint256 wei (tier-priced)            view    · selector 0x${SEL.quote}
 status    walletStatus(address) → (hasAgentId, minted, remaining, allocated, paidBnb, referrer, invites)
 overview  overview() → (sold, maxShares, tier, priceU, totalRaisedU, deadline=0, open)
-rules     1–10 shares per Agent ID · T1 (first ${fmt(T1N)} shares, 1U): ${fmt(T1TOK)} $KAIROS per share · after T1 the pool is added and registered by the project · then: tokens = price ÷ pool price ÷ 0.99 · referrer = 0x0 if none · overpayment refunded`;
+rules     1–10 shares per Agent ID · T1 (first ${fmt(T1N)} shares, 1U): ${fmt(T1TOK)} $KAIROS per share · after T1 the pool is added and registered by the contract automatically · then: tokens = price ÷ pool price ÷ 0.99 · referrer = 0x0 if none · overpayment refunded`;
 }
 
 // 给 AI 的指令：网站按当前价格算好交易数据，AI 只需用 baw contract-call 原样提交（baw 不能读合约，也不该让 AI 自己编码）
