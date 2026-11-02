@@ -24,9 +24,64 @@
 <meta name="twitter:description" content="Exclusive to wallets holding a Binance .ai Agent ID. 1U per share in T1, stepping up tier by tier, up to 10 shares per ID.">
 <meta name="twitter:image" content="https://kairosagentai.xyz/og.jpg">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Unbounded:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap"></noscript>
+<script>
+window.__libReady = (function () {
+  function load(srcs) {
+    return new Promise(function (resolve) {
+      var i = 0;
+      (function next() {
+        if (i >= srcs.length) return resolve(false);
+        var sc = document.createElement("script");
+        sc.src = srcs[i++];
+        sc.onload = function () { resolve(true); };
+        sc.onerror = next;
+        document.head.appendChild(sc);
+      })();
+    });
+  }
+  var p = (typeof ethers === "undefined")
+    ? load([
+        "https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js",
+        "https://unpkg.com/ethers@6.13.4/dist/ethers.umd.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"
+      ])
+    : Promise.resolve(true);
+  var q = (typeof QRCode === "undefined")
+    ? load([
+        "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js",
+        "https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      ])
+    : Promise.resolve(true);
+  window.__qrReady = q;
+  return p;
+})();
+</script>
+<script>
+// CDN 兜底：cdnjs 被墙/超时时自动换 jsdelivr / unpkg
+(function () {
+  var load = function (srcs) {
+    return new Promise(function (res) {
+      var i = 0;
+      var next = function () {
+        if (i >= srcs.length) return res(false);
+        var sc = document.createElement("script");
+        sc.src = srcs[i++];
+        sc.onload = function () { res(true); };
+        sc.onerror = next;
+        document.head.appendChild(sc);
+      };
+      next();
+    });
+  };
+  if (typeof ethers === "undefined") load(["https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js", "https://unpkg.com/ethers@6.13.4/dist/ethers.umd.min.js"]);
+  if (typeof QRCode === "undefined") load(["https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js", "https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js"]);
+})();
+</script>
 <style>
 :root{
 --bg:#0d0f14; --bg2:#13161e; --card:#181c26; --line:#272c3a; --line2:#363c4f;
@@ -628,6 +683,7 @@ const CONFIG = {
 presale: "0x84aBd9B81B3a2a97DAFF3F2d5Bba134A154b161f", // KAIROS 合约（铸造 + 代币）
 chainId: 56,
 rpcUrl: "https://bsc-dataseed.bnbchain.org",
+rpcUrls: ["https://bsc-dataseed.bnbchain.org", "https://bsc-rpc.publicnode.com", "https://rpc.48.club"],
 // 排行榜要读历史事件：bsc-dataseed 不开放 eth_getLogs，这里单独用一个支持查询日志的节点
 logsRpc: "https://bsc-rpc.publicnode.com",
 logsRpcFallback: ["https://rpc.48.club", "https://bsc.drpc.org"],
@@ -659,6 +715,8 @@ const LADDER = [
 // =========================================================
 
 (async () => {
+// 等 ethers / qrcode 就绪（最多 15 秒），避免 CDN 慢导致整页空白
+try { await Promise.race([window.__libReady || Promise.resolve(), new Promise((r) => setTimeout(r, 15000))]); } catch (e) {}
 const PARAMS = new URLSearchParams(location.search);
 const DEMO = false;   // 网址加 ?demo=1 进入预览模式：数字可控，但页面顶部会显示 DEMO 横幅
 const PRE = !CONFIG.presale && !DEMO;
@@ -979,7 +1037,14 @@ promptTx: async () => null,
 }
 
 function makeLive() {
-const rpc = new ethers.JsonRpcProvider(CONFIG.rpcUrl, CONFIG.chainId, { staticNetwork: true });
+const rpc = new ethers.FallbackProvider(
+(CONFIG.rpcUrls || [CONFIG.rpcUrl]).map((u, i) => ({
+provider: new ethers.JsonRpcProvider(u, CONFIG.chainId, { staticNetwork: true }),
+priority: i + 1, weight: 1, stallTimeout: 1500,
+})),
+CONFIG.chainId,
+{ quorum: 1 }
+);
 // bnbPerShare() = 1U 对应的 BNB（wei）；bnbQuote(shares) 按当前档位逐份计价
 const ABI = ["function mintWithBnb(uint256 shares,address referrer,uint256 maxCost) payable", "function bnbQuote(uint256) view returns (uint256)",
 "function bnbPerShare() view returns (uint256)", "function overview() view returns (uint256,uint256,uint256,uint256,uint256,uint256,bool)",
@@ -1165,14 +1230,19 @@ const extra = [];
 for (const e of randFeed) {
 if (remaining <= 0) break;
 const n = Math.max(1, Math.min(e.n, remaining));
-extra.push({ who: e.who, n, first: remaining - n + 1 });
+extra.push({ who: e.who, n, first: remaining - n + 1, addr: e.addr || ("0x" + hex(20)) });
 remaining -= n;
 }
-const inv = b.inv && b.inv.length ? b.inv : randInv;
-const feed = merged.concat(extra).slice(0, 20);
+// 邀请榜：真实邀请 + 随机补齐，并打乱顺序（不再“有真实就只显示真实”）
+const realInv = (b.inv || []).map((x) => ({ x, k: rr() })).sort((a, z) => a.k - z.k).map((o) => o.x);
+const extraInv = randInv.filter((r) => !realInv.some((x) => x.who === r.who));
+const inv = realInv.concat(extraInv).slice(0, 10);
+const allRows = merged.concat(extra).map((x) => ({ x, k: rr() })).sort((a, b) => a.k - b.k).map((o) => o.x);
+const feed = allRows.slice(0, 20);
 // Mints 榜按名字汇总（真实成交 + 随机记录），不然后两个 tab 是空的
 const agg = new Map();
-for (const r of feed) { const k = r.who; const cur = agg.get(k) || { who: k, addr: r.addr || "", shares: 0 }; cur.shares += r.n; agg.set(k, cur); }
+const seenRow = new Set();   // 同一笔记录只累加一次，避免重复计数
+for (const r of feed) { if (!r.addr) continue; const dk = String(r.addr).toLowerCase() + "#" + r.first; if (seenRow.has(dk)) continue; seenRow.add(dk); const k = r.who; const cur = agg.get(k) || { who: k, addr: r.addr || "", shares: 0 }; cur.shares += r.n; agg.set(k, cur); }
 const mints = Array.from(agg.values()).sort((a, b) => b.shares - a.shares).slice(0, 20);
 return Object.assign({}, b, { inv, feed, mints });
 };
@@ -1452,6 +1522,7 @@ if (PRE) { box.textContent = tt("铸造开放后，这里会显示登录二维�
 $("qrState").textContent = tt("正在生成二维码…", "Preparing QR…", "QR を生成中…", "QR 생성 중…");
 let L; try { L = await chain.login(); } catch (e) { $("qrState").textContent = e.message; box.textContent = "—"; return; }
 if (!qrAlive) return;
+if (typeof QRCode === "undefined") { $("qrState").textContent = "二维码组件加载失败，请刷新或改用浏览器钱包"; return; }
 new QRCode(box, { text: L.qrCodeUrl, width: 240, height: 240, colorDark: "#0d0f14", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M });
 $("pairCode").textContent = L.pairingCode;
 if (!DEMO && /^https:\/\//.test(L.qrCodeUrl)) { lk.href = L.qrCodeUrl; lk.hidden = false; }
