@@ -1112,16 +1112,35 @@ const latest = await rpc.getBlockNumber();
 if (!boardCache) boardCache = { to: CONFIG.boardFrom - 1, evs: [] };
 if (latest > boardCache.to) {
 const add = await scanLogs(boardCache.to + 1, latest);
-if (add.length) boardCache.evs.push(...add);
+if (add.length) {
+boardCache.evs.push(...add);
+const seenEv = new Set();
+boardCache.evs = boardCache.evs.filter((e) => {
+const k = String(e.agent).toLowerCase() + "#" + e.first;
+if (seenEv.has(k)) return false;
+seenEv.add(k);
+return true;
+});
+}
 if (boardCache.evs.length > 300) boardCache.evs = boardCache.evs.slice(-300);
 boardCache.to = latest;
 try { localStorage.setItem(CKEY, JSON.stringify({ to: boardCache.to, evs: boardCache.evs })); } catch (e) {}
 }
 } catch {}
 const evs = boardCache ? boardCache.evs : [];
-const feed = await Promise.all(evs.slice(-20).reverse().map(async (e) => ({ who: (await handleOf(e.agent)) || short(e.agent), addr: e.agent, n: e.shares, first: e.first })));
+const seenF = new Set();
+const feed = await Promise.all(evs.slice().reverse().filter((e) => {
+const k = String(e.agent).toLowerCase() + "#" + e.first;
+if (seenF.has(k)) return false;
+seenF.add(k);
+return true;
+}).slice(0, 20).map(async (e) => ({ who: (await handleOf(e.agent)) || short(e.agent), addr: e.agent, n: e.shares, first: e.first })));
 const inv = {}, mints = {};
+const seenM = new Set();
 for (const e of evs) {
+const mk = String(e.agent).toLowerCase() + "#" + e.first;
+if (seenM.has(mk)) continue;
+seenM.add(mk);
 mints[e.agent] = (mints[e.agent] || 0) + e.shares;
 if (e.ref && e.ref !== ethers.ZeroAddress) inv[e.ref] = (inv[e.ref] || 0) + 1;
 }
