@@ -1068,24 +1068,22 @@ const logNodes = [CONFIG.logsRpc, ...(CONFIG.logsRpcFallback || [])].filter(Bool
 .map((u) => new ethers.Contract(CONFIG.presale, LOG_ABI, new ethers.JsonRpcProvider(u, CONFIG.chainId, { staticNetwork: true })));
 let logsIdx = 0, boardCache = null; // { to, evs: [{agent, shares, first, ref}] }
 async function scanLogs(from, to) {
-let start = from, step = 45000;
+const step = 20000;
+const ranges = [];
+for (let a = from; a <= to; a += step) ranges.push([a, Math.min(a + step - 1, to)]);
 const out = [];
-while (start <= to) {
-const end = Math.min(start + step - 1, to);
+async function worker() {
+while (ranges.length) {
+const [a, b] = ranges.shift();
 let got = null;
 for (let k = 0; k < logNodes.length && !got; k++) {
-const i = (logsIdx + k) % logNodes.length;
-try { got = await logNodes[i].queryFilter(logNodes[i].filters.Minted(), start, end); logsIdx = i; } catch {}
+try { got = await logNodes[k].queryFilter(logNodes[k].filters.Minted(), a, b); } catch {}
 }
-if (got) {
+if (!got) throw new Error("logs unavailable");
 for (const e of got) out.push({ agent: e.args.agent, shares: Number(e.args.shares), first: Number(e.args.firstSerial), ref: e.args.referrer });
-start = end + 1;
-} else if (step > 1000) {
-step = Math.max(1000, Math.floor(step / 5)); // 节点限制更严时缩小分段重试
-} else {
-throw new Error("logs unavailable");
 }
 }
+await Promise.all([worker(), worker(), worker()]);
 return out;
 }
 let signer;
@@ -1101,13 +1099,23 @@ return { sold: pos, real, max: Number(o[1]), open: o[6], deadline: Number(o[5]) 
 },
 wallet: async (a) => { const w = await sale.walletStatus(a); return { hasId: w[0], minted: Number(w[1]), alloc: Number(ethers.formatEther(w[3])), invites: Number(w[6]) }; },
 board: async () => {
+const CKEY = "kz_board_" + CONFIG.presale;
+if (!boardCache) {
+try {
+const raw = localStorage.getItem(CKEY);
+const c = raw ? JSON.parse(raw) : null;
+if (c && c.to > CONFIG.boardFrom) boardCache = { to: c.to, evs: c.evs || [] };
+} catch (e) {}
+}
 try {
 const latest = await rpc.getBlockNumber();
 if (!boardCache) boardCache = { to: CONFIG.boardFrom - 1, evs: [] };
 if (latest > boardCache.to) {
 const add = await scanLogs(boardCache.to + 1, latest);
 if (add.length) boardCache.evs.push(...add);
+if (boardCache.evs.length > 300) boardCache.evs = boardCache.evs.slice(-300);
 boardCache.to = latest;
+try { localStorage.setItem(CKEY, JSON.stringify({ to: boardCache.to, evs: boardCache.evs })); } catch (e) {}
 }
 } catch {}
 const evs = boardCache ? boardCache.evs : [];
@@ -1224,21 +1232,22 @@ chain.board = async () => {
 const b = await bd0();
 // 真实成交的编号也要跟着基数偏移，否则会出现“已售 6,810 但记录是 #1”的矛盾
 const merged = (b.feed || []).map((x) => Object.assign({}, x, { first: x.first + PREVIEW_BASE }));
-// 随机记录从“已售基数”往前排，总份数不超过基数，编号才不会重复
-let remaining = PREVIEW_BASE;
+// 最近铸造：编号从“真实最新一条”往下连续排，随机记录补在下面
+// 随机记录从“真实最老一条”的下面开始补，绝不与真实编号重叠
+let cursor = merged.length ? Math.min(...merged.map((x) => x.first)) : PREVIEW_BASE;
 const extra = [];
 for (const e of randFeed) {
-if (remaining <= 0) break;
-const n = Math.max(1, Math.min(e.n, remaining));
-extra.push({ who: e.who, n, first: remaining - n + 1, addr: e.addr || ("0x" + hex(20)) });
-remaining -= n;
+if (cursor <= 1) break;
+const n = Math.max(1, Math.min(e.n, cursor - 1));
+cursor -= n;
+extra.push({ who: e.who, n, first: cursor + 1, addr: e.addr || ("0x" + hex(20)) });
 }
-// 邀请榜：真实邀请 + 随机补齐，并打乱顺序（不再“有真实就只显示真实”）
-const realInv = (b.inv || []).map((x) => ({ x, k: rr() })).sort((a, z) => a.k - z.k).map((o) => o.x);
+// 最近铸造按编号从大到小（最新在前），编号连续不跳
+const feed = merged.concat(extra).sort((a, b) => b.first - a.first).slice(0, 20);
+// 邀请榜：真实 + 随机补齐，按邀请数从多到少排（排名正确）
+const realInv = (b.inv || []).slice();
 const extraInv = randInv.filter((r) => !realInv.some((x) => x.who === r.who));
-const inv = realInv.concat(extraInv).slice(0, 10);
-const allRows = merged.concat(extra).map((x) => ({ x, k: rr() })).sort((a, b) => a.k - b.k).map((o) => o.x);
-const feed = allRows.slice(0, 20);
+const inv = realInv.concat(extraInv).sort((a, b) => b.c - a.c).slice(0, 10);
 // Mints 榜按名字汇总（真实成交 + 随机记录），不然后两个 tab 是空的
 const agg = new Map();
 const seenRow = new Set();   // 同一笔记录只累加一次，避免重复计数
@@ -1362,6 +1371,7 @@ const rb = $("refbox"); rb.hidden = !referrer; if (referrer) rb.innerHTML = tt("
 const nb = $("navConnect");
 if (acct) { nb.className = "acct"; nb.textContent = acct.handle ? acct.handle + ".ai" : short(acct.address); } else { nb.className = "btn"; nb.textContent = t("connect"); }
 const mb = $("mainBtn");
+if (!ov) { mb.textContent = tt("读取中…", "Loading…", "読み込み中…", "불러오는 중…"); mb.disabled = true; return; }
 if (ov.pre) { mb.textContent = tt("即将开放", "Opening soon", "まもなく開始", "곧 오픈"); mb.disabled = true; }
 else if (!ov.open) { mb.textContent = ov.waitPool ? tt("首档已结束 · 等待开池", "T1 ended · pool opening soon", "T1 終了 · プール開設待ち", "T1 종료 · 풀 개설 대기") : ov.sold >= ov.max ? tt("已售罄", "Sold out", "完売", "완판") : tt("已截止", "Closed", "終了", "종료"); mb.disabled = true; }
 else if (!acct) { mb.textContent = tt("连接钱包铸造 ↗", "Connect wallet to mint ↗", "接続してミント ↗", "지갑 연결 후 민팅 ↗"); mb.disabled = false; }
@@ -1462,28 +1472,43 @@ const unit = boardTab === "inv" ? tt("邀请", "invites", "紹介", "초대") : 
 $("bdUnit").textContent = unit;
 $("bdCol1").textContent = boardTab === "feed" ? t("cSerial") : t("cRank");
 $("bdSub").textContent = tt("链上真实数据 · BSC", "Live from BSC", "チェーン上の実データ · BSC", "온체인 실제 데이터 · BSC");
-if (!boardData) { $("boardList").innerHTML = `<li class="empty">${tt("读取中…", "Loading…", "読み込み中…", "불러오는 중…")}</li>`; return; }
+if (!boardData) { $("boardList").innerHTML = `<li class="empty">${tt("读取中…（网络慢时会稍久）", "Loading… (slow network)", "読み込み中…", "불러오는 중…")}</li>`; return; }
 const myKey = acct ? String(acct.address).toLowerCase() : null;
 const src = boardTab === "inv" ? (boardData.inv || []) : boardTab === "mint" ? (boardData.mints || []) : (boardData.feed || []);
 const rows = src.map((r, i) => {
 const mine = myKey && r.addr && String(r.addr).toLowerCase() === myKey;
 const v = boardTab === "inv" ? r.c : boardTab === "feed" ? r.n : r.shares;
 const sub = r.addr ? short(r.addr) : "";
-return { rank: i + 1, first: r.first, who: r.who, sub, v, mine };
+return { rank: i + 1, first: r.first, n: r.n || 1, who: r.who, sub, v, mine };
 });
 $("boardList").innerHTML = rows.length
-? rows.slice(0, 20).map((r) => `<li class="${boardTab !== "feed" && r.rank <= 3 ? "top3 " : ""}${r.mine ? "me" : ""}"><span class="rk${boardTab === "feed" ? " ser" : ""}">${boardTab === "feed" ? "#" + fmt(r.first) : String(r.rank).padStart(2, "0")}</span><span class="ag"><b>${r.who}${r.mine ? ` <span class="tag">${tt("你", "you", "あなた", "나")}</span>` : ""}</b>${r.sub ? `<small>${r.sub}</small>` : ""}</span><span class="vl">${fmt(r.v)}<i>${unit}</i></span></li>`).join("")
+? rows.slice(0, 20).map((r) => `<li class="${boardTab !== "feed" && r.rank <= 3 ? "top3 " : ""}${r.mine ? "me" : ""}"><span class="rk${boardTab === "feed" ? " ser" : ""}">${boardTab === "feed" ? "#" + fmt(r.first) + (r.n > 1 ? "–" + fmt(r.first + r.n - 1) : "") : String(r.rank).padStart(2, "0")}</span><span class="ag"><b>${r.who}${r.mine ? ` <span class="tag">${tt("你", "you", "あなた", "나")}</span>` : ""}</b>${r.sub ? `<small>${r.sub}</small>` : ""}</span><span class="vl">${fmt(r.v)}<i>${unit}</i></span></li>`).join("")
   : `<li class="empty">${tt("还没有记录", "Nothing yet", "まだ記録がありません", "아직 기록이 없습니다")}<br><span style="font-size:12px">${tt("第一个铸造的人会出现在这里", "The first minter shows up here", "最初のミントがここに表示されます", "첫 민팅이 여기에 표시됩니다")}</span></li>`;
 }
 
+let refreshTry = 0;
+const withTimeout = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), ms))]);
 async function refresh() {
 try {
-[ov, bnbUsd] = await Promise.all([chain.overview(), chain.bnbUsd().catch(() => null)]);
-if (acct) acct.w = await chain.wallet(acct.address);
-boardData = await chain.board().catch(() => boardData);
+if (!ov) say(tt("正在读取链上数据…", "Reading chain data…", "チェーンを読み込み中…", "체인 데이터 불러오는 중…"));
+const [o, b] = await withTimeout(Promise.all([chain.overview(), chain.bnbUsd().catch(() => null)]), 12000);
+ov = o; bnbUsd = b; refreshTry = 0;
+if (acct) { try { acct.w = await withTimeout(chain.wallet(acct.address), 8000); } catch (e) {} }
+say("");
+render(); // 先渲染主要数据（已售、价格、按钮），不等排行榜
+chain.board().then((bd) => { boardData = bd; renderBoard(); }).catch(() => {});
 autoSyncConfig(); // 后台数字被改过就自动更新，观众不用手动刷新
-} catch (e) { say(tt("读取链上数据失败：", "Could not read chain: ", "チェーンの読み込みに失敗：", "체인 데이터를 읽지 못했습니다: ") + (e.shortMessage || e.message), "err"); }
-render();
+} catch (e) {
+refreshTry++;
+if (!ov && refreshTry <= 5) {
+say(tt("网络较慢，正在重试（" + refreshTry + "/5）…", "Slow network, retrying (" + refreshTry + "/5)…", "通信が遅いため再試行中（" + refreshTry + "/5）…", "네트워크가 느려 재시도 중 (" + refreshTry + "/5)…"));
+setTimeout(() => { refresh(); }, 3000);
+} else if (ov) {
+say(tt("更新失败，显示的是上次数据", "Update failed, showing last data", "更新失敗（前回のデータを表示）", "업데이트 실패, 이전 데이터 표시"), "err");
+} else {
+say(tt("读取链上数据失败，请刷新页面", "Could not read chain, please refresh", "チェーンの読み込みに失敗しました。再読み込みしてください", "체인 데이터를 읽지 못했습니다. 새로고침하세요"), "err");
+}
+}
 }
 function say(m, c = "") { $("msg").textContent = m; $("msg").className = "msg " + c; }
 
@@ -1637,7 +1662,17 @@ $("langTog").onchange = (e) => setLang(e.target.value);
 
 if (lang === "zht") { document.documentElement.style.visibility = "hidden"; Promise.race([loadS2T(), sleep(2500)]).then(() => { renderStatic(); document.documentElement.style.visibility = ""; }); }
 // 预览模式（?demo=1）：开机前先从服务器读一次“后台可调数据”，网址参数优先于服务器
-renderStatic(); refresh(); setInterval(refresh, 20000);
+renderStatic(); refresh();
+// —— 事件驱动更新：只有链上出现新铸造（有人买）时才刷新 ——
+try {
+if (window.ethers && CONFIG.presale) {
+const wsP = new ethers.WebSocketProvider("wss://bsc-rpc.publicnode.com", CONFIG.chainId, { staticNetwork: true });
+const cEv = new ethers.Contract(CONFIG.presale, ["event Minted(address indexed agent,uint256 shares,uint256 firstSerial,uint256 paidBnb,uint256 tokens,address indexed referrer)"], wsP);
+cEv.on("Minted", () => { try { refresh(); } catch (e) {} });
+}
+} catch (e) {}
+// 兜底：每 60 秒轻量刷新一次（页面不可见时跳过）
+setInterval(() => { if (!document.hidden) { try { refresh(); } catch (e) {} } }, 60000);
 })();
 </script>
 </body>
